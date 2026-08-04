@@ -1,178 +1,457 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>PunarChakra | One Industry's Waste, Another Industry's Wealth</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punarchakra - AI-Powered Industrial Waste Exchange Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        eco: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Sexy Glassmorphism & Animations */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .hero-interactive-card {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+        }
+        .hero-interactive-card:hover {
+            transform: translateY(-10px) rotateX(4deg) rotateY(-4deg) scale(1.02);
+            box-shadow: 0 35px 60px -15px rgba(22, 163, 74, 0.3);
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        .floating-element-delayed {
+            animation: float 7s ease-in-out infinite 2s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        .glow-effect {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(34,197,94,0.18) 0%, rgba(255,255,255,0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
 </head>
-
-<body>
-
-<header>
-
-<div class="logo">
-
-<h1>PunarChakra</h1>
-
-<p>One Industry's Waste, Another Industry's Wealth</p>
-
-</div>
-
-<nav>
-
-<a href="#">Home</a>
-
-<a href="#">Marketplace</a>
-
-<a href="#">Industries</a>
-
-<a href="#">Dashboard</a>
-
-<a href="#">Contact</a>
-
-</nav>
-
-</header>
-
-
-<section class="hero">
-
-<div class="hero-text">
-
-<h1>Transform Industrial Waste into Valuable Resources</h1>
-
-<p>
-
-PunarChakra is an AI-powered Industrial Symbiosis Platform that intelligently connects industries generating waste with industries that can reuse it as valuable raw material.
-
-</p>
-
-<button id="exploreBtn">
-
-Explore Platform
-
-</button>
-
-</div>
-
-<div class="hero-image">
-
-<img src="images/hero.png" alt="Industrial Waste">
-
-</div>
-
-</section>
-
-
-<section class="stats">
-
-<div class="card">
-
-<h2>128</h2>
-
-<p>Waste Listings</p>
-
-</div>
-
-<div class="card">
-
-<h2>46</h2>
-
-<p>Industries Connected</p>
-
-</div>
-
-<div class="card">
-
-<h2>73</h2>
-
-<p>Successful Matches</p>
-
-</div>
-
-<div class="card">
-
-<h2>256 T</h2>
-
-<p>CO₂ Saved</p>
-
-</div>
-
-</section>
-
-
-<section class="features">
-
-<h2>Platform Features</h2>
-
-<div class="feature-grid">
-
-<div class="feature">
-
-<h3>AI Material Matching</h3>
-
-<p>Find industries that can reuse your waste.</p>
-
-</div>
-
-<div class="feature">
-
-<h3>Digital Material Passport</h3>
-
-<p>Track every material using QR technology.</p>
-
-</div>
-
-<div class="feature">
-
-<h3>Smart Logistics</h3>
-
-<p>Optimize transportation between industries.</p>
-
-</div>
-
-<div class="feature">
-
-<h3>Carbon Calculator</h3>
-
-<p>Measure environmental impact in real time.</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<footer>
-
-<p>
-
-© 2026 PunarChakra | Connect • Match • Transform
-
-</p>
-
-</footer>
-
-<script src="script.js"></script>
-
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-eco-500 selection:text-white">
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-eco-700 to-eco-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-eco-600/30 group-hover:rotate-12 transition-transform duration-300">
+                    <i class="fa-solid fa-recycle"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-tight text-white">Punarchakra</span>
+                    <span class="block text-[10px] font-bold tracking-widest text-eco-400 uppercase">Industrial Symbiosis</span>
+                </div>
+            </a>
+            
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-300">
+                <a href="#aim" class="hover:text-eco-400 transition-colors">Aim</a>
+                <a href="#problem" class="hover:text-eco-400 transition-colors">Problem</a>
+                <a href="#working" class="hover:text-eco-400 transition-colors">Working</a>
+                <a href="#budget" class="hover:text-eco-400 transition-colors">Budget</a>
+                <a href="#impact" class="hover:text-eco-400 transition-colors">Impact</a>
+                <a href="#innovation" class="hover:text-eco-400 transition-colors">Innovation</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <a href="#working" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-900 bg-eco-400 hover:bg-eco-500 shadow-lg shadow-eco-500/20 transition-all duration-300 transform hover:-translate-y-0.5">
+                    Launch App
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sexy Interactive Hero Section -->
+    <section class="relative pt-36 pb-24 md:pt-48 md:pb-36 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+        <div class="glow-effect top-10 left-1/4"></div>
+        <div class="glow-effect bottom-0 right-1/4"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Copy -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-eco-950 border border-eco-500/30 text-eco-400 text-xs font-semibold tracking-wide uppercase shadow-inner">
+                        <i class="fa-solid fa-bolt text-eco-400"></i>
+                        <span>AI-Powered Industrial Waste Exchange[cite: 1]</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-[1.1]">
+                        One Industry’s Waste, <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-eco-400 via-emerald-300 to-teal-400">Another Industry’s Wealth[cite: 1]</span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Connecting waste generators with industries requiring secondary raw materials. Promoting sustainable manufacturing and supporting India’s Circular Economy Mission[cite: 1].
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#working" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-eco-500 text-slate-950 font-bold text-sm hover:bg-eco-400 shadow-xl shadow-eco-500/25 transition-all text-center">
+                            Explore Platform
+                        </a>
+                        <a href="#impact" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-slate-900 text-slate-200 border border-slate-800 font-semibold text-sm hover:bg-slate-800 transition-all text-center">
+                            View Expected Results
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Right: Interactive Hover Playground Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="hero-interactive-card w-full max-w-md bg-slate-900/90 border border-slate-800/80 rounded-3xl p-7 shadow-2xl relative overflow-hidden backdrop-blur-xl">
+                        <div class="absolute -top-16 -right-16 w-40 h-40 bg-eco-500/20 rounded-full blur-3xl"></div>
+                        
+                        <div class="relative z-10 space-y-5">
+                            <div class="flex items-center justify-between">
+                                <div class="w-12 h-12 rounded-2xl bg-eco-500/10 border border-eco-500/30 text-eco-400 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-microchip"></i>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-mono font-semibold tracking-wider">LIVE MATCH AI</span>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-bold text-white tracking-wide">Interactive Simulator</h3>
+                                <p class="text-xs text-slate-400 mt-1">Hover over tags below to simulate real-time AI industrial matchmaking[cite: 1].</p>
+                            </div>
+
+                            <!-- Interactive Live Match Trigger Elements -->
+                            <div class="grid grid-cols-2 gap-3 pt-2">
+                                <button onclick="triggerMatch('Plastic Scrap', 'Packaging Industry', '85%')" class="p-3 rounded-xl bg-slate-800/80 hover:bg-eco-950 border border-slate-700/60 hover:border-eco-500/50 text-left transition-all group">
+                                    <span class="block text-xs text-slate-400 group-hover:text-eco-400">Input Waste</span>
+                                    <span class="block text-sm font-bold text-white mt-0.5">Plastic Scrap</span>
+                                </button>
+                                <button onclick="triggerMatch('Chemical Sludge', 'Cement Kiln', '92%')" class="p-3 rounded-xl bg-slate-800/80 hover:bg-eco-950 border border-slate-700/60 hover:border-eco-500/50 text-left transition-all group">
+                                    <span class="block text-xs text-slate-400 group-hover:text-eco-400">Input Waste</span>
+                                    <span class="block text-sm font-bold text-white mt-0.5">Chem Sludge</span>
+                                </button>
+                            </div>
+
+                            <!-- Dynamic Match Result Display Box -->
+                            <div id="matchResultBox" class="p-4 rounded-2xl bg-slate-950 border border-slate-800 text-xs space-y-2">
+                                <div class="flex justify-between text-slate-400">
+                                    <span>Target Match:</span>
+                                    <span id="matchTarget" class="text-eco-400 font-semibold">Select a material above</span>
+                                </div>
+                                <div class="flex justify-between text-slate-400">
+                                    <span>AI Confidence Score:</span>
+                                    <span id="matchScore" class="text-emerald-400 font-mono font-bold">--</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden mt-1">
+                                    <div id="matchProgressBar" class="bg-eco-500 h-full w-0 transition-all duration-500"></div>
+                                </div>
+                            </div>
+
+                            <div class="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
+                                <span>Prototype Cost: ₹2,500</span>
+                                <span class="text-eco-400 font-bold">Firebase Connected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-28">
+
+        <!-- Aim & Objectives Section -->
+        <section id="aim" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            <div class="bg-slate-900/60 border border-slate-800/80 p-8 rounded-3xl backdrop-blur-md flex flex-col justify-between hover:border-slate-700 transition-all">
+                <div>
+                    <div class="w-12 h-12 rounded-2xl bg-eco-500/10 border border-eco-500/20 text-eco-400 flex items-center justify-center font-bold text-lg mb-6">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h2 class="text-2xl font-black text-white mb-3">Project Aim</h2>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        To develop an AI-powered industrial waste exchange platform that connects industries generating waste with industries that can use the same waste as raw material[cite: 1]. The project aims to reduce industrial pollution, promote sustainable manufacturing, minimize landfill waste, lower production costs, and support the circular economy[cite: 1].
+                    </p>
+                </div>
+                <div class="mt-6 pt-6 border-t border-slate-800/80 flex items-center text-xs font-bold text-eco-400 uppercase tracking-widest">
+                    <span>Core Mission Goal</span>
+                    <i class="fa-solid fa-arrow-right ml-2"></i>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/60 border border-slate-800/80 p-8 rounded-3xl backdrop-blur-md flex flex-col justify-between hover:border-slate-700 transition-all">
+                <div>
+                    <div class="w-12 h-12 rounded-2xl bg-eco-500/10 border border-eco-500/20 text-eco-400 flex items-center justify-center font-bold text-lg mb-6">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <h2 class="text-2xl font-black text-white mb-3">Key Objectives</h2>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To reduce industrial waste sent to landfills[cite: 1].</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To promote recycling and reuse of industrial by-products[cite: 1].</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To reduce manufacturing costs via alternative raw materials[cite: 1].</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To create a digital marketplace for industrial waste exchange[cite: 1].</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To support India's Circular Economy Mission[cite: 1].</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Statement Section -->
+        <section id="problem" class="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-red-500/10 rounded-full blur-3xl"></div>
+            <div class="relative z-10 max-w-3xl">
+                <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-red-950 border border-red-500/30 text-red-400 text-xs font-semibold tracking-wide uppercase mb-6">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>The Industrial Challenge</span>
+                </div>
+                <h2 class="text-3xl font-black text-white tracking-tight mb-4">Problem Statement</h2>
+                <p class="text-slate-300 leading-relaxed text-sm sm:text-base mb-6">
+                    Every year, industries produce millions of tonnes of plastic, metal, textile, glass, food-processing, and chemical waste[cite: 1]. Most of this waste is disposed of through landfilling or incineration, causing environmental pollution and increasing disposal costs[cite: 1].
+                </p>
+                <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                    At the same time, many industries purchase expensive raw materials that could be replaced by recyclable industrial waste[cite: 1]. Due to the absence of a centralized platform, these industries are unable to identify suitable partners for resource exchange[cite: 1].
+                </p>
+            </div>
+        </section>
+
+        <!-- Working Principle Section -->
+        <section id="working">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-eco-400 font-bold text-xs uppercase tracking-widest">Workflow Engine</span>
+                <h2 class="text-3xl font-black text-white mt-1">How Punarchakra Works</h2>
+                <p class="text-slate-400 text-sm mt-2">A seamless end-to-end operational architecture from registration to certification[cite: 1].</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-900/60 border border-slate-800 p-7 rounded-3xl relative hover:border-slate-700 transition-all">
+                    <span class="absolute top-6 right-6 text-2xl font-black text-slate-800">01</span>
+                    <h3 class="font-bold text-white text-lg mb-2">Registration & Upload</h3>
+                    <p class="text-sm text-slate-400">Industries register on the website and upload waste parameters: type, quantity, purity, location, and availability[cite: 1].</p>
+                </div>
+                <div class="bg-slate-900/60 border border-slate-800 p-7 rounded-3xl relative hover:border-slate-700 transition-all">
+                    <span class="absolute top-6 right-6 text-2xl font-black text-slate-800">02</span>
+                    <h3 class="font-bold text-white text-lg mb-2">AI Matchmaking</h3>
+                    <p class="text-sm text-slate-400">The AI system analyzes requirements, pairs generator output with consumer demand, and routes optimal matches[cite: 1].</p>
+                </div>
+                <div class="bg-slate-900/60 border border-slate-800 p-7 rounded-3xl relative hover:border-slate-700 transition-all">
+                    <span class="absolute top-6 right-6 text-2xl font-black text-slate-800">03</span>
+                    <h3 class="font-bold text-white text-lg mb-2">Execution & Reports</h3>
+                    <p class="text-sm text-slate-400">Logistics planning executes the transaction, automatically generating carbon savings reports and sustainability certificates[cite: 1].</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Budget & Materials Grid -->
+        <section id="budget" class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            
+            <!-- Materials Required -->
+            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl">
+                <h2 class="text-2xl font-black text-white mb-6 flex items-center">
+                    <i class="fa-solid fa-toolbox text-eco-400 mr-3 text-xl"></i> Materials Required[cite: 1]
+                </h2>
+                <div class="space-y-6 text-sm">
+                    <div>
+                        <h4 class="font-bold uppercase text-xs tracking-wider text-eco-400 mb-2">Hardware Setup</h4>
+                        <p class="text-slate-400 leading-relaxed">Laptop/Desktop, Smartphone, Internet, QR Code Labels, Arduino/ESP32 Prototype, RFID/QR Scanner, LCD Display, Cardboard Factory Models, Toy Transport Vehicle, Power Supply[cite: 1].</p>
+                    </div>
+                    <div class="border-t border-slate-800 pt-4">
+                        <h4 class="font-bold uppercase text-xs tracking-wider text-eco-400 mb-2">Tech Stack & Tools</h4>
+                        <p class="text-slate-400 leading-relaxed">HTML, CSS, JavaScript, Firebase Backend & Firestore DB, GitHub, AI Material Matching Algorithm, Google Maps API for logistics, QR Code Generator[cite: 1].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Budget Table -->
+            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl">
+                <h2 class="text-2xl font-black text-white mb-6 flex items-center">
+                    <i class="fa-solid fa-indian-rupee-sign text-eco-400 mr-3 text-xl"></i> Project Budget[cite: 1]
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-800 text-slate-400 font-semibold uppercase text-xs">
+                                <th class="pb-3">Item</th>
+                                <th class="pb-3 text-center">Qty</th>
+                                <th class="pb-3 text-right">Cost (₹)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                            <tr>
+                                <td class="py-3 font-medium">Laptop (Existing)</td>
+                                <td class="py-3 text-center">1</td>
+                                <td class="py-3 text-right">At home[cite: 1]</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 font-medium">Arduino/ESP32</td>
+                                <td class="py-3 text-center">1</td>
+                                <td class="py-3 text-right">600[cite: 1]</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 font-medium">LCD Display</td>
+                                <td class="py-3 text-center">1</td>
+                                <td class="py-3 text-right">250[cite: 1]</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 font-medium">QR Code Labels</td>
+                                <td class="py-3 text-center">20</td>
+                                <td class="py-3 text-right">100[cite: 1]</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 font-medium">Breadboard & Wires</td>
+                                <td class="py-3 text-center">1 Set</td>
+                                <td class="py-3 text-right">200[cite: 1]</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 font-medium">Cardboard & Prototype</td>
+                                <td class="py-3 text-center">--</td>
+                                <td class="py-3 text-right">500[cite: 1]</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 font-medium">Toy Vehicle</td>
+                                <td class="py-3 text-center">1</td>
+                                <td class="py-3 text-right">300[cite: 1]</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 font-medium">Internet & Software</td>
+                                <td class="py-3 text-center">—</td>
+                                <td class="py-3 text-right">Free[cite: 1]</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 font-medium">Miscellaneous</td>
+                                <td class="py-3 text-center">—</td>
+                                <td class="py-3 text-right">550[cite: 1]</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="border-t border-slate-700 font-bold text-white">
+                                <td class="pt-4" colspan="2">Estimated Total Budget</td>
+                                <td class="pt-4 text-right text-eco-400 text-base">₹2,500[cite: 1]</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Expected Results & Social Impact -->
+        <section id="impact" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl flex flex-col justify-between">
+                <div>
+                    <h2 class="text-2xl font-black text-white mb-4 flex items-center">
+                        <i class="fa-solid fa-chart-line text-eco-400 mr-3 text-xl"></i> Expected Results[cite: 1]
+                    </h2>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-eco-400 mt-1 mr-3"></i>Reduce industrial waste sent to landfill sites[cite: 1].</li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-eco-400 mt-1 mr-3"></i>Lower raw material procurement and transport costs[cite: 1].</li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-eco-400 mt-1 mr-3"></i>Generate additional business income from waste assets[cite: 1].</li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-eco-400 mt-1 mr-3"></i>Decrease carbon emissions and foster sustainability[cite: 1].</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl flex flex-col justify-between">
+                <div>
+                    <h2 class="text-2xl font-black text-white mb-4 flex items-center">
+                        <i class="fa-solid fa-users text-eco-400 mr-3 text-xl"></i> Social Applicability[cite: 1]
+                    </h2>
+                    <div class="space-y-3 text-sm text-slate-400">
+                        <div><strong class="text-slate-200">Industries:</strong> Lower procurement costs, reduced disposal expenses, and increased profits[cite: 1].</div>
+                        <div><strong class="text-slate-200">Government:</strong> Better waste monitoring and support for circular economy initiatives[cite: 1].</div>
+                        <div><strong class="text-slate-200">Society:</strong> New employment opportunities and cleaner surroundings[cite: 1].</div>
+                        <div><strong class="text-slate-200">Environment:</strong> Minimized pollution and conservation of natural resources[cite: 1].</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Innovation Highlight & Future Scope -->
+        <section id="innovation" class="bg-gradient-to-r from-eco-950 via-slate-900 to-emerald-950 border border-eco-500/30 p-8 md:p-12 rounded-3xl shadow-2xl space-y-8">
+            <div>
+                <span class="text-eco-400 font-bold text-xs uppercase tracking-widest">Platform Differentiation</span>
+                <h2 class="text-3xl font-black text-white tracking-tight mt-1 mb-4">Innovation Highlight[cite: 1]</h2>
+                <p class="text-slate-300 text-sm leading-relaxed max-w-3xl">
+                    Punarchakra transforms waste into value through intelligent digital matchmaking[cite: 1]. Unlike standard waste disposal, it optimizes transit logistics, calculates real-time carbon offsets, and issues automated compliance certification[cite: 1].
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-slate-800 text-xs font-semibold">
+                <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-slate-300">
+                    <i class="fa-solid fa-network-wired text-eco-400 mb-2 text-base block"></i>
+                    <span>IoT Sensor Monitoring[cite: 1]</span>
+                </div>
+                <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-slate-300">
+                    <i class="fa-solid fa-shield-halved text-eco-400 mb-2 text-base block"></i>
+                    <span>Blockchain Traceability[cite: 1]</span>
+                </div>
+                <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-slate-300">
+                    <i class="fa-solid fa-coins text-eco-400 mb-2 text-base block"></i>
+                    <span>Carbon Credit Marketplace[cite: 1]</span>
+                </div>
+                <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-slate-300">
+                    <i class="fa-solid fa-mobile-screen text-eco-400 mb-2 text-base block"></i>
+                    <span>Mobile App Integration[cite: 1]</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-500 py-12 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+                <span class="text-white font-bold text-lg tracking-tight">Punarchakra</span>
+                <p class="text-xs text-slate-500 mt-1">AI-Powered Industrial Waste Exchange Platform[cite: 1]. References: CPCB, MoEFCC[cite: 1].</p>
+            </div>
+            <p class="text-xs text-slate-500">
+                &copy; 2026 Punarchakra. All rights reserved. Supporting India's Circular Economy Mission[cite: 1].
+            </p>
+        </div>
+    </footer>
+
+    <!-- Inline JavaScript for Interactive Hero Simulator & Firebase Prep -->
+    <script type="module">
+        // Import your firebase initialization file setup
+        import { auth, db } from './firebase-init.js';
+
+        // Interactive Hero Simulator Function
+        window.triggerMatch = function(material, receiver, score) {
+            document.getElementById('matchTarget').innerText = `${material} ➔ ${receiver}`;
+            document.getElementById('matchScore').innerText = score;
+            const bar = document.getElementById('matchProgressBar');
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.width = score;
+            }, 100);
+        };
+
+        console.log("Punarchakra frontend module loaded successfully with Firebase integration!");
+    </script>
 </body>
-
 </html>
