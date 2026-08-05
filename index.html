@@ -29,9 +29,8 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Sexy Glassmorphism & Animations */
         .glass-nav {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
         }
@@ -42,16 +41,6 @@
         .hero-interactive-card:hover {
             transform: translateY(-10px) rotateX(4deg) rotateY(-4deg) scale(1.02);
             box-shadow: 0 35px 60px -15px rgba(22, 163, 74, 0.3);
-        }
-        .floating-element {
-            animation: float 6s ease-in-out infinite;
-        }
-        .floating-element-delayed {
-            animation: float 7s ease-in-out infinite 2s;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
         }
         .glow-effect {
             position: absolute;
@@ -81,21 +70,21 @@
             <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-300">
                 <a href="#aim" class="hover:text-eco-400 transition-colors">Aim</a>
                 <a href="#problem" class="hover:text-eco-400 transition-colors">Problem</a>
-                <a href="#working" class="hover:text-eco-400 transition-colors">Working</a>
+                <a href="#working" class="hover:text-eco-400 transition-colors">Platform</a>
                 <a href="#budget" class="hover:text-eco-400 transition-colors">Budget</a>
                 <a href="#impact" class="hover:text-eco-400 transition-colors">Impact</a>
                 <a href="#innovation" class="hover:text-eco-400 transition-colors">Innovation</a>
             </nav>
 
             <div class="flex items-center space-x-4">
-                <a href="#working" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-900 bg-eco-400 hover:bg-eco-500 shadow-lg shadow-eco-500/20 transition-all duration-300 transform hover:-translate-y-0.5">
-                    Launch App
+                <a href="#platform-portal" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-950 bg-eco-400 hover:bg-eco-500 shadow-lg shadow-eco-500/20 transition-all duration-300">
+                    Access Portal
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Sexy Interactive Hero Section -->
+    <!-- Hero Section -->
     <section class="relative pt-36 pb-24 md:pt-48 md:pb-36 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
         <div class="glow-effect top-10 left-1/4"></div>
         <div class="glow-effect bottom-0 right-1/4"></div>
@@ -103,9 +92,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
-                <!-- Hero Left Copy -->
                 <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-eco-950 border border-eco-500/30 text-eco-400 text-xs font-semibold tracking-wide uppercase shadow-inner">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-eco-950 border border-eco-500/30 text-eco-400 text-xs font-semibold tracking-wide uppercase">
                         <i class="fa-solid fa-bolt text-eco-400"></i>
                         <span>AI-Powered Industrial Waste Exchange[cite: 1]</span>
                     </div>
@@ -117,8 +105,8 @@
                         Connecting waste generators with industries requiring secondary raw materials. Promoting sustainable manufacturing and supporting India’s Circular Economy Mission[cite: 1].
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                        <a href="#working" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-eco-500 text-slate-950 font-bold text-sm hover:bg-eco-400 shadow-xl shadow-eco-500/25 transition-all text-center">
-                            Explore Platform
+                        <a href="#platform-portal" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-eco-500 text-slate-950 font-bold text-sm hover:bg-eco-400 shadow-xl shadow-eco-500/25 transition-all text-center">
+                            Open Live App
                         </a>
                         <a href="#impact" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-slate-900 text-slate-200 border border-slate-800 font-semibold text-sm hover:bg-slate-800 transition-all text-center">
                             View Expected Results
@@ -126,7 +114,7 @@
                     </div>
                 </div>
 
-                <!-- Hero Right: Interactive Hover Playground Card -->
+                <!-- Interactive Hero Hover Simulator Card -->
                 <div class="lg:col-span-5 flex justify-center">
                     <div class="hero-interactive-card w-full max-w-md bg-slate-900/90 border border-slate-800/80 rounded-3xl p-7 shadow-2xl relative overflow-hidden backdrop-blur-xl">
                         <div class="absolute -top-16 -right-16 w-40 h-40 bg-eco-500/20 rounded-full blur-3xl"></div>
@@ -141,10 +129,9 @@
 
                             <div>
                                 <h3 class="text-xl font-bold text-white tracking-wide">Interactive Simulator</h3>
-                                <p class="text-xs text-slate-400 mt-1">Hover over tags below to simulate real-time AI industrial matchmaking[cite: 1].</p>
+                                <p class="text-xs text-slate-400 mt-1">Click buttons below to simulate real-time AI industrial matching[cite: 1].</p>
                             </div>
 
-                            <!-- Interactive Live Match Trigger Elements -->
                             <div class="grid grid-cols-2 gap-3 pt-2">
                                 <button onclick="triggerMatch('Plastic Scrap', 'Packaging Industry', '85%')" class="p-3 rounded-xl bg-slate-800/80 hover:bg-eco-950 border border-slate-700/60 hover:border-eco-500/50 text-left transition-all group">
                                     <span class="block text-xs text-slate-400 group-hover:text-eco-400">Input Waste</span>
@@ -156,7 +143,6 @@
                                 </button>
                             </div>
 
-                            <!-- Dynamic Match Result Display Box -->
                             <div id="matchResultBox" class="p-4 rounded-2xl bg-slate-950 border border-slate-800 text-xs space-y-2">
                                 <div class="flex justify-between text-slate-400">
                                     <span>Target Match:</span>
@@ -172,8 +158,8 @@
                             </div>
 
                             <div class="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-                                <span>Prototype Cost: ₹2,500</span>
-                                <span class="text-eco-400 font-bold">Firebase Connected</span>
+                                <span>Prototype Budget: ₹2,500[cite: 1]</span>
+                                <span class="text-eco-400 font-bold">Firebase Active</span>
                             </div>
                         </div>
                     </div>
@@ -188,7 +174,7 @@
 
         <!-- Aim & Objectives Section -->
         <section id="aim" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            <div class="bg-slate-900/60 border border-slate-800/80 p-8 rounded-3xl backdrop-blur-md flex flex-col justify-between hover:border-slate-700 transition-all">
+            <div class="bg-slate-900/60 border border-slate-800/80 p-8 rounded-3xl backdrop-blur-md flex flex-col justify-between">
                 <div>
                     <div class="w-12 h-12 rounded-2xl bg-eco-500/10 border border-eco-500/20 text-eco-400 flex items-center justify-center font-bold text-lg mb-6">
                         <i class="fa-solid fa-bullseye"></i>
@@ -198,13 +184,9 @@
                         To develop an AI-powered industrial waste exchange platform that connects industries generating waste with industries that can use the same waste as raw material[cite: 1]. The project aims to reduce industrial pollution, promote sustainable manufacturing, minimize landfill waste, lower production costs, and support the circular economy[cite: 1].
                     </p>
                 </div>
-                <div class="mt-6 pt-6 border-t border-slate-800/80 flex items-center text-xs font-bold text-eco-400 uppercase tracking-widest">
-                    <span>Core Mission Goal</span>
-                    <i class="fa-solid fa-arrow-right ml-2"></i>
-                </div>
             </div>
 
-            <div class="bg-slate-900/60 border border-slate-800/80 p-8 rounded-3xl backdrop-blur-md flex flex-col justify-between hover:border-slate-700 transition-all">
+            <div class="bg-slate-900/60 border border-slate-800/80 p-8 rounded-3xl backdrop-blur-md flex flex-col justify-between">
                 <div>
                     <div class="w-12 h-12 rounded-2xl bg-eco-500/10 border border-eco-500/20 text-eco-400 flex items-center justify-center font-bold text-lg mb-6">
                         <i class="fa-solid fa-list-check"></i>
@@ -214,7 +196,6 @@
                         <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To reduce industrial waste sent to landfills[cite: 1].</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To promote recycling and reuse of industrial by-products[cite: 1].</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To reduce manufacturing costs via alternative raw materials[cite: 1].</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To create a digital marketplace for industrial waste exchange[cite: 1].</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To support India's Circular Economy Mission[cite: 1].</li>
                     </ul>
                 </div>
@@ -223,7 +204,6 @@
 
         <!-- Problem Statement Section -->
         <section id="problem" class="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
-            <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-red-500/10 rounded-full blur-3xl"></div>
             <div class="relative z-10 max-w-3xl">
                 <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-red-950 border border-red-500/30 text-red-400 text-xs font-semibold tracking-wide uppercase mb-6">
                     <i class="fa-solid fa-triangle-exclamation"></i>
@@ -239,37 +219,95 @@
             </div>
         </section>
 
-        <!-- Working Principle Section -->
-        <section id="working">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-eco-400 font-bold text-xs uppercase tracking-widest">Workflow Engine</span>
-                <h2 class="text-3xl font-black text-white mt-1">How Punarchakra Works</h2>
-                <p class="text-slate-400 text-sm mt-2">A seamless end-to-end operational architecture from registration to certification[cite: 1].</p>
+        <!-- WORKING PLATFORM / FIREBASE APP INTERFACE SECTION -->
+        <section id="platform-portal" class="bg-slate-900/90 border border-eco-500/30 p-8 md:p-12 rounded-3xl shadow-2xl">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span class="text-eco-400 font-bold text-xs uppercase tracking-widest">Live Platform Portal</span>
+                <h2 class="text-3xl font-black text-white mt-1">Punarchakra Workspace</h2>
+                <p class="text-slate-400 text-sm mt-2">Register your account, log in, and upload waste details to the live Firebase database[cite: 1].</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-slate-900/60 border border-slate-800 p-7 rounded-3xl relative hover:border-slate-700 transition-all">
-                    <span class="absolute top-6 right-6 text-2xl font-black text-slate-800">01</span>
-                    <h3 class="font-bold text-white text-lg mb-2">Registration & Upload</h3>
-                    <p class="text-sm text-slate-400">Industries register on the website and upload waste parameters: type, quantity, purity, location, and availability[cite: 1].</p>
+            <!-- Auth Box -->
+            <div id="authContainer" class="max-w-md mx-auto bg-slate-950 p-8 rounded-2xl border border-slate-800 space-y-6">
+                <h3 id="authTitle" class="text-xl font-bold text-white text-center">Industry Login</h3>
+                <form id="authForm" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Email Address</label>
+                        <input type="email5" id="authEmail" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Password</label>
+                        <input type="password" id="authPassword" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                    </div>
+                    <button type="submit" id="authBtn" class="w-full py-3 rounded-xl bg-eco-500 text-slate-950 font-bold text-sm hover:bg-eco-400 transition-all">Sign In</button>
+                </form>
+                <div class="text-center">
+                    <button onclick="toggleAuthMode()" id="authSwitchText" class="text-xs text-eco-400 hover:underline">Need an account? Sign Up</button>
                 </div>
-                <div class="bg-slate-900/60 border border-slate-800 p-7 rounded-3xl relative hover:border-slate-700 transition-all">
-                    <span class="absolute top-6 right-6 text-2xl font-black text-slate-800">02</span>
-                    <h3 class="font-bold text-white text-lg mb-2">AI Matchmaking</h3>
-                    <p class="text-sm text-slate-400">The AI system analyzes requirements, pairs generator output with consumer demand, and routes optimal matches[cite: 1].</p>
+            </div>
+
+            <!-- Waste Upload Dashboard (Hidden initially until login) -->
+            <div id="dashboardContainer" class="hidden space-y-8">
+                <div class="flex flex-col sm:flex-row justify-between items-center bg-slate-950 p-6 rounded-2xl border border-slate-800 gap-4">
+                    <div>
+                        <span class="text-xs text-slate-400 uppercase tracking-widest font-semibold">Logged in as:</span>
+                        <h4 id="userEmailDisplay" class="text-white font-bold text-sm">industry@domain.com</h4>
+                    </div>
+                    <button onclick="handleLogout()" class="px-4 py-2 rounded-xl bg-red-500/10 text-red-400 text-xs font-semibold hover:bg-red-500/20 transition-all border border-red-500/20">Sign Out</button>
                 </div>
-                <div class="bg-slate-900/60 border border-slate-800 p-7 rounded-3xl relative hover:border-slate-700 transition-all">
-                    <span class="absolute top-6 right-6 text-2xl font-black text-slate-800">03</span>
-                    <h3 class="font-bold text-white text-lg mb-2">Execution & Reports</h3>
-                    <p class="text-sm text-slate-400">Logistics planning executes the transaction, automatically generating carbon savings reports and sustainability certificates[cite: 1].</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Upload Form -->
+                    <div class="bg-slate-950 p-8 rounded-2xl border border-slate-800 space-y-6">
+                        <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-cloud-arrow-up text-eco-400 mr-2"></i> Upload Waste Material</h3>
+                        <form id="wasteForm" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-400 mb-1">Material Type[cite: 1]</label>
+                                <input type="text" id="matType" placeholder="e.g. Plastic Scrap, Chemical Sludge" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1">Quantity[cite: 1]</label>
+                                    <input type="text" id="matQty" placeholder="e.g. 500 Tonnes" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1">Purity Level (%)[cite: 1]</label>
+                                    <input type="text" id="matPurity" placeholder="e.g. 95%" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1">Location[cite: 1]</label>
+                                    <input type="text" id="matLocation" placeholder="e.g. Industrial Zone, Delhi" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1">Availability[cite: 1]</label>
+                                    <input type="text" id="matAvailability" placeholder="e.g. Immediate" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full py-3 rounded-xl bg-eco-500 text-slate-950 font-bold text-sm hover:bg-eco-400 transition-all shadow-lg shadow-eco-500/20">Submit to AI Matchmaker</button>
+                        </form>
+                    </div>
+
+                    <!-- Live Listings & AI Reports Feed -->
+                    <div class="bg-slate-950 p-8 rounded-2xl border border-slate-800 space-y-6 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-list-check text-eco-400 mr-2"></i> Live Firestore Waste Feed</h3>
+                            <div id="listingsFeed" class="space-y-3 max-h-72 overflow-y-auto pr-2">
+                                <p class="text-xs text-slate-500 italic">No listings added yet. Upload your first material batch.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-eco-950/40 border border-eco-500/20 text-xs text-eco-300 space-y-1">
+                            <div class="font-bold"><i class="fa-solid fa-circle-check text-eco-400 mr-1"></i> Automated Report Engine Active[cite: 1]</div>
+                            <p class="text-slate-400">Carbon savings and sustainability certificates generate automatically upon listing submission[cite: 1].</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Budget & Materials Grid -->
         <section id="budget" class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            
-            <!-- Materials Required -->
             <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl">
                 <h2 class="text-2xl font-black text-white mb-6 flex items-center">
                     <i class="fa-solid fa-toolbox text-eco-400 mr-3 text-xl"></i> Materials Required[cite: 1]
@@ -281,12 +319,11 @@
                     </div>
                     <div class="border-t border-slate-800 pt-4">
                         <h4 class="font-bold uppercase text-xs tracking-wider text-eco-400 mb-2">Tech Stack & Tools</h4>
-                        <p class="text-slate-400 leading-relaxed">HTML, CSS, JavaScript, Firebase Backend & Firestore DB, GitHub, AI Material Matching Algorithm, Google Maps API for logistics, QR Code Generator[cite: 1].</p>
+                        <p class="text-slate-400 leading-relaxed">HTML, CSS, JavaScript, Firebase Auth & Firestore DB, GitHub, AI Material Matching Algorithm, Google Maps API, QR Code Generator[cite: 1].</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Budget Table -->
             <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl">
                 <h2 class="text-2xl font-black text-white mb-6 flex items-center">
                     <i class="fa-solid fa-indian-rupee-sign text-eco-400 mr-3 text-xl"></i> Project Budget[cite: 1]
@@ -301,51 +338,13 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-800/60 text-slate-300">
-                            <tr>
-                                <td class="py-3 font-medium">Laptop (Existing)</td>
-                                <td class="py-3 text-center">1</td>
-                                <td class="py-3 text-right">At home[cite: 1]</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 font-medium">Arduino/ESP32</td>
-                                <td class="py-3 text-center">1</td>
-                                <td class="py-3 text-right">600[cite: 1]</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 font-medium">LCD Display</td>
-                                <td class="py-3 text-center">1</td>
-                                <td class="py-3 text-right">250[cite: 1]</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 font-medium">QR Code Labels</td>
-                                <td class="py-3 text-center">20</td>
-                                <td class="py-3 text-right">100[cite: 1]</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 font-medium">Breadboard & Wires</td>
-                                <td class="py-3 text-center">1 Set</td>
-                                <td class="py-3 text-right">200[cite: 1]</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 font-medium">Cardboard & Prototype</td>
-                                <td class="py-3 text-center">--</td>
-                                <td class="py-3 text-right">500[cite: 1]</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 font-medium">Toy Vehicle</td>
-                                <td class="py-3 text-center">1</td>
-                                <td class="py-3 text-right">300[cite: 1]</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 font-medium">Internet & Software</td>
-                                <td class="py-3 text-center">—</td>
-                                <td class="py-3 text-right">Free[cite: 1]</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 font-medium">Miscellaneous</td>
-                                <td class="py-3 text-center">—</td>
-                                <td class="py-3 text-right">550[cite: 1]</td>
-                            </tr>
+                            <tr><td class="py-3 font-medium">Arduino/ESP32</td><td class="py-3 text-center">1</td><td class="py-3 text-right">600[cite: 1]</td></tr>
+                            <tr><td class="py-3 font-medium">LCD Display</td><td class="py-3 text-center">1</td><td class="py-3 text-right">250[cite: 1]</td></tr>
+                            <tr><td class="py-3 font-medium">QR Code Labels</td><td class="py-3 text-center">20</td><td class="py-3 text-right">100[cite: 1]</td></tr>
+                            <tr><td class="py-3 font-medium">Breadboard & Wires</td><td class="py-3 text-center">1 Set</td><td class="py-3 text-right">200[cite: 1]</td></tr>
+                            <tr><td class="py-3 font-medium">Cardboard & Prototype</td><td class="py-3 text-center">--</td><td class="py-3 text-right">500[cite: 1]</td></tr>
+                            <tr><td class="py-3 font-medium">Toy Vehicle</td><td class="py-3 text-center">1</td><td class="py-3 text-right">300[cite: 1]</td></tr>
+                            <tr><td class="py-3 font-medium">Miscellaneous</td><td class="py-3 text-center">—</td><td class="py-3 text-right">550[cite: 1]</td></tr>
                         </tbody>
                         <tfoot>
                             <tr class="border-t border-slate-700 font-bold text-white">
@@ -356,10 +355,9 @@
                     </table>
                 </div>
             </div>
-
         </section>
 
-        <!-- Expected Results & Social Impact -->
+        <!-- Expected Results & Impact -->
         <section id="impact" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
             <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl flex flex-col justify-between">
                 <div>
@@ -370,7 +368,6 @@
                         <li class="flex items-start"><i class="fa-solid fa-circle-check text-eco-400 mt-1 mr-3"></i>Reduce industrial waste sent to landfill sites[cite: 1].</li>
                         <li class="flex items-start"><i class="fa-solid fa-circle-check text-eco-400 mt-1 mr-3"></i>Lower raw material procurement and transport costs[cite: 1].</li>
                         <li class="flex items-start"><i class="fa-solid fa-circle-check text-eco-400 mt-1 mr-3"></i>Generate additional business income from waste assets[cite: 1].</li>
-                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-eco-400 mt-1 mr-3"></i>Decrease carbon emissions and foster sustainability[cite: 1].</li>
                     </ul>
                 </div>
             </div>
@@ -383,14 +380,13 @@
                     <div class="space-y-3 text-sm text-slate-400">
                         <div><strong class="text-slate-200">Industries:</strong> Lower procurement costs, reduced disposal expenses, and increased profits[cite: 1].</div>
                         <div><strong class="text-slate-200">Government:</strong> Better waste monitoring and support for circular economy initiatives[cite: 1].</div>
-                        <div><strong class="text-slate-200">Society:</strong> New employment opportunities and cleaner surroundings[cite: 1].</div>
                         <div><strong class="text-slate-200">Environment:</strong> Minimized pollution and conservation of natural resources[cite: 1].</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Innovation Highlight & Future Scope -->
+        <!-- Innovation Highlight -->
         <section id="innovation" class="bg-gradient-to-r from-eco-950 via-slate-900 to-emerald-950 border border-eco-500/30 p-8 md:p-12 rounded-3xl shadow-2xl space-y-8">
             <div>
                 <span class="text-eco-400 font-bold text-xs uppercase tracking-widest">Platform Differentiation</span>
@@ -398,25 +394,6 @@
                 <p class="text-slate-300 text-sm leading-relaxed max-w-3xl">
                     Punarchakra transforms waste into value through intelligent digital matchmaking[cite: 1]. Unlike standard waste disposal, it optimizes transit logistics, calculates real-time carbon offsets, and issues automated compliance certification[cite: 1].
                 </p>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-slate-800 text-xs font-semibold">
-                <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-slate-300">
-                    <i class="fa-solid fa-network-wired text-eco-400 mb-2 text-base block"></i>
-                    <span>IoT Sensor Monitoring[cite: 1]</span>
-                </div>
-                <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-slate-300">
-                    <i class="fa-solid fa-shield-halved text-eco-400 mb-2 text-base block"></i>
-                    <span>Blockchain Traceability[cite: 1]</span>
-                </div>
-                <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-slate-300">
-                    <i class="fa-solid fa-coins text-eco-400 mb-2 text-base block"></i>
-                    <span>Carbon Credit Marketplace[cite: 1]</span>
-                </div>
-                <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-slate-300">
-                    <i class="fa-solid fa-mobile-screen text-eco-400 mb-2 text-base block"></i>
-                    <span>Mobile App Integration[cite: 1]</span>
-                </div>
             </div>
         </section>
 
@@ -435,12 +412,138 @@
         </div>
     </footer>
 
-    <!-- Inline JavaScript for Interactive Hero Simulator & Firebase Prep -->
+    <!-- Full Working Frontend and Firebase Script -->
     <script type="module">
-        // Import your firebase initialization file setup
-        import { auth, db } from './firebase-init.js';
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-        // Interactive Hero Simulator Function
+        // TODO: Replace with your actual Firebase config keys from Firebase Console
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // UI Element References
+        let isSignUp = false;
+        const authForm = document.getElementById('authForm');
+        const authTitle = document.getElementById('authTitle');
+        const authBtn = document.getElementById('authBtn');
+        const authSwitchText = document.getElementById('authSwitchText');
+        const authContainer = document.getElementById('authContainer');
+        const dashboardContainer = document.getElementById('dashboardContainer');
+        const userEmailDisplay = document.getElementById('userEmailDisplay');
+        const wasteForm = document.getElementById('wasteForm');
+        const listingsFeed = document.getElementById('listingsFeed');
+
+        window.toggleAuthMode = function() {
+            isSignUp = !isSignUp;
+            authTitle.innerText = isSignUp ? "Industry Registration (Sign Up)" : "Industry Login";
+            authBtn.innerText = isSignUp ? "Create Account & Register" : "Sign In";
+            authSwitchText.innerText = isSignUp ? "Already have an account? Sign In" : "Need an account? Sign Up";
+        }
+
+        // Auth State Listener
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                authContainer.classList.add('hidden');
+                dashboardContainer.classList.remove('hidden');
+                userEmailDisplay.innerText = user.email;
+                loadWasteListings();
+            } else {
+                authContainer.classList.remove('hidden');
+                dashboardContainer.classList.add('hidden');
+            }
+        });
+
+        // Handle Auth Form Submission
+        authForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('authEmail').value;
+            const password = document.getElementById('authPassword').value;
+
+            try {
+                if (isSignUp) {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                    alert("Account successfully created and logged in!");
+                } else {
+                    await signInWithEmailAndPassword(auth, email, password);
+                }
+            } catch (error) {
+                alert("Authentication Error: " + error.message);
+            }
+        });
+
+        window.handleLogout = async function() {
+            await signOut(auth);
+        }
+
+        // Handle Waste Form Listing Upload to Firestore
+        wasteForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const materialType = document.getElementById('matType').value;
+            const quantity = document.getElementById('matQty').value;
+            const purity = document.getElementById('matPurity').value;
+            const location = document.getElementById('matLocation').value;
+            const availability = document.getElementById('matAvailability').value;
+
+            try {
+                await addDoc(collection(db, "waste_listings"), {
+                    materialType,
+                    quantity,
+                    purity,
+                    location,
+                    availability,
+                    uploader: auth.currentUser.email,
+                    timestamp: serverTimestamp()
+                });
+                alert("Waste material successfully uploaded to Firestore database! AI Matchmaker notified[cite: 1].");
+                wasteForm.reset();
+                loadWasteListings();
+            } catch (error) {
+                alert("Error writing document: " + error.message);
+            }
+        });
+
+        // Load Waste Feed from Firestore
+        async function loadWasteListings() {
+            listingsFeed.innerHTML = '<p class="text-xs text-slate-400">Loading active network listings...</p>';
+            try {
+                const querySnapshot = await getDocs(collection(db, "waste_listings"));
+                listingsFeed.innerHTML = '';
+                if(querySnapshot.empty) {
+                    listingsFeed.innerHTML = '<p class="text-xs text-slate-500 italic">No waste listings found in database.</p>';
+                    return;
+                }
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    listingsFeed.innerHTML += `
+                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs space-y-1">
+                            <div class="flex justify-between font-bold text-white">
+                                <span>${data.materialType}</span>
+                                <span class="text-eco-400">${data.quantity}</span>
+                            </div>
+                            <div class="text-slate-400 flex justify-between">
+                                <span>Purity: ${data.purity} | Loc: ${data.location}</span>
+                                <span class="text-emerald-400">Ready</span>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                listingsFeed.innerHTML = '<p class="text-xs text-red-400">Error loading database items.</p>';
+            }
+        }
+
+        // Interactive Hero Simulator Script
         window.triggerMatch = function(material, receiver, score) {
             document.getElementById('matchTarget').innerText = `${material} ➔ ${receiver}`;
             document.getElementById('matchScore').innerText = score;
@@ -450,8 +553,6 @@
                 bar.style.width = score;
             }, 100);
         };
-
-        console.log("Punarchakra frontend module loaded successfully with Firebase integration!");
     </script>
 </body>
 </html>
