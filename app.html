@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -55,7 +56,7 @@
         <div id="authContainer" class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl space-y-4 mt-4">
             <div class="text-center">
                 <h2 id="authTitle" class="text-lg font-bold text-white">Industry Portal Login</h2>
-                <p class="text-xs text-slate-400 mt-1">Sign in with email or your Google account</p>
+                <p class="text-xs text-slate-400 mt-1">Sign in with Google or Email</p>
             </div>
 
             <!-- Google Sign-In Button -->
@@ -151,14 +152,16 @@
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
         import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-        // REPLACE WITH YOUR ACTUAL FIREBASE CONFIG KEYS
+        // ==========================================
+        // PASTE YOUR REAL FIREBASE KEYS HERE:
+        // ==========================================
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSy-PUT-YOUR-REAL-KEY-HERE",
+            authDomain: "your-project-id.firebaseapp.com",
+            projectId: "your-project-id",
+            storageBucket: "your-project-id.appspot.com",
+            messagingSenderId: "1234567890",
+            appId: "1:1234567890:web:abcde"
         };
 
         const app = initializeApp(firebaseConfig);
