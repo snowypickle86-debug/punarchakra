@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Punarchakra Mobile App</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        eco: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-eco-500 selection:text-white pb-20">
+
+    <!-- Mobile Top Header -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-eco-700 to-eco-500 flex items-center justify-center text-white font-bold shadow-md shadow-eco-600/30">
+                <i class="fa-solid fa-recycle text-sm"></i>
+            </div>
+            <div>
+                <h1 class="text-base font-black tracking-tight text-white leading-tight">Punarchakra</h1>
+                <span class="block text-[9px] font-bold tracking-widest text-eco-400 uppercase">Industrial Symbiosis</span>
+            </div>
+        </div>
+        <div id="statusBadge" class="text-[10px] px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-mono">Offline</div>
+    </header>
+
+    <!-- Main Mobile Application Container -->
+    <main class="max-w-md mx-auto p-4 space-y-6">
+
+        <!-- Auth Section -->
+        <div id="authContainer" class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl space-y-4 mt-4">
+            <div class="text-center">
+                <h2 id="authTitle" class="text-lg font-bold text-white">Industry Portal Login</h2>
+                <p class="text-xs text-slate-400 mt-1">Sign in to manage waste exchange listings</p>
+            </div>
+            <form id="authForm" class="space-y-3">
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-400 mb-1">Email Address</label>
+                    <input type="email" id="authEmail" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-400 mb-1">Password</label>
+                    <input type="password" id="authPassword" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                </div>
+                <button type="submit" id="authBtn" class="w-full py-3 rounded-xl bg-eco-500 text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-eco-400 transition-all shadow-lg shadow-eco-500/20">Sign In</button>
+            </form>
+            <div class="text-center pt-2">
+                <button onclick="toggleAuthMode()" id="authSwitchText" class="text-xs text-eco-400 hover:underline">Need an account? Sign Up</button>
+            </div>
+        </div>
+
+        <!-- Dashboard Interface (Hidden until login) -->
+        <div id="dashboardContainer" class="hidden space-y-6">
+            
+            <!-- User Status Card -->
+            <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 flex items-center justify-between">
+                <div>
+                    <span class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold block">Logged In As</span>
+                    <span id="userEmailDisplay" class="text-white font-bold text-xs truncate max-w-[200px] block">user@industry.com</span>
+                </div>
+                <button onclick="handleLogout()" class="px-3 py-1.5 rounded-lg bg-red-500/10 text-red-400 text-xs font-semibold hover:bg-red-500/20 transition-all border border-red-500/20">Sign Out</button>
+            </div>
+
+            <!-- Upload Waste Form -->
+            <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-lg space-y-4">
+                <h3 class="text-sm font-bold text-white flex items-center"><i class="fa-solid fa-cloud-arrow-up text-eco-400 mr-2"></i> Upload Waste Material</h3>
+                <form id="wasteForm" class="space-y-3">
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-400 mb-1">Material Type</label>
+                        <input type="text" id="matType" placeholder="e.g. Plastic Scrap, Chemical Sludge" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-400 mb-1">Quantity</label>
+                            <input type="text" id="matQty" placeholder="e.g. 500 Tonnes" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-400 mb-1">Purity Level</label>
+                            <input type="text" id="matPurity" placeholder="e.g. 95%" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-400 mb-1">Location</label>
+                            <input type="text" id="matLocation" placeholder="e.g. Delhi Industrial Zone" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-400 mb-1">Availability</label>
+                            <input type="text" id="matAvailability" placeholder="e.g. Immediate" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-eco-500 text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-eco-400 transition-all shadow-md shadow-eco-500/20">Submit Listing</button>
+                </form>
+            </div>
+
+            <!-- Live Firestore Database Feed -->
+            <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-lg space-y-3">
+                <h3 class="text-sm font-bold text-white flex items-center justify-between">
+                    <span><i class="fa-solid fa-list-check text-eco-400 mr-2"></i> Live Database Feed</span>
+                    <span class="text-[10px] text-eco-400 font-mono">Firestore</span>
+                </h3>
+                <div id="listingsFeed" class="space-y-2.5 max-h-60 overflow-y-auto pr-1">
+                    <p class="text-xs text-slate-500 italic">No network listings available.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Firebase SDK & Core App Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+        // TODO: Replace with your actual Firebase credentials
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let isSignUp = false;
+        const authForm = document.getElementById('authForm');
+        const authTitle = document.getElementById('authTitle');
+        const authBtn = document.getElementById('authBtn');
+        const authSwitchText = document.getElementById('authSwitchText');
+        const authContainer = document.getElementById('authContainer');
+        const dashboardContainer = document.getElementById('dashboardContainer');
+        const userEmailDisplay = document.getElementById('userEmailDisplay');
+        const wasteForm = document.getElementById('wasteForm');
+        const listingsFeed = document.getElementById('listingsFeed');
+        const statusBadge = document.getElementById('statusBadge');
+
+        window.toggleAuthMode = function() {
+            isSignUp = !isSignUp;
+            authTitle.innerText = isSignUp ? "Industry Registration" : "Industry Portal Login";
+            authBtn.innerText = isSignUp ? "Create Account" : "Sign In";
+            authSwitchText.innerText = isSignUp ? "Already have an account? Sign In" : "Need an account? Sign Up";
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                authContainer.classList.add('hidden');
+                dashboardContainer.classList.remove('hidden');
+                userEmailDisplay.innerText = user.email;
+                statusBadge.innerText = "Online";
+                statusBadge.className = "text-[10px] px-2.5 py-1 rounded-full bg-eco-500/20 text-eco-400 font-mono border border-eco-500/30";
+                loadWasteListings();
+            } else {
+                authContainer.classList.remove('hidden');
+                dashboardContainer.classList.add('hidden');
+                statusBadge.innerText = "Offline";
+                statusBadge.className = "text-[10px] px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-mono";
+            }
+        });
+
+        authForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('authEmail').value;
+            const password = document.getElementById('authPassword').value;
+            try {
+                if (isSignUp) {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                } else {
+                    await signInWithEmailAndPassword(auth, email, password);
+                }
+            } catch (error) {
+                alert("Auth Error: " + error.message);
+            }
+        });
+
+        window.handleLogout = async function() {
+            await signOut(auth);
+        }
+
+        wasteForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const materialType = document.getElementById('matType').value;
+            const quantity = document.getElementById('matQty').value;
+            const purity = document.getElementById('matPurity').value;
+            const location = document.getElementById('matLocation').value;
+            const availability = document.getElementById('matAvailability').value;
+
+            try {
+                await addDoc(collection(db, "waste_listings"), {
+                    materialType,
+                    quantity,
+                    purity,
+                    location,
+                    availability,
+                    uploader: auth.currentUser.email,
+                    timestamp: serverTimestamp()
+                });
+                alert("Waste material successfully uploaded to Firestore!");
+                wasteForm.reset();
+                loadWasteListings();
+            } catch (error) {
+                alert("Upload Error: " + error.message);
+            }
+        });
+
+        async function loadWasteListings() {
+            listingsFeed.innerHTML = '<p class="text-xs text-slate-400">Loading listings...</p>';
+            try {
+                const querySnapshot = await getDocs(collection(db, "waste_listings"));
+                listingsFeed.innerHTML = '';
+                if(querySnapshot.empty) {
+                    listingsFeed.innerHTML = '<p class="text-xs text-slate-500 italic">No listings found.</p>';
+                    return;
+                }
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    listingsFeed.innerHTML += `
+                        <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                            <div class="flex justify-between font-bold text-white">
+                                <span>${data.materialType}</span>
+                                <span class="text-eco-400">${data.quantity}</span>
+                            </div>
+                            <div class="text-slate-400 flex justify-between text-[11px]">
+                                <span>Purity: ${data.purity} | Loc: ${data.location}</span>
+                                <span class="text-emerald-400">Active</span>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                listingsFeed.innerHTML = '<p class="text-xs text-red-400">Error reading database.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
