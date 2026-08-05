@@ -152,17 +152,14 @@
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
         import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-        // ==========================================
-        // PASTE YOUR REAL FIREBASE KEYS HERE:
-        // ==========================================
         const firebaseConfig = {
-  apiKey: "AIzaSyD1KOQsyVmW_g3UPo2R39XW7VmptgB-jlU",
-  authDomain: "punarchakra-b79ea.firebaseapp.com",
-  projectId: "punarchakra-b79ea",
-  storageBucket: "punarchakra-b79ea.firebasestorage.app",
-  messagingSenderId: "894740722467",
-  appId: "1:894740722467:web:1940419f84057e8b4dd296"
-};
+            apiKey: "AIzaSyD1KOQsyVmW_g3UPo2R39XW7VmptgB-jlU",
+            authDomain: "punarchakra-b79ea.firebaseapp.com",
+            projectId: "punarchakra-b79ea",
+            storageBucket: "punarchakra-b79ea.firebasestorage.app",
+            messagingSenderId: "894740722467",
+            appId: "1:894740722467:web:1940419f84057e8b4dd296"
+        };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
