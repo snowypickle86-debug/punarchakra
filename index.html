@@ -242,11 +242,11 @@ nav a:hover {
     100% { transform: scale(1.1); opacity: 1; }
 }
 
-.right img {
-    width: 95%;
-    max-width: 650px;
+.globe-icon-container {
+    font-size: 170px;
+    color: #22ff88;
+    text-shadow: 0 0 50px rgba(34,255,136,0.6);
     animation: float 6s ease-in-out infinite alternate;
-    filter: drop-shadow(0 0 50px #22ff88);
     position: relative;
     z-index: 2;
 }
@@ -605,7 +605,9 @@ footer > p {
     </div>
     <div class="right">
         <div class="glow"></div>
-        <img src="images/earth.png" alt="Eco Earth">
+        <div class="globe-icon-container">
+            <i class="fa-solid fa-globe"></i>
+        </div>
     </div>
 </section>
 
