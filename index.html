@@ -1,664 +1,488 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punarchakra | AI Industrial Marketplace</title>
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punarchakra | Waste-to-Fuel & Circular Infrastructure</title>
+<link rel="icon" type="image/x-icon" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
 
-        :root {
-            --bg-deep: #050505;
-            --eco-primary: #22ff88;
-            --eco-glow: rgba(34, 255, 136, 0.4);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --card-bg: rgba(255, 255, 255, 0.02);
-        }
+:root {
+    --bg-deep: #050706;
+    --eco-primary: #10b981;
+    --eco-glow: rgba(16, 185, 129, 0.3);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.02);
+}
 
-        body {
-            background: var(--bg-deep);
-            color: white;
-            overflow-x: hidden;
-            position: relative;
-        }
+body {
+    background: var(--bg-deep);
+    color: #f8fafc;
+    overflow-x: hidden;
+    position: relative;
+}
 
-        /* Animated Background */
-        body::before {
-            content: "";
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(0,255,120,.15), transparent 25%),
-                radial-gradient(circle at 80% 30%, rgba(0,180,255,.12), transparent 30%),
-                radial-gradient(circle at 50% 80%, rgba(0,255,150,.08), transparent 35%);
-            z-index: -3;
-            animation: bgmove 20s linear infinite alternate;
-        }
+/* Background Atmosphere */
+body::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 15% 20%, rgba(16,185,129,0.12), transparent 30%),
+        radial-gradient(circle at 85% 70%, rgba(5,150,105,0.08), transparent 35%);
+    z-index: -3;
+}
 
-        @keyframes bgmove {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-40px) scale(1.05); }
-        }
+.grid-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -2;
+}
 
-        /* Grid Effect */
-        .grid {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-            background-size: 60px 60px;
-            z-index: -2;
-            opacity: .3;
-        }
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(12px);
+    background: rgba(5, 7, 6, 0.85);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
+}
 
-        /* Navbar */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 22px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(15px);
-            background: rgba(0,0,0,.6);
-            border-bottom: 1px solid rgba(255,255,255,.08);
-            z-index: 100;
-        }
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-        }
+.logo-container img {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+}
 
-        .logo i {
-            font-size: 38px;
-            color: #22ff88;
-            filter: drop-shadow(0 0 10px var(--eco-glow));
-        }
+.logo-container span {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+}
 
-        .logo h1 {
-            font-size: 26px;
-            font-weight: 700;
-        }
+nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
 
-        .logo span {
-            color: #22ff88;
-        }
+nav a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s;
+}
 
-        nav {
-            display: flex;
-            gap: 35px;
-            align-items: center;
-        }
+nav a:hover {
+    color: var(--eco-primary);
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: .3s;
-        }
+.portal-btn {
+    padding: 10px 24px;
+    background: var(--eco-primary);
+    color: #050706;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 0 20px rgba(16,185,129,0.2);
+}
 
-        nav a:hover {
-            color: #22ff88;
-        }
+.portal-btn:hover {
+    background: #059669;
+    color: white;
+    box-shadow: 0 0 30px rgba(16,185,129,0.4);
+}
 
-        .nav-btn {
-            padding: 10px 24px;
-            background: #22ff88;
-            color: black;
-            font-weight: 600;
-            border-radius: 50px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: .4s;
-        }
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 140px 8% 60px;
+    gap: 50px;
+}
 
-        .nav-btn:hover {
-            box-shadow: 0 0 30px #22ff88;
-            transform: translateY(-2px);
-        }
+.hero-left {
+    flex: 1.2;
+}
 
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 140px 8% 50px;
-            gap: 60px;
-        }
+.badge {
+    color: var(--eco-primary);
+    letter-spacing: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(16,185,129,0.08);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 20px;
+}
 
-        .left {
-            flex: 1;
-        }
+.hero-left h1 {
+    font-size: 56px;
+    line-height: 1.15;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
 
-        .small {
-            color: #22ff88;
-            letter-spacing: 4px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(34, 255, 136, 0.08);
-            border: 1px solid rgba(34, 255, 136, 0.2);
-            border-radius: 30px;
-        }
+.hero-left h1 span {
+    color: var(--eco-primary);
+}
 
-        .left h1 {
-            font-size: 64px;
-            line-height: 1.1;
-            font-weight: 800;
-            margin-bottom: 30px;
-        }
+.hero-left p {
+    font-size: 16px;
+    color: #94a3b8;
+    line-height: 1.8;
+    margin-bottom: 35px;
+    max-width: 650px;
+}
 
-        .left h1 span {
-            color: #22ff88;
-            text-shadow: 0 0 20px #22ff88;
-        }
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
 
-        .left p {
-            font-size: 18px;
-            color: #bdbdbd;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            max-width: 700px;
-        }
+.btn-primary {
+    padding: 15px 35px;
+    background: var(--eco-primary);
+    color: #050706;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: 0.3s;
+}
 
-        .buttons {
-            display: flex;
-            gap: 25px;
-        }
+.btn-primary:hover {
+    background: #059669;
+    color: white;
+}
 
-        .primary {
-            padding: 16px 40px;
-            background: #22ff88;
-            color: black;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: .4s;
-        }
+.btn-outline {
+    padding: 15px 35px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.3s;
+}
 
-        .primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 0 40px #22ff88;
-        }
+.btn-outline:hover {
+    border-color: var(--eco-primary);
+    background: rgba(16,185,129,0.05);
+}
 
-        .secondary {
-            padding: 16px 40px;
-            border: 2px solid #22ff88;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: .4s;
-            background: transparent;
-            font-weight: 600;
-            cursor: pointer;
-        }
+.hero-right {
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .secondary:hover {
-            background: #22ff88;
-            color: black;
-        }
+.hero-card-visual {
+    width: 100%;
+    max-width: 420px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 35px;
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
 
-        /* Right Side Hero Animation */
-        .right {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+.hero-card-visual h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--eco-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        .glow {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #22ff8855, transparent 70%);
-            filter: blur(60px);
-            animation: pulse 6s infinite alternate;
-        }
+.flow-step-mini {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+    color: #cbd5e1;
+}
 
-        @keyframes pulse {
-            0% { transform: scale(0.9); opacity: 0.7; }
-            100% { transform: scale(1.1); opacity: 1; }
-        }
+.flow-step-mini:last-child {
+    border-bottom: none;
+}
 
-        .hero-box {
-            background: rgba(20, 20, 20, 0.7);
-            border: 1px solid rgba(34, 255, 136, 0.3);
-            padding: 40px;
-            border-radius: 30px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 440px;
-            animation: float 6s ease-in-out infinite;
-        }
+.flow-step-mini i {
+    color: var(--eco-primary);
+    font-size: 16px;
+}
 
-        @keyframes float {
-            50% { transform: translateY(-15px); }
-        }
+/* Services / Value Chain Section */
+.services {
+    padding: 100px 8%;
+    background: rgba(0,0,0,0.4);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
 
-        .hero-box h3 {
-            font-size: 22px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+.section-title {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
 
-        .hero-box h3 span { color: #22ff88; }
+.section-title h2 {
+    font-size: 38px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
 
-        /* Form Inputs & Modals */
-        .input-group {
-            margin-bottom: 15px;
-        }
+.section-title p {
+    color: #94a3b8;
+    font-size: 15px;
+}
 
-        .input-group label {
-            display: block;
-            font-size: 12px;
-            color: #aaa;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
 
-        .input-group input {
-            width: 100%;
-            padding: 12px 16px;
-            background: #0a0a0a;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            color: white;
-            font-size: 14px;
-            outline: none;
-            transition: 0.3s;
-        }
+.service-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 40px 30px;
+    border-radius: 20px;
+    transition: 0.3s ease;
+}
 
-        .input-group input:focus {
-            border-color: #22ff88;
-            box-shadow: 0 0 10px rgba(34, 255, 136, 0.2);
-        }
+.service-card:hover {
+    border-color: var(--eco-primary);
+    transform: translateY(-5px);
+}
 
-        .auth-switch {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 13px;
-            color: #aaa;
-        }
+.service-card i {
+    font-size: 32px;
+    color: var(--eco-primary);
+    margin-bottom: 20px;
+    background: rgba(16,185,129,0.1);
+    padding: 15px;
+    border-radius: 12px;
+    display: inline-block;
+}
 
-        .auth-switch span {
-            color: #22ff88;
-            cursor: pointer;
-            font-weight: 600;
-        }
+.service-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
 
-        .google-btn {
-            width: 100%;
-            padding: 12px;
-            background: white;
-            color: #111;
-            font-weight: 600;
-            border-radius: 12px;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: 0.3s;
-        }
+.service-card p {
+    font-size: 14px;
+    color: #94a3b8;
+    line-height: 1.7;
+}
 
-        .google-btn:hover {
-            background: #eaeaea;
-        }
+/* Process Section */
+.process-flow {
+    padding: 100px 8%;
+    text-align: center;
+}
 
-        .divider {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: 15px 0;
-            color: #666;
-            font-size: 12px;
-        }
+.process-flow h2 {
+    font-size: 38px;
+    font-weight: 800;
+    margin-bottom: 50px;
+}
 
-        .divider::before, .divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
 
-        .divider::before { margin-right: .75em; }
-        .divider::after { margin-left: .75em; }
+.process-step {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 30px 20px;
+    border-radius: 16px;
+    text-align: left;
+}
 
-        /* Dashboard Interface (Hidden until logged in) */
-        #dashboardSection {
-            display: none;
-            min-height: 100vh;
-            padding: 120px 8% 60px;
-        }
+.process-step span {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--eco-primary);
+    letter-spacing: 1px;
+}
 
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
+.process-step h4 {
+    font-size: 17px;
+    margin: 10px 0 8px;
+    font-weight: 600;
+}
 
-        .dash-card {
-            background: rgba(20, 20, 20, 0.7);
-            border: 1px solid rgba(255,255,255,0.08);
-            padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
+.process-step p {
+    font-size: 13px;
+    color: #94a3b8;
+    line-height: 1.5;
+}
 
-        .dash-card h3 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: #22ff88;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+/* Footer */
+footer {
+    padding: 50px 8%;
+    background: #030404;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
 
-        .listing-item {
-            background: #0a0a0a;
-            border: 1px solid rgba(255,255,255,0.06);
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+footer p {
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 15px;
+}
 
-        @media(max-width: 900px) {
-            .hero { flex-direction: column; text-align: center; }
-            .left p { margin: 0 auto 40px; }
-            .buttons { justify-content: center; }
-            .dashboard-grid { grid-template-columns: 1fr; }
-            .left h1 { font-size: 42px; }
-        }
-    </style>
+@media(max-width: 992px) {
+    .hero { flex-direction: column; text-align: center; padding-top: 130px; }
+    .hero-left p { margin: 0 auto 35px; }
+    .hero-buttons { justify-content: center; }
+    .hero-left h1 { font-size: 40px; }
+    nav { display: none; }
+}
+</style>
 </head>
 <body>
 
-    <div class="grid"></div>
+<div class="grid-overlay"></div>
 
-    <!-- Header / Navbar -->
-    <header>
-        <div class="logo">
-            <i class="fa-solid fa-recycle"></i>
-            <h1>Punar<span>Chakra</span></h1>
+<header>
+    <a href="index.html" class="logo-container">
+        <img src="logo.png" alt="Punarchakra Logo">
+        <span>Punarchakra</span>
+    </a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="auth.html" class="portal-btn">Industry Portal</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-left">
+        <span class="badge">INTEGRATED WASTE-TO-FUEL SYSTEMS</span>
+        <h1>Transforming Municipal & Industrial Waste Into <span>Clean Energy</span></h1>
+        <p>Punarchakra designs sustainable waste-processing systems that recover value from waste streams, reduce landfill pressure, and create dependable fuel supply for cement, steel, and power industries.</p>
+        <div class="hero-buttons">
+            <a href="auth.html" class="btn-primary">Access Platform</a>
+            <a href="#services" class="btn-outline">Explore Solutions</a>
         </div>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#features">Features</a>
-            <div id="navUserBadge" style="display:none; color: #22ff88; font-size: 14px; font-weight: 500;"></div>
-            <button id="navAuthBtn" class="nav-btn" onclick="scrollToAuth()">Get Started</button>
-        </nav>
-    </header>
-
-    <!-- Hero / Landing Section (Contains Auth Form) -->
-    <section class="hero" id="heroSection">
-        <div class="left">
-            <div class="small">AI POWERED INDUSTRIAL SYMBIOSIS</div>
-            <h1>Transforming <span>Industrial Waste</span> Into Valuable Resources</h1>
-            <p>Punarchakra connects industries across India, helping them exchange waste materials, reduce environmental impact, and build a circular economy through AI-powered matching.</p>
-            <div class="buttons">
-                <button class="primary" onclick="scrollToAuth()">Launch Platform</button>
-                <a href="#features" class="secondary" style="display:inline-flex; align-items:center; justify-content:center; text-decoration:none;">Learn More</a>
-            </div>
+    </div>
+    <div class="hero-right">
+        <div class="hero-card-visual">
+            <h3><i class="fa-solid fa-industry"></i> Value Chain Flow</h3>
+            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> Municipal Solid Waste (MSW) Intake</div>
+            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> Automated Sorting & Separation</div>
+            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> Primary Shredding & Drying</div>
+            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> RDF Pellets (~4000 kcal/kg)</div>
         </div>
+    </div>
+</section>
 
-        <!-- Interactive Auth Box -->
-        <div class="right">
-            <div class="glow"></div>
-            <div class="hero-box">
-                <h3 id="formHeading">Industry <span>Portal Login</span></h3>
-                
-                <!-- Google Sign-In -->
-                <button type="button" class="google-btn" id="googleLoginBtn">
-                    <i class="fa-brands fa-google" style="color: #ea4335;"></i> Continue with Google
-                </button>
-
-                <div class="divider">OR EMAIL</div>
-
-                <form id="emailAuthForm">
-                    <div class="input-group">
-                        <label>Work Email</label>
-                        <input type="email" id="authEmail" required placeholder="factory@industry.com">
-                    </div>
-                    <div class="input-group">
-                        <label>Password</label>
-                        <input type="password" id="authPassword" required placeholder="••••••••">
-                    </div>
-                    <button type="submit" class="primary" id="authSubmitBtn" style="width:100%; margin-top:5px;">Sign In</button>
-                </form>
-
-                <div class="auth-switch">
-                    <p id="switchText">Need an account? <span onclick="toggleAuthMode()">Sign Up</span></p>
-                </div>
-            </div>
+<section class="services" id="services">
+    <div class="section-title">
+        <h2>Core Waste-to-Fuel Services</h2>
+        <p>Comprehensive solutions across the entire resource recovery and industrial fuel supply chain.</p>
+    </div>
+    <div class="service-grid">
+        <div class="service-card">
+            <i class="fa-solid fa-compass-drafting"></i>
+            <h3>Project Development & Feasibility</h3>
+            <p>Identification of suitable waste processing technologies, plant capacities, pre-feasibility studies, and detailed project report support.</p>
         </div>
-    </section>
-
-    <!-- Dashboard Section (Shown after successful Authentication) -->
-    <section id="dashboardSection">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
-            <div>
-                <h2 style="font-size:32px;">Industrial Symbiosis Dashboard</h2>
-                <p style="color:#aaa;" id="welcomeUserText">Logged in successfully.</p>
-            </div>
-            <button class="secondary" onclick="handleLogout()" style="border-color:#ff4d4d; color:#ff4d4d;">Sign Out</button>
+        <div class="service-card">
+            <i class="fa-solid fa-gears"></i>
+            <h3>Technology Deployment & Operations</h3>
+            <p>Design, installation, commissioning, operator training, and ongoing operational support for complete waste processing plants.</p>
         </div>
-
-        <div class="dashboard-grid">
-            <!-- Upload Waste Form -->
-            <div class="dash-card">
-                <h3><i class="fa-solid fa-cloud-arrow-up"></i> Upload Waste Material</h3>
-                <form id="wasteForm">
-                    <div class="input-group">
-                        <label>Material Type / Scrap Name</label>
-                        <input type="text" id="matType" required placeholder="e.g. Chemical Sludge, Steel Scrap">
-                    </div>
-                    <div class="input-group">
-                        <label>Quantity</label>
-                        <input type="text" id="matQty" required placeholder="e.g. 250 Tonnes">
-                    </div>
-                    <div class="input-group">
-                        <label>Purity / Grade</label>
-                        <input type="text" id="matPurity" required placeholder="e.g. 95% Pure">
-                    </div>
-                    <div class="input-group">
-                        <label>Industrial Location</label>
-                        <input type="text" id="matLocation" required placeholder="e.g. Gujarat Industrial Hub">
-                    </div>
-                    <button type="submit" class="primary" style="width:100%; margin-top:10px;">Post to Firestore Database</button>
-                </form>
-            </div>
-
-            <!-- Live Firestore Feed -->
-            <div class="dash-card">
-                <h3><i class="fa-solid fa-database"></i> Live Network Listings</h3>
-                <div id="listingsFeed" style="max-height: 400px; overflow-y: auto; padding-right: 5px;">
-                    <p style="color:#666; font-size:14px; text-align:center; margin-top:40px;">Fetching listings from database...</p>
-                </div>
-            </div>
+        <div class="service-card">
+            <i class="fa-solid fa-fire-flame-curved"></i>
+            <h3>AFX Fuel Supply to Industries</h3>
+            <p>Long-term Refuse Derived Fuel (RDF) offtake support for cement, power, and steel industries seeking scalable fossil fuel substitutes.</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Firebase SDK Modules Setup -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+<section class="process-flow" id="process">
+    <h2>Integrated Process Flow</h2>
+    <div class="process-grid">
+        <div class="process-step">
+            <span>STAGE 01</span>
+            <h4>Reception</h4>
+            <p>Incoming waste intake and quality inspection.</p>
+        </div>
+        <div class="process-step">
+            <span>STAGE 02</span>
+            <h4>Sorting & Separation</h4>
+            <p>Ferrous, non-ferrous metal extraction and recyclables recovery.</p>
+        </div>
+        <div class="process-step">
+            <span>STAGE 03</span>
+            <h4>Shredding & Drying</h4>
+            <p>Primary size reduction and moisture control for high grade efficiency.</p>
+        </div>
+        <div class="process-step">
+            <span>STAGE 04</span>
+            <h4>Pelletization</h4>
+            <p>Forming premium RDF pellets meeting industrial standards.</p>
+        </div>
+    </div>
+</section>
 
-        // Firebase Configuration Keys
-        const firebaseConfig = {
-            apiKey: "AIzaSyD1KOQsyVmW_g3UPo2R39XW7VmptgB-jlU",
-            authDomain: "punarchakra-b79ea.firebaseapp.com",
-            projectId: "punarchakra-b79ea",
-            storageBucket: "punarchakra-b79ea.firebasestorage.app",
-            messagingSenderId: "894740722467",
-            appId: "1:894740722467:web:1940419f84057e8b4dd296"
-        };
+<footer>
+    <img src="logo.png" alt="Punarchakra Logo" style="height: 35px; margin-bottom: 10px;">
+    <p>© 2026 Punarchakra Waste Solutions Private Limited. All Rights Reserved.</p>
+</footer>
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const googleProvider = new GoogleAuthProvider();
-
-        let isSignUpMode = false;
-
-        // UI toggling functions exposed globally
-        window.toggleAuthMode = function() {
-            isSignUpMode = !isSignUpMode;
-            document.getElementById('formHeading').innerHTML = isSignUpMode ? "Industry <span>Registration</span>" : "Industry <span>Portal Login</span>";
-            document.getElementById('authSubmitBtn').innerText = isSignUpMode ? "Create Account" : "Sign In";
-            document.getElementById('switchText').innerHTML = isSignUpMode ? 
-                `Already registered? <span onclick="toggleAuthMode()">Sign In</span>` : 
-                `Need an account? <span onclick="toggleAuthMode()">Sign Up</span>`;
-        }
-
-        window.scrollToAuth = function() {
-            document.getElementById('heroSection').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Google Sign In Execution
-        document.getElementById('googleLoginBtn').addEventListener('click', async () => {
-            try {
-                await signInWithPopup(auth, googleProvider);
-            } catch (error) {
-                alert("Google Authentication Error: " + error.message);
-            }
-        });
-
-        // Email / Password Form Submission (Login & Sign Up handling)
-        document.getElementById('emailAuthForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('authEmail').value;
-            const password = document.getElementById('authPassword').value;
-
-            try {
-                if (isSignUpMode) {
-                    await createUserWithEmailAndPassword(auth, email, password);
-                } else {
-                    await signInWithEmailAndPassword(auth, email, password);
-                }
-            } catch (error) {
-                alert("Authentication Failed: " + error.message);
-            }
-        });
-
-        // Logout Execution
-        window.handleLogout = async function() {
-            await signOut(auth);
-        }
-
-        // Global State Listener
-        onAuthStateChanged(auth, (user) => {
-            const hero = document.getElementById('heroSection');
-            const dashboard = document.getElementById('dashboardSection');
-            const navUserBadge = document.getElementById('navUserBadge');
-            const navAuthBtn = document.getElementById('navAuthBtn');
-
-            if (user) {
-                hero.style.display = 'none';
-                dashboard.style.display = 'block';
-                document.getElementById('welcomeUserText').innerText = "Logged in as: " + user.email;
-                navUserBadge.style.display = 'block';
-                navUserBadge.innerText = user.email.split('@')[0];
-                navAuthBtn.style.display = 'none';
-                fetchWasteListings();
-            } else {
-                hero.style.display = 'flex';
-                dashboard.style.display = 'none';
-                navUserBadge.style.display = 'none';
-                navAuthBtn.style.display = 'block';
-            }
-        });
-
-        // Post Waste Listing to Firestore
-        document.getElementById('wasteForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const materialType = document.getElementById('matType').value;
-            const quantity = document.getElementById('matQty').value;
-            const purity = document.getElementById('matPurity').value;
-            const location = document.getElementById('matLocation').value;
-
-            try {
-                await addDoc(collection(db, "waste_listings"), {
-                    materialType,
-                    quantity,
-                    purity,
-                    location,
-                    uploader: auth.currentUser.email,
-                    timestamp: serverTimestamp()
-                });
-                alert("Listing successfully broadcasted to Firestore!");
-                document.getElementById('wasteForm').reset();
-                fetchWasteListings();
-            } catch (error) {
-                alert("Firestore Error: " + error.message);
-            }
-        });
-
-        // Load Firestore Database Listings
-        async function fetchWasteListings() {
-            const feedContainer = document.getElementById('listingsFeed');
-            feedContainer.innerHTML = '<p style="color:#888; font-size:13px; text-align:center;">Syncing with network...</p>';
-            try {
-                const querySnapshot = await getDocs(collection(db, "waste_listings"));
-                feedContainer.innerHTML = '';
-                
-                if (querySnapshot.empty) {
-                    feedContainer.innerHTML = '<p style="color:#666; font-size:13px; text-align:center;">No active listings found.</p>';
-                    return;
-                }
-
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    feedContainer.innerHTML += `
-                        <div class="listing-item">
-                            <div>
-                                <h4 style="font-size:14px; color:white; font-weight:600;">${data.materialType}</h4>
-                                <p style="font-size:12px; color:#aaa;">Qty: ${data.quantity} | Purity: ${data.purity}</p>
-                                <p style="font-size:11px; color:#666;">Loc: ${data.location}</p>
-                            </div>
-                            <span style="font-size:11px; padding:4px 10px; background:rgba(34,255,136,0.1); color:#22ff88; border-radius:20px; border:1px solid rgba(34,255,136,0.2);">Active</span>
-                        </div>
-                    `;
-                });
-            } catch (error) {
-                feedContainer.innerHTML = '<p style="color:#ff4d4d; font-size:13px; text-align:center;">Failed to load listings.</p>';
-            }
-        }
-    </script>
 </body>
 </html>
