@@ -1,536 +1,664 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Punarchakra | AI Industrial Marketplace</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punarchakra | AI Industrial Marketplace</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-:root {
-    --bg-deep: #050505;
-    --eco-primary: #22ff88;
-    --eco-glow: rgba(34, 255, 136, 0.4);
-    --border-color: rgba(255, 255, 255, 0.08);
-    --card-bg: rgba(255, 255, 255, 0.02);
-}
+        :root {
+            --bg-deep: #050505;
+            --eco-primary: #22ff88;
+            --eco-glow: rgba(34, 255, 136, 0.4);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.02);
+        }
 
-body {
-    background: var(--bg-deep);
-    color: white;
-    overflow-x: hidden;
-    position: relative;
-}
+        body {
+            background: var(--bg-deep);
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-/* Animated Background */
-body::before {
-    content: "";
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 20%, rgba(0,255,120,.15), transparent 25%),
-        radial-gradient(circle at 80% 30%, rgba(0,180,255,.12), transparent 30%),
-        radial-gradient(circle at 50% 80%, rgba(0,255,150,.08), transparent 35%);
-    z-index: -3;
-    animation: bgmove 20s linear infinite alternate;
-}
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0,255,120,.15), transparent 25%),
+                radial-gradient(circle at 80% 30%, rgba(0,180,255,.12), transparent 30%),
+                radial-gradient(circle at 50% 80%, rgba(0,255,150,.08), transparent 35%);
+            z-index: -3;
+            animation: bgmove 20s linear infinite alternate;
+        }
 
-@keyframes bgmove {
-    0% { transform: translateY(0) scale(1); }
-    100% { transform: translateY(-40px) scale(1.05); }
-}
+        @keyframes bgmove {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-40px) scale(1.05); }
+        }
 
-.grid {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    z-index: -2;
-    opacity: .3;
-}
+        /* Grid Effect */
+        .grid {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -2;
+            opacity: .3;
+        }
 
-/* Navbar */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 22px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    backdrop-filter: blur(15px);
-    background: rgba(0,0,0,.5);
-    border-bottom: 1px solid rgba(255,255,255,.08);
-    z-index: 100;
-}
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            background: rgba(0,0,0,.6);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            z-index: 100;
+        }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
 
-.logo i {
-    font-size: 38px;
-    color: #22ff88;
-    filter: drop-shadow(0 0 10px var(--eco-glow));
-}
+        .logo i {
+            font-size: 38px;
+            color: #22ff88;
+            filter: drop-shadow(0 0 10px var(--eco-glow));
+        }
 
-.logo h1 {
-    font-size: 30px;
-    font-weight: 700;
-}
+        .logo h1 {
+            font-size: 26px;
+            font-weight: 700;
+        }
 
-.logo span {
-    color: #22ff88;
-}
+        .logo span {
+            color: #22ff88;
+        }
 
-nav {
-    display: flex;
-    gap: 35px;
-    align-items: center;
-}
+        nav {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: .3s;
-    cursor: pointer;
-}
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: .3s;
+        }
 
-nav a:hover {
-    color: #22ff88;
-}
+        nav a:hover {
+            color: #22ff88;
+        }
 
-.login-btn {
-    padding: 12px 28px;
-    background: #22ff88;
-    color: black;
-    font-weight: 600;
-    border-radius: 50px;
-    text-decoration: none;
-    transition: .4s;
-    box-shadow: 0 0 15px rgba(34,255,136,0.2);
-}
+        .nav-btn {
+            padding: 10px 24px;
+            background: #22ff88;
+            color: black;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: .4s;
+        }
 
-.login-btn:hover {
-    box-shadow: 0 0 30px #22ff88;
-    transform: translateY(-3px);
-}
+        .nav-btn:hover {
+            box-shadow: 0 0 30px #22ff88;
+            transform: translateY(-2px);
+        }
 
-/* Views Container */
-.view-section {
-    display: none;
-}
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 140px 8% 50px;
+            gap: 60px;
+        }
 
-.view-section.active-view {
-    display: block;
-}
+        .left {
+            flex: 1;
+        }
 
-/* Hero */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 140px 8% 50px;
-    gap: 60px;
-}
+        .small {
+            color: #22ff88;
+            letter-spacing: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(34, 255, 136, 0.08);
+            border: 1px solid rgba(34, 255, 136, 0.2);
+            border-radius: 30px;
+        }
 
-.left {
-    flex: 1;
-}
+        .left h1 {
+            font-size: 64px;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
 
-.small {
-    color: #22ff88;
-    letter-spacing: 4px;
-    font-size: 14px;
-    margin-bottom: 25px;
-    font-weight: 600;
-    display: inline-block;
-    padding: 6px 16px;
-    background: rgba(34,255,136,0.08);
-    border: 1px solid rgba(34,255,136,0.2);
-    border-radius: 30px;
-}
+        .left h1 span {
+            color: #22ff88;
+            text-shadow: 0 0 20px #22ff88;
+        }
 
-.left h1 {
-    font-size: 72px;
-    line-height: 1.1;
-    font-weight: 800;
-    margin-bottom: 30px;
-}
+        .left p {
+            font-size: 18px;
+            color: #bdbdbd;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
 
-.left h1 span {
-    color: #22ff88;
-    text-shadow: 0 0 20px #22ff88;
-}
+        .buttons {
+            display: flex;
+            gap: 25px;
+        }
 
-.left p {
-    font-size: 19px;
-    color: #bdbdbd;
-    line-height: 1.8;
-    margin-bottom: 40px;
-    max-width: 700px;
-}
+        .primary {
+            padding: 16px 40px;
+            background: #22ff88;
+            color: black;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: .4s;
+        }
 
-.buttons {
-    display: flex;
-    gap: 25px;
-}
+        .primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 40px #22ff88;
+        }
 
-.primary {
-    padding: 18px 45px;
-    background: #22ff88;
-    color: black;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 700;
-    transition: .4s;
-    box-shadow: 0 0 20px rgba(34,255,136,0.3);
-    cursor: pointer;
-}
+        .secondary {
+            padding: 16px 40px;
+            border: 2px solid #22ff88;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: .4s;
+            background: transparent;
+            font-weight: 600;
+            cursor: pointer;
+        }
 
-.primary:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 40px #22ff88;
-}
+        .secondary:hover {
+            background: #22ff88;
+            color: black;
+        }
 
-.secondary {
-    padding: 18px 45px;
-    border: 2px solid #22ff88;
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    transition: .4s;
-    font-weight: 600;
-}
+        /* Right Side Hero Animation */
+        .right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
 
-.secondary:hover {
-    background: #22ff88;
-    color: black;
-    box-shadow: 0 0 25px var(--eco-glow);
-}
+        .glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #22ff8855, transparent 70%);
+            filter: blur(60px);
+            animation: pulse 6s infinite alternate;
+        }
 
-.right {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.7; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
 
-.glow {
-    position: absolute;
-    width: 550px;
-    height: 550px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #22ff8855, transparent 70%);
-    filter: blur(60px);
-}
+        .hero-box {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(34, 255, 136, 0.3);
+            padding: 40px;
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 440px;
+            animation: float 6s ease-in-out infinite;
+        }
 
-.globe-icon-container {
-    font-size: 170px;
-    color: #22ff88;
-    text-shadow: 0 0 50px rgba(34,255,136,0.6);
-    position: relative;
-    z-index: 2;
-}
+        @keyframes float {
+            50% { transform: translateY(-15px); }
+        }
 
-/* Auth Portal Overlay View */
-.auth-wrapper {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 140px 8% 50px;
-}
+        .hero-box h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-.auth-container {
-    width: 100%;
-    max-width: 450px;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(20px);
-    padding: 40px;
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
+        .hero-box h3 span { color: #22ff88; }
 
-.auth-header {
-    text-align: center;
-    margin-bottom: 25px;
-}
+        /* Form Inputs & Modals */
+        .input-group {
+            margin-bottom: 15px;
+        }
 
-.auth-header h2 {
-    font-size: 26px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #aaa;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
 
-.auth-header p {
-    color: #94a3b8;
-    font-size: 13px;
-}
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: #0a0a0a;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
 
-.auth-tabs {
-    display: flex;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border-color);
-    border-radius: 50px;
-    padding: 5px;
-    margin-bottom: 25px;
-}
+        .input-group input:focus {
+            border-color: #22ff88;
+            box-shadow: 0 0 10px rgba(34, 255, 136, 0.2);
+        }
 
-.tab-btn {
-    flex: 1;
-    background: none;
-    border: none;
-    color: #94a3b8;
-    padding: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 40px;
-    transition: 0.3s;
-}
+        .auth-switch {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #aaa;
+        }
 
-.tab-btn.active {
-    background: #22ff88;
-    color: black;
-    box-shadow: 0 0 15px rgba(34,255,136,0.3);
-}
+        .auth-switch span {
+            color: #22ff88;
+            cursor: pointer;
+            font-weight: 600;
+        }
 
-.auth-form {
-    display: none;
-    flex-direction: column;
-    gap: 15px;
-}
+        .google-btn {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            color: #111;
+            font-weight: 600;
+            border-radius: 12px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
 
-.auth-form.active {
-    display: flex;
-}
+        .google-btn:hover {
+            background: #eaeaea;
+        }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 15px 0;
+            color: #666;
+            font-size: 12px;
+        }
 
-.form-group label {
-    font-size: 13px;
-    color: #cbd5e1;
-}
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
 
-.input-box {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
+        .divider::before { margin-right: .75em; }
+        .divider::after { margin-left: .75em; }
 
-.input-box i {
-    position: absolute;
-    left: 16px;
-    color: #64748b;
-}
+        /* Dashboard Interface (Hidden until logged in) */
+        #dashboardSection {
+            display: none;
+            min-height: 100vh;
+            padding: 120px 8% 60px;
+        }
 
-.input-box input {
-    width: 100%;
-    padding: 13px 16px 13px 45px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    color: white;
-    font-size: 14px;
-}
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
 
-.input-box input:focus {
-    outline: none;
-    border-color: #22ff88;
-}
+        .dash-card {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
 
-.submit-btn {
-    padding: 14px;
-    background: #22ff88;
-    color: black;
-    border: none;
-    border-radius: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(34,255,136,0.2);
-    transition: 0.3s;
-}
+        .dash-card h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #22ff88;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.submit-btn:hover {
-    box-shadow: 0 0 30px #22ff88;
-}
+        .listing-item {
+            background: #0a0a0a;
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.back-link {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: #94a3b8;
-    text-decoration: none;
-    font-size: 13px;
-}
-
-.back-link:hover {
-    color: #22ff88;
-}
-
-@media(max-width: 992px) {
-    .hero { flex-direction: column; text-align: center; }
-    nav { display: none; }
-}
-</style>
+        @media(max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; }
+            .left p { margin: 0 auto 40px; }
+            .buttons { justify-content: center; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .left h1 { font-size: 42px; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="grid"></div>
+    <div class="grid"></div>
 
-<header>
-    <div class="logo" onclick="showView('home')">
-        <i class="fa-solid fa-recycle"></i>
-        <h1>Punar<span>Chakra</span></h1>
-    </div>
-    <nav>
-        <a onclick="showView('home')">Home</a>
-        <a onclick="showView('auth')" class="login-btn">Login Portal</a>
-    </nav>
-</header>
+    <!-- Header / Navbar -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-recycle"></i>
+            <h1>Punar<span>Chakra</span></h1>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <div id="navUserBadge" style="display:none; color: #22ff88; font-size: 14px; font-weight: 500;"></div>
+            <button id="navAuthBtn" class="nav-btn" onclick="scrollToAuth()">Get Started</button>
+        </nav>
+    </header>
 
-<!-- HOME VIEW -->
-<div id="home-view" class="view-section active-view">
-    <section class="hero">
+    <!-- Hero / Landing Section (Contains Auth Form) -->
+    <section class="hero" id="heroSection">
         <div class="left">
             <div class="small">AI POWERED INDUSTRIAL SYMBIOSIS</div>
             <h1>Transforming <span>Industrial Waste</span> Into Valuable Resources</h1>
-            <p>Punarchakra connects industries across India, helping them exchange waste materials, reduce environmental impact, and create a sustainable circular economy through AI-powered matching.</p>
+            <p>Punarchakra connects industries across India, helping them exchange waste materials, reduce environmental impact, and build a circular economy through AI-powered matching.</p>
             <div class="buttons">
-                <a onclick="showView('auth')" class="primary">Launch Platform</a>
+                <button class="primary" onclick="scrollToAuth()">Launch Platform</button>
+                <a href="#features" class="secondary" style="display:inline-flex; align-items:center; justify-content:center; text-decoration:none;">Learn More</a>
             </div>
         </div>
+
+        <!-- Interactive Auth Box -->
         <div class="right">
             <div class="glow"></div>
-            <div class="globe-icon-container">
-                <i class="fa-solid fa-globe"></i>
+            <div class="hero-box">
+                <h3 id="formHeading">Industry <span>Portal Login</span></h3>
+                
+                <!-- Google Sign-In -->
+                <button type="button" class="google-btn" id="googleLoginBtn">
+                    <i class="fa-brands fa-google" style="color: #ea4335;"></i> Continue with Google
+                </button>
+
+                <div class="divider">OR EMAIL</div>
+
+                <form id="emailAuthForm">
+                    <div class="input-group">
+                        <label>Work Email</label>
+                        <input type="email" id="authEmail" required placeholder="factory@industry.com">
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="authPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="primary" id="authSubmitBtn" style="width:100%; margin-top:5px;">Sign In</button>
+                </form>
+
+                <div class="auth-switch">
+                    <p id="switchText">Need an account? <span onclick="toggleAuthMode()">Sign Up</span></p>
+                </div>
             </div>
         </div>
     </section>
-</div>
 
-<!-- AUTH PORTAL VIEW -->
-<div id="auth-view" class="view-section">
-    <div class="auth-wrapper">
-        <div class="auth-container">
-            <div class="auth-header">
-                <h2>Portal Access</h2>
-                <p>Industrial Symbiosis Authentication</p>
+    <!-- Dashboard Section (Shown after successful Authentication) -->
+    <section id="dashboardSection">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+            <div>
+                <h2 style="font-size:32px;">Industrial Symbiosis Dashboard</h2>
+                <p style="color:#aaa;" id="welcomeUserText">Logged in successfully.</p>
             </div>
-
-            <div class="auth-tabs">
-                <button class="tab-btn active" onclick="switchAuthTab('login')">Login</button>
-                <button class="tab-btn" onclick="switchAuthTab('register')">Register</button>
-            </div>
-
-            <!-- Login Form -->
-            <form id="login-form" class="auth-form active" onsubmit="event.preventDefault(); alert('Logged in successfully!');">
-                <div class="form-group">
-                    <label>Corporate Email</label>
-                    <div class="input-box">
-                        <i class="fa-solid fa-envelope"></i>
-                        <input type="email" placeholder="company@industry.com" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <div class="input-box">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" placeholder="••••••••" required>
-                    </div>
-                </div>
-                <button type="submit" class="submit-btn">Login to Dashboard</button>
-            </form>
-
-            <!-- Register Form -->
-            <form id="register-form" class="auth-form" onsubmit="event.preventDefault(); alert('Industry registered successfully!');">
-                <div class="form-group">
-                    <label>Industry Name</label>
-                    <div class="input-box">
-                        <i class="fa-solid fa-building"></i>
-                        <input type="text" placeholder="Apex Steel Ltd." required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Corporate Email</label>
-                    <div class="input-box">
-                        <i class="fa-solid fa-envelope"></i>
-                        <input type="email" placeholder="contact@apexsteel.com" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <div class="input-box">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" placeholder="••••••••" required>
-                    </div>
-                </div>
-                <button type="submit" class="submit-btn">Register Industry</button>
-            </form>
-
-            <a class="back-link" onclick="showView('home')"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+            <button class="secondary" onclick="handleLogout()" style="border-color:#ff4d4d; color:#ff4d4d;">Sign Out</button>
         </div>
-    </div>
-</div>
 
-<script>
-function showView(viewName) {
-    document.getElementById('home-view').classList.remove('active-view');
-    document.getElementById('auth-view').classList.remove('active-view');
+        <div class="dashboard-grid">
+            <!-- Upload Waste Form -->
+            <div class="dash-card">
+                <h3><i class="fa-solid fa-cloud-arrow-up"></i> Upload Waste Material</h3>
+                <form id="wasteForm">
+                    <div class="input-group">
+                        <label>Material Type / Scrap Name</label>
+                        <input type="text" id="matType" required placeholder="e.g. Chemical Sludge, Steel Scrap">
+                    </div>
+                    <div class="input-group">
+                        <label>Quantity</label>
+                        <input type="text" id="matQty" required placeholder="e.g. 250 Tonnes">
+                    </div>
+                    <div class="input-group">
+                        <label>Purity / Grade</label>
+                        <input type="text" id="matPurity" required placeholder="e.g. 95% Pure">
+                    </div>
+                    <div class="input-group">
+                        <label>Industrial Location</label>
+                        <input type="text" id="matLocation" required placeholder="e.g. Gujarat Industrial Hub">
+                    </div>
+                    <button type="submit" class="primary" style="width:100%; margin-top:10px;">Post to Firestore Database</button>
+                </form>
+            </div>
 
-    if(viewName === 'home') {
-        document.getElementById('home-view').classList.add('active-view');
-        window.scrollTo(0,0);
-    } else if(viewName === 'auth') {
-        document.getElementById('auth-view').classList.add('active-view');
-        window.scrollTo(0,0);
-    }
-}
+            <!-- Live Firestore Feed -->
+            <div class="dash-card">
+                <h3><i class="fa-solid fa-database"></i> Live Network Listings</h3>
+                <div id="listingsFeed" style="max-height: 400px; overflow-y: auto; padding-right: 5px;">
+                    <p style="color:#666; font-size:14px; text-align:center; margin-top:40px;">Fetching listings from database...</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-function switchAuthTab(tab) {
-    const loginForm = document.getElementById('login-form');
-    const registerForm = document.getElementById('register-form');
-    const buttons = document.querySelectorAll('.tab-btn');
+    <!-- Firebase SDK Modules Setup -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-    buttons.forEach(btn => btn.classList.remove('active'));
+        // Firebase Configuration Keys
+        const firebaseConfig = {
+            apiKey: "AIzaSyD1KOQsyVmW_g3UPo2R39XW7VmptgB-jlU",
+            authDomain: "punarchakra-b79ea.firebaseapp.com",
+            projectId: "punarchakra-b79ea",
+            storageBucket: "punarchakra-b79ea.firebasestorage.app",
+            messagingSenderId: "894740722467",
+            appId: "1:894740722467:web:1940419f84057e8b4dd296"
+        };
 
-    if(tab === 'login') {
-        loginForm.classList.add('active');
-        registerForm.classList.remove('active');
-        buttons[0].classList.add('active');
-    } else {
-        registerForm.classList.add('active');
-        loginForm.classList.remove('active');
-        buttons[1].classList.add('active');
-    }
-}
-</script>
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const googleProvider = new GoogleAuthProvider();
 
+        let isSignUpMode = false;
+
+        // UI toggling functions exposed globally
+        window.toggleAuthMode = function() {
+            isSignUpMode = !isSignUpMode;
+            document.getElementById('formHeading').innerHTML = isSignUpMode ? "Industry <span>Registration</span>" : "Industry <span>Portal Login</span>";
+            document.getElementById('authSubmitBtn').innerText = isSignUpMode ? "Create Account" : "Sign In";
+            document.getElementById('switchText').innerHTML = isSignUpMode ? 
+                `Already registered? <span onclick="toggleAuthMode()">Sign In</span>` : 
+                `Need an account? <span onclick="toggleAuthMode()">Sign Up</span>`;
+        }
+
+        window.scrollToAuth = function() {
+            document.getElementById('heroSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Google Sign In Execution
+        document.getElementById('googleLoginBtn').addEventListener('click', async () => {
+            try {
+                await signInWithPopup(auth, googleProvider);
+            } catch (error) {
+                alert("Google Authentication Error: " + error.message);
+            }
+        });
+
+        // Email / Password Form Submission (Login & Sign Up handling)
+        document.getElementById('emailAuthForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('authEmail').value;
+            const password = document.getElementById('authPassword').value;
+
+            try {
+                if (isSignUpMode) {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                } else {
+                    await signInWithEmailAndPassword(auth, email, password);
+                }
+            } catch (error) {
+                alert("Authentication Failed: " + error.message);
+            }
+        });
+
+        // Logout Execution
+        window.handleLogout = async function() {
+            await signOut(auth);
+        }
+
+        // Global State Listener
+        onAuthStateChanged(auth, (user) => {
+            const hero = document.getElementById('heroSection');
+            const dashboard = document.getElementById('dashboardSection');
+            const navUserBadge = document.getElementById('navUserBadge');
+            const navAuthBtn = document.getElementById('navAuthBtn');
+
+            if (user) {
+                hero.style.display = 'none';
+                dashboard.style.display = 'block';
+                document.getElementById('welcomeUserText').innerText = "Logged in as: " + user.email;
+                navUserBadge.style.display = 'block';
+                navUserBadge.innerText = user.email.split('@')[0];
+                navAuthBtn.style.display = 'none';
+                fetchWasteListings();
+            } else {
+                hero.style.display = 'flex';
+                dashboard.style.display = 'none';
+                navUserBadge.style.display = 'none';
+                navAuthBtn.style.display = 'block';
+            }
+        });
+
+        // Post Waste Listing to Firestore
+        document.getElementById('wasteForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const materialType = document.getElementById('matType').value;
+            const quantity = document.getElementById('matQty').value;
+            const purity = document.getElementById('matPurity').value;
+            const location = document.getElementById('matLocation').value;
+
+            try {
+                await addDoc(collection(db, "waste_listings"), {
+                    materialType,
+                    quantity,
+                    purity,
+                    location,
+                    uploader: auth.currentUser.email,
+                    timestamp: serverTimestamp()
+                });
+                alert("Listing successfully broadcasted to Firestore!");
+                document.getElementById('wasteForm').reset();
+                fetchWasteListings();
+            } catch (error) {
+                alert("Firestore Error: " + error.message);
+            }
+        });
+
+        // Load Firestore Database Listings
+        async function fetchWasteListings() {
+            const feedContainer = document.getElementById('listingsFeed');
+            feedContainer.innerHTML = '<p style="color:#888; font-size:13px; text-align:center;">Syncing with network...</p>';
+            try {
+                const querySnapshot = await getDocs(collection(db, "waste_listings"));
+                feedContainer.innerHTML = '';
+                
+                if (querySnapshot.empty) {
+                    feedContainer.innerHTML = '<p style="color:#666; font-size:13px; text-align:center;">No active listings found.</p>';
+                    return;
+                }
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    feedContainer.innerHTML += `
+                        <div class="listing-item">
+                            <div>
+                                <h4 style="font-size:14px; color:white; font-weight:600;">${data.materialType}</h4>
+                                <p style="font-size:12px; color:#aaa;">Qty: ${data.quantity} | Purity: ${data.purity}</p>
+                                <p style="font-size:11px; color:#666;">Loc: ${data.location}</p>
+                            </div>
+                            <span style="font-size:11px; padding:4px 10px; background:rgba(34,255,136,0.1); color:#22ff88; border-radius:20px; border:1px solid rgba(34,255,136,0.2);">Active</span>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                feedContainer.innerHTML = '<p style="color:#ff4d4d; font-size:13px; text-align:center;">Failed to load listings.</p>';
+            }
+        }
+    </script>
 </body>
 </html>
