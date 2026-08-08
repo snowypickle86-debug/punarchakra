@@ -31,6 +31,7 @@ body {
     position: relative;
 }
 
+/* Animated Background */
 body::before {
     content: "";
     position: fixed;
@@ -63,6 +64,7 @@ body::before {
     opacity: .3;
 }
 
+/* Navbar */
 header {
     position: fixed;
     top: 0;
@@ -125,6 +127,7 @@ nav a:hover {
     transform: translateY(-3px);
 }
 
+/* Hero */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -208,6 +211,7 @@ nav a:hover {
     box-shadow: 0 0 25px var(--eco-glow);
 }
 
+/* Right Side Graphic */
 .right {
     flex: 1;
     display: flex;
@@ -247,6 +251,7 @@ nav a:hover {
     100% { transform: translateY(-20px); }
 }
 
+/* Stats Section */
 .stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -284,6 +289,7 @@ nav a:hover {
     color: #a0aec0;
 }
 
+/* Features Section */
 .features {
     padding: 120px 8%;
     text-align: center;
@@ -345,6 +351,7 @@ nav a:hover {
     line-height: 1.7;
 }
 
+/* Process Section */
 .process {
     padding: 120px 8%;
     background: rgba(10,10,10,0.6);
@@ -405,6 +412,7 @@ nav a:hover {
     color: #94a3b8;
 }
 
+/* CTA Section */
 .cta {
     padding: 120px 8%;
     text-align: center;
@@ -443,6 +451,7 @@ nav a:hover {
     box-shadow: 0 0 50px #22ff88;
 }
 
+/* Footer */
 footer {
     padding: 60px 8% 40px;
     background: #030303;
@@ -546,25 +555,27 @@ footer > p {
     </div>
 </section>
 
+<!-- STATS -->
 <section class="stats">
     <div class="stat-card">
-        <h2>500+</h2>
+        <h2 class="counter" data-target="500">500+</h2>
         <p>Industries Connected</p>
     </div>
     <div class="stat-card">
-        <h2>1200+</h2>
+        <h2 class="counter" data-target="1200">1200+</h2>
         <p>Waste Listings</p>
     </div>
     <div class="stat-card">
-        <h2>250+</h2>
+        <h2 class="counter" data-target="250">250+</h2>
         <p>Successful Matches</p>
     </div>
     <div class="stat-card">
-        <h2>₹50 Cr+</h2>
+        <h2 class="counter" data-target="50">₹50 Cr+</h2>
         <p>Trade Value</p>
     </div>
 </section>
 
+<!-- FEATURES -->
 <section class="features" id="features">
     <h2>Why Choose <span>Punarchakra?</span></h2>
     <div class="feature-grid">
@@ -601,6 +612,7 @@ footer > p {
     </div>
 </section>
 
+<!-- HOW IT WORKS -->
 <section class="process" id="process">
     <h2>How It Works</h2>
     <div class="steps">
@@ -627,12 +639,14 @@ footer > p {
     </div>
 </section>
 
+<!-- CTA -->
 <section class="cta">
     <h2>Join India's Largest Industrial Circular Economy Network</h2>
     <p>Rethink • Reuse • Regenerate for a sustainable future.</p>
     <a href="auth.html">Launch Platform Now</a>
 </section>
 
+<!-- FOOTER -->
 <footer>
     <div class="footer-logo">
         <img src="logo.png" alt="Punarchakra Logo">
