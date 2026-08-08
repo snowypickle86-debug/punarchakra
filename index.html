@@ -1,499 +1,616 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punarchakra - AI-Powered Industrial Waste Exchange Platform</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        eco: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Punarchakra | AI Industrial Marketplace</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
     <style>
-        .glass-nav {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
         }
-        .hero-interactive-card {
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            transform-style: preserve-3d;
+
+        :root {
+            --bg-deep: #050505;
+            --eco-primary: #22ff88;
+            --eco-glow: rgba(34, 255, 136, 0.4);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.02);
         }
-        .hero-interactive-card:hover {
-            transform: translateY(-10px) rotateX(4deg) rotateY(-4deg) scale(1.02);
-            box-shadow: 0 35px 60px -15px rgba(22, 163, 74, 0.3);
+
+        body {
+            background: var(--bg-deep);
+            color: white;
+            overflow-x: hidden;
+            position: relative;
         }
-        .glow-effect {
+
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0,255,120,.15), transparent 25%),
+                radial-gradient(circle at 80% 30%, rgba(0,180,255,.12), transparent 30%),
+                radial-gradient(circle at 50% 80%, rgba(0,255,150,.08), transparent 35%);
+            z-index: -3;
+            animation: bgmove 20s linear infinite alternate;
+        }
+
+        @keyframes bgmove {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-40px) scale(1.05); }
+        }
+
+        /* Grid Effect */
+        .grid {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -2;
+            opacity: .3;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            background: rgba(0,0,0,.6);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .logo i {
+            font-size: 38px;
+            color: #22ff88;
+            filter: drop-shadow(0 0 10px var(--eco-glow));
+        }
+
+        .logo h1 {
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #22ff88;
+        }
+
+        nav {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #22ff88;
+        }
+
+        .nav-btn {
+            padding: 10px 24px;
+            background: #22ff88;
+            color: black;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: .4s;
+        }
+
+        .nav-btn:hover {
+            box-shadow: 0 0 30px #22ff88;
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 140px 8% 50px;
+            gap: 60px;
+        }
+
+        .left {
+            flex: 1;
+        }
+
+        .small {
+            color: #22ff88;
+            letter-spacing: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(34, 255, 136, 0.08);
+            border: 1px solid rgba(34, 255, 136, 0.2);
+            border-radius: 30px;
+        }
+
+        .left h1 {
+            font-size: 64px;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .left h1 span {
+            color: #22ff88;
+            text-shadow: 0 0 20px #22ff88;
+        }
+
+        .left p {
+            font-size: 18px;
+            color: #bdbdbd;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 25px;
+        }
+
+        .primary {
+            padding: 16px 40px;
+            background: #22ff88;
+            color: black;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: .4s;
+        }
+
+        .primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 40px #22ff88;
+        }
+
+        .secondary {
+            padding: 16px 40px;
+            border: 2px solid #22ff88;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: .4s;
+            background: transparent;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .secondary:hover {
+            background: #22ff88;
+            color: black;
+        }
+
+        /* Right Side Hero Animation */
+        .right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .glow {
             position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(34,197,94,0.18) 0%, rgba(255,255,255,0) 70%);
-            z-index: 0;
-            pointer-events: none;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #22ff8855, transparent 70%);
+            filter: blur(60px);
+            animation: pulse 6s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.7; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .hero-box {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(34, 255, 136, 0.3);
+            padding: 40px;
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 440px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero-box h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .hero-box h3 span { color: #22ff88; }
+
+        /* Form Inputs & Modals */
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #aaa;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: #0a0a0a;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: #22ff88;
+            box-shadow: 0 0 10px rgba(34, 255, 136, 0.2);
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        .auth-switch span {
+            color: #22ff88;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            color: #111;
+            font-weight: 600;
+            border-radius: 12px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .google-btn:hover {
+            background: #eaeaea;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 15px 0;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .divider::before { margin-right: .75em; }
+        .divider::after { margin-left: .75em; }
+
+        /* Dashboard Interface (Hidden until logged in) */
+        #dashboardSection {
+            display: none;
+            min-height: 100vh;
+            padding: 120px 8% 60px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .dash-card {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .dash-card h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #22ff88;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .listing-item {
+            background: #0a0a0a;
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media(max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; }
+            .left p { margin: 0 auto 40px; }
+            .buttons { justify-content: center; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .left h1 { font-size: 42px; }
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-eco-500 selection:text-white">
+<body>
 
-    <!-- Header & Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-800/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-eco-700 to-eco-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-eco-600/30 group-hover:rotate-12 transition-transform duration-300">
-                    <i class="fa-solid fa-recycle"></i>
-                </div>
-                <div>
-                    <span class="text-xl font-black tracking-tight text-white">Punarchakra</span>
-                    <span class="block text-[10px] font-bold tracking-widest text-eco-400 uppercase">Industrial Symbiosis</span>
-                </div>
-            </a>
-            
-            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-300">
-                <a href="#aim" class="hover:text-eco-400 transition-colors">Aim</a>
-                <a href="#problem" class="hover:text-eco-400 transition-colors">Problem</a>
-                <a href="#working" class="hover:text-eco-400 transition-colors">Platform</a>
-                <a href="#budget" class="hover:text-eco-400 transition-colors">Budget</a>
-                <a href="#impact" class="hover:text-eco-400 transition-colors">Impact</a>
-                <a href="#innovation" class="hover:text-eco-400 transition-colors">Innovation</a>
-            </nav>
+    <div class="grid"></div>
 
-            <div class="flex items-center space-x-4">
-                <a href="#platform-portal" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-950 bg-eco-400 hover:bg-eco-500 shadow-lg shadow-eco-500/20 transition-all duration-300">
-                    Access Portal
-                </a>
-            </div>
+    <!-- Header / Navbar -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-recycle"></i>
+            <h1>Punar<span>Chakra</span></h1>
         </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <div id="navUserBadge" style="display:none; color: #22ff88; font-size: 14px; font-weight: 500;"></div>
+            <button id="navAuthBtn" class="nav-btn" onclick="scrollToAuth()">Get Started</button>
+        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative pt-36 pb-24 md:pt-48 md:pb-36 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-        <div class="glow-effect top-10 left-1/4"></div>
-        <div class="glow-effect bottom-0 right-1/4"></div>
+    <!-- Hero / Landing Section (Contains Auth Form) -->
+    <section class="hero" id="heroSection">
+        <div class="left">
+            <div class="small">AI POWERED INDUSTRIAL SYMBIOSIS</div>
+            <h1>Transforming <span>Industrial Waste</span> Into Valuable Resources</h1>
+            <p>Punarchakra connects industries across India, helping them exchange waste materials, reduce environmental impact, and build a circular economy through AI-powered matching.</p>
+            <div class="buttons">
+                <button class="primary" onclick="scrollToAuth()">Launch Platform</button>
+                <a href="#features" class="secondary" style="display:inline-flex; align-items:center; justify-content:center; text-decoration:none;">Learn More</a>
+            </div>
+        </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Interactive Auth Box -->
+        <div class="right">
+            <div class="glow"></div>
+            <div class="hero-box">
+                <h3 id="formHeading">Industry <span>Portal Login</span></h3>
                 
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-eco-950 border border-eco-500/30 text-eco-400 text-xs font-semibold tracking-wide uppercase">
-                        <i class="fa-solid fa-bolt text-eco-400"></i>
-                        <span>AI-Powered Industrial Waste Exchange[cite: 1]</span>
+                <!-- Google Sign-In -->
+                <button type="button" class="google-btn" id="googleLoginBtn">
+                    <i class="fa-brands fa-google" style="color: #ea4335;"></i> Continue with Google
+                </button>
+
+                <div class="divider">OR EMAIL</div>
+
+                <form id="emailAuthForm">
+                    <div class="input-group">
+                        <label>Work Email</label>
+                        <input type="email" id="authEmail" required placeholder="factory@industry.com">
                     </div>
-                    <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-[1.1]">
-                        One Industry’s Waste, <br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-eco-400 via-emerald-300 to-teal-400">Another Industry’s Wealth[cite: 1]</span>
-                    </h1>
-                    <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                        Connecting waste generators with industries requiring secondary raw materials. Promoting sustainable manufacturing and supporting India’s Circular Economy Mission[cite: 1].
-                    </p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                        <a href="#platform-portal" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-eco-500 text-slate-950 font-bold text-sm hover:bg-eco-400 shadow-xl shadow-eco-500/25 transition-all text-center">
-                            Open Live App
-                        </a>
-                        <a href="#impact" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-slate-900 text-slate-200 border border-slate-800 font-semibold text-sm hover:bg-slate-800 transition-all text-center">
-                            View Expected Results
-                        </a>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="authPassword" required placeholder="••••••••">
                     </div>
+                    <button type="submit" class="primary" id="authSubmitBtn" style="width:100%; margin-top:5px;">Sign In</button>
+                </form>
+
+                <div class="auth-switch">
+                    <p id="switchText">Need an account? <span onclick="toggleAuthMode()">Sign Up</span></p>
                 </div>
-
-                <!-- Interactive Hero Hover Simulator Card -->
-                <div class="lg:col-span-5 flex justify-center">
-                    <div class="hero-interactive-card w-full max-w-md bg-slate-900/90 border border-slate-800/80 rounded-3xl p-7 shadow-2xl relative overflow-hidden backdrop-blur-xl">
-                        <div class="absolute -top-16 -right-16 w-40 h-40 bg-eco-500/20 rounded-full blur-3xl"></div>
-                        
-                        <div class="relative z-10 space-y-5">
-                            <div class="flex items-center justify-between">
-                                <div class="w-12 h-12 rounded-2xl bg-eco-500/10 border border-eco-500/30 text-eco-400 flex items-center justify-center text-xl">
-                                    <i class="fa-solid fa-microchip"></i>
-                                </div>
-                                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-mono font-semibold tracking-wider">LIVE MATCH AI</span>
-                            </div>
-
-                            <div>
-                                <h3 class="text-xl font-bold text-white tracking-wide">Interactive Simulator</h3>
-                                <p class="text-xs text-slate-400 mt-1">Click buttons below to simulate real-time AI industrial matching[cite: 1].</p>
-                            </div>
-
-                            <div class="grid grid-cols-2 gap-3 pt-2">
-                                <button onclick="triggerMatch('Plastic Scrap', 'Packaging Industry', '85%')" class="p-3 rounded-xl bg-slate-800/80 hover:bg-eco-950 border border-slate-700/60 hover:border-eco-500/50 text-left transition-all group">
-                                    <span class="block text-xs text-slate-400 group-hover:text-eco-400">Input Waste</span>
-                                    <span class="block text-sm font-bold text-white mt-0.5">Plastic Scrap</span>
-                                </button>
-                                <button onclick="triggerMatch('Chemical Sludge', 'Cement Kiln', '92%')" class="p-3 rounded-xl bg-slate-800/80 hover:bg-eco-950 border border-slate-700/60 hover:border-eco-500/50 text-left transition-all group">
-                                    <span class="block text-xs text-slate-400 group-hover:text-eco-400">Input Waste</span>
-                                    <span class="block text-sm font-bold text-white mt-0.5">Chem Sludge</span>
-                                </button>
-                            </div>
-
-                            <div id="matchResultBox" class="p-4 rounded-2xl bg-slate-950 border border-slate-800 text-xs space-y-2">
-                                <div class="flex justify-between text-slate-400">
-                                    <span>Target Match:</span>
-                                    <span id="matchTarget" class="text-eco-400 font-semibold">Select a material above</span>
-                                </div>
-                                <div class="flex justify-between text-slate-400">
-                                    <span>AI Confidence Score:</span>
-                                    <span id="matchScore" class="text-emerald-400 font-mono font-bold">--</span>
-                                </div>
-                                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden mt-1">
-                                    <div id="matchProgressBar" class="bg-eco-500 h-full w-0 transition-all duration-500"></div>
-                                </div>
-                            </div>
-
-                            <div class="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-                                <span>Prototype Budget: ₹2,500[cite: 1]</span>
-                                <span class="text-eco-400 font-bold">Firebase Active</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-28">
-
-        <!-- Aim & Objectives Section -->
-        <section id="aim" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            <div class="bg-slate-900/60 border border-slate-800/80 p-8 rounded-3xl backdrop-blur-md flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 rounded-2xl bg-eco-500/10 border border-eco-500/20 text-eco-400 flex items-center justify-center font-bold text-lg mb-6">
-                        <i class="fa-solid fa-bullseye"></i>
-                    </div>
-                    <h2 class="text-2xl font-black text-white mb-3">Project Aim</h2>
-                    <p class="text-slate-400 leading-relaxed text-sm">
-                        To develop an AI-powered industrial waste exchange platform that connects industries generating waste with industries that can use the same waste as raw material[cite: 1]. The project aims to reduce industrial pollution, promote sustainable manufacturing, minimize landfill waste, lower production costs, and support the circular economy[cite: 1].
-                    </p>
-                </div>
-            </div>
-
-            <div class="bg-slate-900/60 border border-slate-800/80 p-8 rounded-3xl backdrop-blur-md flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 rounded-2xl bg-eco-500/10 border border-eco-500/20 text-eco-400 flex items-center justify-center font-bold text-lg mb-6">
-                        <i class="fa-solid fa-list-check"></i>
-                    </div>
-                    <h2 class="text-2xl font-black text-white mb-3">Key Objectives</h2>
-                    <ul class="space-y-2.5 text-sm text-slate-400">
-                        <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To reduce industrial waste sent to landfills[cite: 1].</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To promote recycling and reuse of industrial by-products[cite: 1].</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To reduce manufacturing costs via alternative raw materials[cite: 1].</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-eco-400 mt-1 mr-2.5"></i>To support India's Circular Economy Mission[cite: 1].</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Problem Statement Section -->
-        <section id="problem" class="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
-            <div class="relative z-10 max-w-3xl">
-                <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-red-950 border border-red-500/30 text-red-400 text-xs font-semibold tracking-wide uppercase mb-6">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    <span>The Industrial Challenge</span>
-                </div>
-                <h2 class="text-3xl font-black text-white tracking-tight mb-4">Problem Statement</h2>
-                <p class="text-slate-300 leading-relaxed text-sm sm:text-base mb-6">
-                    Every year, industries produce millions of tonnes of plastic, metal, textile, glass, food-processing, and chemical waste[cite: 1]. Most of this waste is disposed of through landfilling or incineration, causing environmental pollution and increasing disposal costs[cite: 1].
-                </p>
-                <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
-                    At the same time, many industries purchase expensive raw materials that could be replaced by recyclable industrial waste[cite: 1]. Due to the absence of a centralized platform, these industries are unable to identify suitable partners for resource exchange[cite: 1].
-                </p>
-            </div>
-        </section>
-
-        <!-- WORKING PLATFORM / FIREBASE APP INTERFACE SECTION -->
-        <section id="platform-portal" class="bg-slate-900/90 border border-eco-500/30 p-8 md:p-12 rounded-3xl shadow-2xl">
-            <div class="text-center max-w-xl mx-auto mb-10">
-                <span class="text-eco-400 font-bold text-xs uppercase tracking-widest">Live Platform Portal</span>
-                <h2 class="text-3xl font-black text-white mt-1">Punarchakra Workspace</h2>
-                <p class="text-slate-400 text-sm mt-2">Register your account, log in, and upload waste details to the live Firebase database[cite: 1].</p>
-            </div>
-
-            <!-- Auth Box -->
-            <div id="authContainer" class="max-w-md mx-auto bg-slate-950 p-8 rounded-2xl border border-slate-800 space-y-6">
-                <h3 id="authTitle" class="text-xl font-bold text-white text-center">Industry Login</h3>
-                <form id="authForm" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-400 mb-1">Email Address</label>
-                        <input type="email" id="authEmail" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-400 mb-1">Password</label>
-                        <input type="password" id="authPassword" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
-                    </div>
-                    <button type="submit" id="authBtn" class="w-full py-3 rounded-xl bg-eco-500 text-slate-950 font-bold text-sm hover:bg-eco-400 transition-all">Sign In</button>
-                </form>
-                <div class="text-center">
-                    <button type="button" onclick="toggleAuthMode()" id="authSwitchText" class="text-xs text-eco-400 hover:underline">Need an account? Sign Up</button>
-                </div>
-            </div>
-
-            <!-- Waste Upload Dashboard (Hidden initially until login) -->
-            <div id="dashboardContainer" class="hidden space-y-8">
-                <div class="flex flex-col sm:flex-row justify-between items-center bg-slate-950 p-6 rounded-2xl border border-slate-800 gap-4">
-                    <div>
-                        <span class="text-xs text-slate-400 uppercase tracking-widest font-semibold">Logged in as:</span>
-                        <h4 id="userEmailDisplay" class="text-white font-bold text-sm">industry@domain.com</h4>
-                    </div>
-                    <button type="button" onclick="handleLogout()" class="px-4 py-2 rounded-xl bg-red-500/10 text-red-400 text-xs font-semibold hover:bg-red-500/20 transition-all border border-red-500/20">Sign Out</button>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Upload Form -->
-                    <div class="bg-slate-950 p-8 rounded-2xl border border-slate-800 space-y-6">
-                        <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-cloud-arrow-up text-eco-400 mr-2"></i> Upload Waste Material</h3>
-                        <form id="wasteForm" class="space-y-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-400 mb-1">Material Type[cite: 1]</label>
-                                <input type="text" id="matType" placeholder="e.g. Plastic Scrap, Chemical Sludge" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
-                            </div>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-400 mb-1">Quantity[cite: 1]</label>
-                                    <input type="text" id="matQty" placeholder="e.g. 500 Tonnes" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-400 mb-1">Purity Level (%)[cite: 1]</label>
-                                    <input type="text" id="matPurity" placeholder="e.g. 95%" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-400 mb-1">Location[cite: 1]</label>
-                                    <input type="text" id="matLocation" placeholder="e.g. Industrial Zone, Delhi" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-400 mb-1">Availability[cite: 1]</label>
-                                    <input type="text" id="matAvailability" placeholder="e.g. Immediate" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-eco-500">
-                                </div>
-                            </div>
-                            <button type="submit" class="w-full py-3 rounded-xl bg-eco-500 text-slate-950 font-bold text-sm hover:bg-eco-400 transition-all shadow-lg shadow-eco-500/20">Submit to AI Matchmaker</button>
-                        </form>
-                    </div>
-
-                    <!-- Live Listings & AI Reports Feed -->
-                    <div class="bg-slate-950 p-8 rounded-2xl border border-slate-800 space-y-6 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-list-check text-eco-400 mr-2"></i> Live Firestore Waste Feed</h3>
-                            <div id="listingsFeed" class="space-y-3 max-h-72 overflow-y-auto pr-2">
-                                <p class="text-xs text-slate-500 italic">No listings added yet. Upload your first material batch.</p>
-                            </div>
-                        </div>
-                        <div class="p-4 rounded-xl bg-eco-950/40 border border-eco-500/20 text-xs text-eco-300 space-y-1">
-                            <div class="font-bold"><i class="fa-solid fa-circle-check text-eco-400 mr-1"></i> Automated Report Engine Active[cite: 1]</div>
-                            <p class="text-slate-400">Carbon savings and sustainability certificates generate automatically upon listing submission[cite: 1].</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Budget & Materials Grid -->
-        <section id="budget" class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl">
-                <h2 class="text-2xl font-black text-white mb-6 flex items-center">
-                    <i class="fa-solid fa-toolbox text-eco-400 mr-3 text-xl"></i> Materials Required[cite: 1]
-                </h2>
-                <div class="space-y-6 text-sm">
-                    <div>
-                        <h4 class="font-bold uppercase text-xs tracking-wider text-eco-400 mb-2">Hardware Setup</h4>
-                        <p class="text-slate-400 leading-relaxed">Laptop/Desktop, Smartphone, Internet, QR Code Labels, Arduino/ESP32 Prototype, RFID/QR Scanner, LCD Display, Cardboard Factory Models, Toy Transport Vehicle, Power Supply[cite: 1].</p>
-                    </div>
-                    <div class="border-t border-slate-800 pt-4">
-                        <h4 class="font-bold uppercase text-xs tracking-wider text-eco-400 mb-2">Tech Stack & Tools</h4>
-                        <p class="text-slate-400 leading-relaxed">HTML, CSS, JavaScript, Firebase Auth & Firestore DB, GitHub, AI Material Matching Algorithm, Google Maps API, QR Code Generator[cite: 1].</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl">
-                <h2 class="text-2xl font-black text-white mb-6 flex items-center">
-                    <i class="fa-solid fa-indian-rupee-sign text-eco-400 mr-3 text-xl"></i> Project Budget[cite: 1]
-                </h2>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm">
-                        <thead>
-                            <tr class="border-b border-slate-800 text-slate-400 font-semibold uppercase text-xs">
-                                <th class="pb-3">Item</th>
-                                <th class="pb-3 text-center">Qty</th>
-                                <th class="pb-3 text-right">Cost (₹)</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-800/60 text-slate-300">
-                            <tr><td class="py-3 font-medium">Arduino/ESP32</td><td class="py-3 text-center">1</td><td class="py-3 text-right">600[cite: 1]</td></tr>
-                            <tr><td class="py-3 font-medium">LCD Display</td><td class="py-3 text-center">1</td><td class="py-3 text-right">250[cite: 1]</td></tr>
-                            <tr><td class="py-3 font-medium">QR Code Labels</td><td class="py-3 text-center">20</td><td class="py-3 text-right">100[cite: 1]</td></tr>
-                            <tr><td class="py-3 font-medium">Breadboard & Wires</td><td class="py-3 text-center">1 Set</td><td class="py-3 text-right">200[cite: 1]</td></tr>
-                            <tr><td class="py-3 font-medium">Cardboard & Prototype</td><td class="py-3 text-center">--</td><td class="py-3 text-right">500[cite: 1]</td></tr>
-                            <tr><td class="py-3 font-medium">Toy Vehicle</td><td class="py-3 text-center">1</td><td class="py-3 text-right">300[cite: 1]</td></tr>
-                            <tr><td class="py-3 font-medium">Miscellaneous</td><td class="py-3 text-center">—</td><td class="py-3 text-right">550[cite: 1]</td></tr>
-                        </tbody>
-                        <tfoot>
-                            <tr class="border-t border-slate-700 font-bold text-white">
-                                <td class="pt-4" colspan="2">Estimated Total Budget</td>
-                                <td class="pt-4 text-right text-eco-400 text-base">₹2,500[cite: 1]</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- Expected Results & Impact -->
-        <section id="impact" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl flex flex-col justify-between">
-                <div>
-                    <h2 class="text-2xl font-black text-white mb-4 flex items-center">
-                        <i class="fa-solid fa-chart-line text-eco-400 mr-3 text-xl"></i> Expected Results[cite: 1]
-                    </h2>
-                    <ul class="space-y-3 text-sm text-slate-400">
-                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-eco-400 mt-1 mr-3"></i>Reduce industrial waste sent to landfill sites[cite: 1].</li>
-                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-eco-400 mt-1 mr-3"></i>Lower raw material procurement and transport costs[cite: 1].</li>
-                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-eco-400 mt-1 mr-3"></i>Generate additional business income from waste assets[cite: 1].</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl flex flex-col justify-between">
-                <div>
-                    <h2 class="text-2xl font-black text-white mb-4 flex items-center">
-                        <i class="fa-solid fa-users text-eco-400 mr-3 text-xl"></i> Social Applicability[cite: 1]
-                    </h2>
-                    <div class="space-y-3 text-sm text-slate-400">
-                        <div><strong class="text-slate-200">Industries:</strong> Lower procurement costs, reduced disposal expenses, and increased profits[cite: 1].</div>
-                        <div><strong class="text-slate-200">Government:</strong> Better waste monitoring and support for circular economy initiatives[cite: 1].</div>
-                        <div><strong class="text-slate-200">Environment:</strong> Minimized pollution and conservation of natural resources[cite: 1].</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Innovation Highlight -->
-        <section id="innovation" class="bg-gradient-to-r from-eco-950 via-slate-900 to-emerald-950 border border-eco-500/30 p-8 md:p-12 rounded-3xl shadow-2xl space-y-8">
+    <!-- Dashboard Section (Shown after successful Authentication) -->
+    <section id="dashboardSection">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
             <div>
-                <span class="text-eco-400 font-bold text-xs uppercase tracking-widest">Platform Differentiation</span>
-                <h2 class="text-3xl font-black text-white tracking-tight mt-1 mb-4">Innovation Highlight[cite: 1]</h2>
-                <p class="text-slate-300 text-sm leading-relaxed max-w-3xl">
-                    Punarchakra transforms waste into value through intelligent digital matchmaking[cite: 1]. Unlike standard waste disposal, it optimizes transit logistics, calculates real-time carbon offsets, and issues automated compliance certification[cite: 1].
-                </p>
+                <h2 style="font-size:32px;">Industrial Symbiosis Dashboard</h2>
+                <p style="color:#aaa;" id="welcomeUserText">Logged in successfully.</p>
             </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-500 py-12 border-t border-slate-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-            <div>
-                <span class="text-white font-bold text-lg tracking-tight">Punarchakra</span>
-                <p class="text-xs text-slate-500 mt-1">AI-Powered Industrial Waste Exchange Platform[cite: 1]. References: CPCB, MoEFCC[cite: 1].</p>
-            </div>
-            <p class="text-xs text-slate-500">
-                &copy; 2026 Punarchakra. All rights reserved. Supporting India's Circular Economy Mission[cite: 1].
-            </p>
+            <button class="secondary" onclick="handleLogout()" style="border-color:#ff4d4d; color:#ff4d4d;">Sign Out</button>
         </div>
-    </footer>
 
-    <!-- Full Working Frontend and Firebase Script -->
+        <div class="dashboard-grid">
+            <!-- Upload Waste Form -->
+            <div class="dash-card">
+                <h3><i class="fa-solid fa-cloud-arrow-up"></i> Upload Waste Material</h3>
+                <form id="wasteForm">
+                    <div class="input-group">
+                        <label>Material Type / Scrap Name</label>
+                        <input type="text" id="matType" required placeholder="e.g. Chemical Sludge, Steel Scrap">
+                    </div>
+                    <div class="input-group">
+                        <label>Quantity</label>
+                        <input type="text" id="matQty" required placeholder="e.g. 250 Tonnes">
+                    </div>
+                    <div class="input-group">
+                        <label>Purity / Grade</label>
+                        <input type="text" id="matPurity" required placeholder="e.g. 95% Pure">
+                    </div>
+                    <div class="input-group">
+                        <label>Industrial Location</label>
+                        <input type="text" id="matLocation" required placeholder="e.g. Gujarat Industrial Hub">
+                    </div>
+                    <button type="submit" class="primary" style="width:100%; margin-top:10px;">Post to Firestore Database</button>
+                </form>
+            </div>
+
+            <!-- Live Firestore Feed -->
+            <div class="dash-card">
+                <h3><i class="fa-solid fa-database"></i> Live Network Listings</h3>
+                <div id="listingsFeed" style="max-height: 400px; overflow-y: auto; padding-right: 5px;">
+                    <p style="color:#666; font-size:14px; text-align:center; margin-top:40px;">Fetching listings from database...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Firebase SDK Modules Setup -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
         import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-        // TODO: Replace with your actual Firebase config keys from Firebase Console
+        // Firebase Configuration Keys
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyD1KOQsyVmW_g3UPo2R39XW7VmptgB-jlU",
+            authDomain: "punarchakra-b79ea.firebaseapp.com",
+            projectId: "punarchakra-b79ea",
+            storageBucket: "punarchakra-b79ea.firebasestorage.app",
+            messagingSenderId: "894740722467",
+            appId: "1:894740722467:web:1940419f84057e8b4dd296"
         };
 
+        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
+        const googleProvider = new GoogleAuthProvider();
 
-        // UI Element References
-        let isSignUp = false;
-        const authForm = document.getElementById('authForm');
-        const authTitle = document.getElementById('authTitle');
-        const authBtn = document.getElementById('authBtn');
-        const authSwitchText = document.getElementById('authSwitchText');
-        const authContainer = document.getElementById('authContainer');
-        const dashboardContainer = document.getElementById('dashboardContainer');
-        const userEmailDisplay = document.getElementById('userEmailDisplay');
-        const wasteForm = document.getElementById('wasteForm');
-        const listingsFeed = document.getElementById('listingsFeed');
+        let isSignUpMode = false;
 
+        // UI toggling functions exposed globally
         window.toggleAuthMode = function() {
-            isSignUp = !isSignUp;
-            authTitle.innerText = isSignUp ? "Industry Registration (Sign Up)" : "Industry Login";
-            authBtn.innerText = isSignUp ? "Create Account & Register" : "Sign In";
-            authSwitchText.innerText = isSignUp ? "Already have an account? Sign In" : "Need an account? Sign Up";
+            isSignUpMode = !isSignUpMode;
+            document.getElementById('formHeading').innerHTML = isSignUpMode ? "Industry <span>Registration</span>" : "Industry <span>Portal Login</span>";
+            document.getElementById('authSubmitBtn').innerText = isSignUpMode ? "Create Account" : "Sign In";
+            document.getElementById('switchText').innerHTML = isSignUpMode ? 
+                `Already registered? <span onclick="toggleAuthMode()">Sign In</span>` : 
+                `Need an account? <span onclick="toggleAuthMode()">Sign Up</span>`;
         }
 
-        // Auth State Listener
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                authContainer.classList.add('hidden');
-                dashboardContainer.classList.remove('hidden');
-                userEmailDisplay.innerText = user.email;
-                loadWasteListings();
-            } else {
-                authContainer.classList.remove('hidden');
-                dashboardContainer.classList.add('hidden');
+        window.scrollToAuth = function() {
+            document.getElementById('heroSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Google Sign In Execution
+        document.getElementById('googleLoginBtn').addEventListener('click', async () => {
+            try {
+                await signInWithPopup(auth, googleProvider);
+            } catch (error) {
+                alert("Google Authentication Error: " + error.message);
             }
         });
 
-        // Handle Auth Form Submission
-        authForm.addEventListener('submit', async (e) => {
+        // Email / Password Form Submission (Login & Sign Up handling)
+        document.getElementById('emailAuthForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('authEmail').value;
             const password = document.getElementById('authPassword').value;
 
             try {
-                if (isSignUp) {
+                if (isSignUpMode) {
                     await createUserWithEmailAndPassword(auth, email, password);
-                    alert("Account successfully created and logged in!");
                 } else {
                     await signInWithEmailAndPassword(auth, email, password);
                 }
             } catch (error) {
-                alert("Authentication Error: " + error.message);
+                alert("Authentication Failed: " + error.message);
             }
         });
 
+        // Logout Execution
         window.handleLogout = async function() {
             await signOut(auth);
         }
 
-        // Handle Waste Form Listing Upload to Firestore
-        wasteForm.addEventListener('submit', async (e) => {
+        // Global State Listener
+        onAuthStateChanged(auth, (user) => {
+            const hero = document.getElementById('heroSection');
+            const dashboard = document.getElementById('dashboardSection');
+            const navUserBadge = document.getElementById('navUserBadge');
+            const navAuthBtn = document.getElementById('navAuthBtn');
+
+            if (user) {
+                hero.style.display = 'none';
+                dashboard.style.display = 'block';
+                document.getElementById('welcomeUserText').innerText = "Logged in as: " + user.email;
+                navUserBadge.style.display = 'block';
+                navUserBadge.innerText = user.email.split('@')[0];
+                navAuthBtn.style.display = 'none';
+                fetchWasteListings();
+            } else {
+                hero.style.display = 'flex';
+                dashboard.style.display = 'none';
+                navUserBadge.style.display = 'none';
+                navAuthBtn.style.display = 'block';
+            }
+        });
+
+        // Post Waste Listing to Firestore
+        document.getElementById('wasteForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const materialType = document.getElementById('matType').value;
             const quantity = document.getElementById('matQty').value;
             const purity = document.getElementById('matPurity').value;
             const location = document.getElementById('matLocation').value;
-            const availability = document.getElementById('matAvailability').value;
 
             try {
                 await addDoc(collection(db, "waste_listings"), {
@@ -501,58 +618,47 @@
                     quantity,
                     purity,
                     location,
-                    availability,
                     uploader: auth.currentUser.email,
                     timestamp: serverTimestamp()
                 });
-                alert("Waste material successfully uploaded to Firestore database! AI Matchmaker notified[cite: 1].");
-                wasteForm.reset();
-                loadWasteListings();
+                alert("Listing successfully broadcasted to Firestore!");
+                document.getElementById('wasteForm').reset();
+                fetchWasteListings();
             } catch (error) {
-                alert("Error writing document: " + error.message);
+                alert("Firestore Error: " + error.message);
             }
         });
 
-        // Load Waste Feed from Firestore
-        async function loadWasteListings() {
-            listingsFeed.innerHTML = '<p class="text-xs text-slate-400">Loading active network listings...</p>';
+        // Load Firestore Database Listings
+        async function fetchWasteListings() {
+            const feedContainer = document.getElementById('listingsFeed');
+            feedContainer.innerHTML = '<p style="color:#888; font-size:13px; text-align:center;">Syncing with network...</p>';
             try {
                 const querySnapshot = await getDocs(collection(db, "waste_listings"));
-                listingsFeed.innerHTML = '';
-                if(querySnapshot.empty) {
-                    listingsFeed.innerHTML = '<p class="text-xs text-slate-500 italic">No waste listings found in database.</p>';
+                feedContainer.innerHTML = '';
+                
+                if (querySnapshot.empty) {
+                    feedContainer.innerHTML = '<p style="color:#666; font-size:13px; text-align:center;">No active listings found.</p>';
                     return;
                 }
+
                 querySnapshot.forEach((doc) => {
                     const data = doc.data();
-                    listingsFeed.innerHTML += `
-                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs space-y-1">
-                            <div class="flex justify-between font-bold text-white">
-                                <span>${data.materialType}</span>
-                                <span class="text-eco-400">${data.quantity}</span>
+                    feedContainer.innerHTML += `
+                        <div class="listing-item">
+                            <div>
+                                <h4 style="font-size:14px; color:white; font-weight:600;">${data.materialType}</h4>
+                                <p style="font-size:12px; color:#aaa;">Qty: ${data.quantity} | Purity: ${data.purity}</p>
+                                <p style="font-size:11px; color:#666;">Loc: ${data.location}</p>
                             </div>
-                            <div class="text-slate-400 flex justify-between">
-                                <span>Purity: ${data.purity} | Loc: ${data.location}</span>
-                                <span class="text-emerald-400">Ready</span>
-                            </div>
+                            <span style="font-size:11px; padding:4px 10px; background:rgba(34,255,136,0.1); color:#22ff88; border-radius:20px; border:1px solid rgba(34,255,136,0.2);">Active</span>
                         </div>
                     `;
                 });
             } catch (error) {
-                listingsFeed.innerHTML = '<p class="text-xs text-red-400">Error loading database items.</p>';
+                feedContainer.innerHTML = '<p style="color:#ff4d4d; font-size:13px; text-align:center;">Failed to load listings.</p>';
             }
         }
-
-        // Interactive Hero Simulator Script
-        window.triggerMatch = function(material, receiver, score) {
-            document.getElementById('matchTarget').innerText = `${material} ➔ ${receiver}`;
-            document.getElementById('matchScore').innerText = score;
-            const bar = document.getElementById('matchProgressBar');
-            bar.style.width = '0%';
-            setTimeout(() => {
-                bar.style.width = score;
-            }, 100);
-        };
     </script>
 </body>
 </html>
