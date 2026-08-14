@@ -56,43 +56,18 @@ body::before {
     z-index: -2;
 }
 
-/* Header */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 18px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    backdrop-filter: blur(12px);
-    background: rgba(5, 7, 6, 0.85);
-    border-bottom: 1px solid var(--border-color);
-    z-index: 100;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-}
-
-.logo-container img {
-    height: 44px;
-    width: auto;
-    object-fit: contain;
-}
-
-.logo-container span {
-    font-size: 20px;
-    font-weight: 700;
-    color: white;
-    letter-spacing: 0.5px;
-}
-
-nav {
+<header>
+    <a href="index.html" class="logo-container">
+        <i class="fa-solid fa-recycle" style="font-size: 24px; color: #10b981;"></i>
+        <span style="font-size: 20px; font-weight: 700; color: white;">Punarchakra</span>
+    </a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="auth.html" class="portal-btn">Industry Portal</a>
+    </nav>
+</header>av {
     display: flex;
     gap: 30px;
     align-items: center;
