@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Punarchakra | Waste-to-Fuel & Circular Infrastructure</title>
-<link rel="icon" type="image/x-icon" href="logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
 <style>
@@ -56,18 +55,37 @@ body::before {
     z-index: -2;
 }
 
-<header>
-    <a href="index.html" class="logo-container">
-        <i class="fa-solid fa-recycle" style="font-size: 24px; color: #10b981;"></i>
-        <span style="font-size: 20px; font-weight: 700; color: white;">Punarchakra</span>
-    </a>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="auth.html" class="portal-btn">Industry Portal</a>
-    </nav>
-</header>av {
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(12px);
+    background: rgba(5, 7, 6, 0.85);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-container span {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+nav {
     display: flex;
     gap: 30px;
     align-items: center;
@@ -131,7 +149,7 @@ nav a:hover {
 }
 
 .hero-left h1 {
-    font-size: 56px;
+    font-size: 54px;
     line-height: 1.15;
     font-weight: 800;
     margin-bottom: 20px;
@@ -361,7 +379,7 @@ footer p {
     .hero { flex-direction: column; text-align: center; padding-top: 130px; }
     .hero-left p { margin: 0 auto 35px; }
     .hero-buttons { justify-content: center; }
-    .hero-left h1 { font-size: 40px; }
+    .hero-left h1 { font-size: 38px; }
     nav { display: none; }
 }
 </style>
@@ -372,7 +390,7 @@ footer p {
 
 <header>
     <a href="index.html" class="logo-container">
-        <img src="logo.png" alt="Punarchakra Logo">
+        <i class="fa-solid fa-recycle" style="font-size: 24px; color: #10b981;"></i>
         <span>Punarchakra</span>
     </a>
     <nav>
@@ -387,19 +405,19 @@ footer p {
     <div class="hero-left">
         <span class="badge">INTEGRATED WASTE-TO-FUEL SYSTEMS</span>
         <h1>Transforming Municipal & Industrial Waste Into <span>Clean Energy</span></h1>
-        <p>Punarchakra designs sustainable waste-processing systems that recover value from waste streams, reduce landfill pressure, and create dependable fuel supply for cement, steel, and power industries.</p>
+        <p>Punarchakra designs sustainable waste-processing infrastructure that recovers high-value resources from waste streams, reduces landfill dependency, and establishes secure fuel supply chains for heavy industries.</p>
         <div class="hero-buttons">
             <a href="auth.html" class="btn-primary">Access Platform</a>
-            <a href="#services" class="btn-outline">Explore Solutions</a>
+            <a href="#services" class="btn-outline">Explore Services</a>
         </div>
     </div>
     <div class="hero-right">
         <div class="hero-card-visual">
-            <h3><i class="fa-solid fa-industry"></i> Value Chain Flow</h3>
-            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> Municipal Solid Waste (MSW) Intake</div>
-            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> Automated Sorting & Separation</div>
-            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> Primary Shredding & Drying</div>
-            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> RDF Pellets (~4000 kcal/kg)</div>
+            <h3><i class="fa-solid fa-industry"></i> Resource Recovery Flow</h3>
+            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> Municipal Solid Waste Intake</div>
+            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> Automated Material Sorting</div>
+            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> Shredding & Moisture Reduction</div>
+            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> High-Calorie RDF Pellets Output</div>
         </div>
     </div>
 </section>
@@ -407,55 +425,58 @@ footer p {
 <section class="services" id="services">
     <div class="section-title">
         <h2>Core Waste-to-Fuel Services</h2>
-        <p>Comprehensive solutions across the entire resource recovery and industrial fuel supply chain.</p>
+        <p>End-to-end municipal and industrial waste management solutions tailored for a circular economy.</p>
     </div>
     <div class="service-grid">
         <div class="service-card">
             <i class="fa-solid fa-compass-drafting"></i>
-            <h3>Project Development & Feasibility</h3>
-            <p>Identification of suitable waste processing technologies, plant capacities, pre-feasibility studies, and detailed project report support.</p>
+            <h3>Project Development & Advisory</h3>
+            <p>Comprehensive feasibility assessments, technology selection, plant capacity blueprints, and detailed project reports for sustainable waste units.</p>
         </div>
         <div class="service-card">
             <i class="fa-solid fa-gears"></i>
-            <h3>Technology Deployment & Operations</h3>
-            <p>Design, installation, commissioning, operator training, and ongoing operational support for complete waste processing plants.</p>
+            <h3>Plant Operations & Engineering</h3>
+            <p>Installation, testing, advanced sorting machinery deployment, operator onboarding, and continuous plant optimization support.</p>
         </div>
         <div class="service-card">
             <i class="fa-solid fa-fire-flame-curved"></i>
-            <h3>AFX Fuel Supply to Industries</h3>
-            <p>Long-term Refuse Derived Fuel (RDF) offtake support for cement, power, and steel industries seeking scalable fossil fuel substitutes.</p>
+            <h3>Industrial RDF Fuel Supply</h3>
+            <p>Reliable Refuse Derived Fuel (RDF) supply contracts for cement plants, steel manufacturers, and thermal power generation hubs.</p>
         </div>
     </div>
 </section>
 
 <section class="process-flow" id="process">
-    <h2>Integrated Process Flow</h2>
+    <h2>Integrated Processing Workflow</h2>
     <div class="process-grid">
         <div class="process-step">
             <span>STAGE 01</span>
-            <h4>Reception</h4>
-            <p>Incoming waste intake and quality inspection.</p>
+            <h4>Reception & Tipping</h4>
+            <p>Systematic incoming waste intake and compliance screening.</p>
         </div>
         <div class="process-step">
             <span>STAGE 02</span>
             <h4>Sorting & Separation</h4>
-            <p>Ferrous, non-ferrous metal extraction and recyclables recovery.</p>
+            <p>Extraction of metals, glass, and inorganic recyclables.</p>
         </div>
         <div class="process-step">
             <span>STAGE 03</span>
             <h4>Shredding & Drying</h4>
-            <p>Primary size reduction and moisture control for high grade efficiency.</p>
+            <p>Pre-processing organic fractions for optimum fuel caloric value.</p>
         </div>
         <div class="process-step">
             <span>STAGE 04</span>
             <h4>Pelletization</h4>
-            <p>Forming premium RDF pellets meeting industrial standards.</p>
+            <p>Compression into high-efficiency green industrial pellets.</p>
         </div>
     </div>
 </section>
 
 <footer>
-    <img src="logo.png" alt="Punarchakra Logo" style="height: 35px; margin-bottom: 10px;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 8px;">
+        <i class="fa-solid fa-recycle" style="color: #10b981; font-size: 18px;"></i>
+        <span style="font-weight: 700; color: white;">Punarchakra</span>
+    </div>
     <p>© 2026 Punarchakra Waste Solutions Private Limited. All Rights Reserved.</p>
 </footer>
 
