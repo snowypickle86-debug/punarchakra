@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Punarchakra | Waste-to-Fuel & Circular Infrastructure</title>
+<title>Punarchakra Waste Solutions | Integrated Waste-to-Fuel Systems</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
 <style>
@@ -18,7 +18,7 @@
 :root {
     --bg-deep: #050706;
     --eco-primary: #10b981;
-    --eco-glow: rgba(16, 185, 129, 0.3);
+    --eco-glow: rgba(16, 185, 129, 0.25);
     --border-color: rgba(255, 255, 255, 0.08);
     --card-bg: rgba(255, 255, 255, 0.02);
 }
@@ -30,7 +30,6 @@ body {
     position: relative;
 }
 
-/* Background Atmosphere */
 body::before {
     content: "";
     position: fixed;
@@ -39,20 +38,9 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 15% 20%, rgba(16,185,129,0.12), transparent 30%),
-        radial-gradient(circle at 85% 70%, rgba(5,150,105,0.08), transparent 35%);
+        radial-gradient(circle at 10% 20%, rgba(16,185,129,0.1), transparent 30%),
+        radial-gradient(circle at 90% 60%, rgba(5,150,105,0.07), transparent 30%);
     z-index: -3;
-}
-
-.grid-overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
-    background-size: 50px 50px;
-    z-index: -2;
 }
 
 /* Header */
@@ -66,7 +54,7 @@ header {
     justify-content: space-between;
     align-items: center;
     backdrop-filter: blur(12px);
-    background: rgba(5, 7, 6, 0.85);
+    background: rgba(5, 7, 6, 0.9);
     border-bottom: 1px solid var(--border-color);
     z-index: 100;
 }
@@ -87,7 +75,7 @@ header {
 
 nav {
     display: flex;
-    gap: 30px;
+    gap: 25px;
     align-items: center;
 }
 
@@ -118,12 +106,11 @@ nav a:hover {
 .portal-btn:hover {
     background: #059669;
     color: white;
-    box-shadow: 0 0 30px rgba(16,185,129,0.4);
 }
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
+    min-height: 95vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -149,7 +136,7 @@ nav a:hover {
 }
 
 .hero-left h1 {
-    font-size: 54px;
+    font-size: 50px;
     line-height: 1.15;
     font-weight: 800;
     margin-bottom: 20px;
@@ -204,56 +191,38 @@ nav a:hover {
     background: rgba(16,185,129,0.05);
 }
 
-.hero-right {
-    flex: 0.8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Stats Counter Row */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 8% 80px;
 }
 
-.hero-card-visual {
-    width: 100%;
-    max-width: 420px;
+.stat-box {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 35px;
-    border-radius: 24px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
 }
 
-.hero-card-visual h3 {
-    font-size: 18px;
-    margin-bottom: 20px;
+.stat-box h3 {
+    font-size: 28px;
     color: var(--eco-primary);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    font-weight: 800;
+    margin-bottom: 5px;
 }
 
-.flow-step-mini {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border-color);
-    font-size: 14px;
-    color: #cbd5e1;
+.stat-box p {
+    font-size: 13px;
+    color: #94a3b8;
 }
 
-.flow-step-mini:last-child {
-    border-bottom: none;
-}
-
-.flow-step-mini i {
-    color: var(--eco-primary);
-    font-size: 16px;
-}
-
-/* Services / Value Chain Section */
+/* Services Section */
 .services {
-    padding: 100px 8%;
-    background: rgba(0,0,0,0.4);
+    padding: 90px 8%;
+    background: rgba(0,0,0,0.3);
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
 }
@@ -265,7 +234,7 @@ nav a:hover {
 }
 
 .section-title h2 {
-    font-size: 38px;
+    font-size: 36px;
     font-weight: 800;
     margin-bottom: 15px;
 }
@@ -286,7 +255,7 @@ nav a:hover {
     border: 1px solid var(--border-color);
     padding: 40px 30px;
     border-radius: 20px;
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 .service-card:hover {
@@ -295,7 +264,7 @@ nav a:hover {
 }
 
 .service-card i {
-    font-size: 32px;
+    font-size: 30px;
     color: var(--eco-primary);
     margin-bottom: 20px;
     background: rgba(16,185,129,0.1);
@@ -316,43 +285,34 @@ nav a:hover {
     line-height: 1.7;
 }
 
-/* Process Section */
+/* Workflow Flow Section */
 .process-flow {
-    padding: 100px 8%;
-    text-align: center;
-}
-
-.process-flow h2 {
-    font-size: 38px;
-    font-weight: 800;
-    margin-bottom: 50px;
+    padding: 90px 8%;
 }
 
 .process-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
+    margin-top: 40px;
 }
 
 .process-step {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 30px 20px;
+    padding: 30px;
     border-radius: 16px;
-    text-align: left;
 }
 
 .process-step span {
     font-size: 12px;
     font-weight: 700;
     color: var(--eco-primary);
-    letter-spacing: 1px;
 }
 
 .process-step h4 {
-    font-size: 17px;
+    font-size: 18px;
     margin: 10px 0 8px;
-    font-weight: 600;
 }
 
 .process-step p {
@@ -361,32 +321,141 @@ nav a:hover {
     line-height: 1.5;
 }
 
-/* Footer */
-footer {
-    padding: 50px 8%;
-    background: #030404;
+/* Who We Are & Vision/Mission */
+.about-section {
+    padding: 90px 8%;
+    background: rgba(0,0,0,0.4);
     border-top: 1px solid var(--border-color);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.about-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    border-radius: 20px;
+}
+
+.about-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: var(--eco-primary);
+}
+
+.about-card p, .about-card li {
+    font-size: 14px;
+    color: #94a3b8;
+    line-height: 1.7;
+}
+
+.about-card ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.about-card ul li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.about-card ul li::before {
+    content: "•";
+    color: var(--eco-primary);
+    position: absolute;
+    left: 0;
+    font-size: 18px;
+}
+
+/* Leadership Team */
+.team-section {
+    padding: 90px 8%;
     text-align: center;
 }
 
-footer p {
+.team-card {
+    max-width: 500px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: left;
+}
+
+.team-card h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.team-card .role {
+    color: var(--eco-primary);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.team-card ul {
+    list-style: none;
+}
+
+.team-card ul li {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 8px;
+}
+
+/* Contact & Footer Section */
+footer {
+    padding: 70px 8% 40px;
+    background: #030404;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-info h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.footer-info p {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.copyright {
+    text-align: center;
     color: #64748b;
     font-size: 13px;
-    margin-top: 15px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 25px;
 }
 
 @media(max-width: 992px) {
     .hero { flex-direction: column; text-align: center; padding-top: 130px; }
-    .hero-left p { margin: 0 auto 35px; }
     .hero-buttons { justify-content: center; }
     .hero-left h1 { font-size: 38px; }
+    .stats-container, .about-grid, .footer-grid { grid-template-columns: 1fr; }
     nav { display: none; }
 }
 </style>
 </head>
 <body>
-
-<div class="grid-overlay"></div>
 
 <header>
     <a href="index.html" class="logo-container">
@@ -397,6 +466,9 @@ footer p {
         <a href="index.html">Home</a>
         <a href="#services">Services</a>
         <a href="#process">Process</a>
+        <a href="#about">About</a>
+        <a href="#team">Leadership</a>
+        <a href="#contact">Contact</a>
         <a href="auth.html" class="portal-btn">Industry Portal</a>
     </nav>
 </header>
@@ -404,80 +476,145 @@ footer p {
 <section class="hero">
     <div class="hero-left">
         <span class="badge">INTEGRATED WASTE-TO-FUEL SYSTEMS</span>
-        <h1>Transforming Municipal & Industrial Waste Into <span>Clean Energy</span></h1>
-        <p>Punarchakra designs sustainable waste-processing infrastructure that recovers high-value resources from waste streams, reduces landfill dependency, and establishes secure fuel supply chains for heavy industries.</p>
+        <h1>Turn municipal waste into RDF, recyclables, and <span>cleaner industrial fuel</span></h1>
+        <p>Punarchakra designs integrated waste-processing systems that recover value from municipal waste streams, reduce landfill pressure, and create dependable fuel supply for cement, steel, and power industries.</p>
         <div class="hero-buttons">
-            <a href="auth.html" class="btn-primary">Access Platform</a>
-            <a href="#services" class="btn-outline">Explore Services</a>
-        </div>
-    </div>
-    <div class="hero-right">
-        <div class="hero-card-visual">
-            <h3><i class="fa-solid fa-industry"></i> Resource Recovery Flow</h3>
-            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> Municipal Solid Waste Intake</div>
-            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> Automated Material Sorting</div>
-            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> Shredding & Moisture Reduction</div>
-            <div class="flow-step-mini"><i class="fa-solid fa-circle-check"></i> High-Calorie RDF Pellets Output</div>
+            <a href="auth.html" class="btn-primary">Explore Services</a>
+            <a href="#services" class="btn-outline">Learn More</a>
         </div>
     </div>
 </section>
 
+<!-- Stats Grid -->
+<div class="stats-container">
+    <div class="stat-box">
+        <h3>170K TPD</h3>
+        <p>India waste opportunity space</p>
+    </div>
+    <div class="stat-box">
+        <h3>~4000 kcal</h3>
+        <p>Fuel-grade RDF thermal output</p>
+    </div>
+    <div class="stat-box">
+        <h3>100 Plants</h3>
+        <p>Scalable future framework roadmap</p>
+    </div>
+</div>
+
+<!-- Services Section -->
 <section class="services" id="services">
     <div class="section-title">
-        <h2>Core Waste-to-Fuel Services</h2>
-        <p>End-to-end municipal and industrial waste management solutions tailored for a circular economy.</p>
+        <h2>What We Deliver</h2>
+        <p>Three core services across the waste-to-fuel value chain organized simply: project setup, plant deployment, and industrial fuel linkage.</p>
     </div>
     <div class="service-grid">
         <div class="service-card">
             <i class="fa-solid fa-compass-drafting"></i>
-            <h3>Project Development & Advisory</h3>
-            <p>Comprehensive feasibility assessments, technology selection, plant capacity blueprints, and detailed project reports for sustainable waste units.</p>
+            <h3>Project Development & Feasibility</h3>
+            <p>Identification of suitable waste processing technologies, plant capacities, pre-feasibility studies, and DPR support for municipal and industrial clients.</p>
         </div>
         <div class="service-card">
             <i class="fa-solid fa-gears"></i>
-            <h3>Plant Operations & Engineering</h3>
-            <p>Installation, testing, advanced sorting machinery deployment, operator onboarding, and continuous plant optimization support.</p>
+            <h3>Technology Deployment & Plant Operations</h3>
+            <p>Design, installation, commissioning, training, and operational support for complete waste processing plants and RDF infrastructure.</p>
         </div>
         <div class="service-card">
             <i class="fa-solid fa-fire-flame-curved"></i>
-            <h3>Industrial RDF Fuel Supply</h3>
-            <p>Reliable Refuse Derived Fuel (RDF) supply contracts for cement plants, steel manufacturers, and thermal power generation hubs.</p>
+            <h3>AFX Fuel Supply to Industries</h3>
+            <p>Long-term RDF offtake support for cement, power, and steel industries where alternative fuel demand is strong and scalable.</p>
         </div>
     </div>
 </section>
 
+<!-- Process Workflow Section -->
 <section class="process-flow" id="process">
-    <h2>Integrated Processing Workflow</h2>
+    <div class="section-title" style="margin-bottom: 20px;">
+        <h2>Integrated Waste-To-Fuel Process</h2>
+        <p>A modern mechanical treatment system designed to minimize manual handling and maximize automated separation efficiency.</p>
+    </div>
     <div class="process-grid">
         <div class="process-step">
-            <span>STAGE 01</span>
+            <span>01. RECEPTION</span>
             <h4>Reception & Tipping</h4>
-            <p>Systematic incoming waste intake and compliance screening.</p>
+            <p>Incoming municipal waste intake and inspection compliance screening.</p>
         </div>
         <div class="process-step">
-            <span>STAGE 02</span>
-            <h4>Sorting & Separation</h4>
-            <p>Extraction of metals, glass, and inorganic recyclables.</p>
+            <span>02. SEPARATION</span>
+            <h4>Metal & Material Separation</h4>
+            <p>Extraction of ferrous, non-ferrous metals, plastics, and glass recyclables.</p>
         </div>
         <div class="process-step">
-            <span>STAGE 03</span>
+            <span>03. SHREDDING</span>
             <h4>Shredding & Drying</h4>
-            <p>Pre-processing organic fractions for optimum fuel caloric value.</p>
+            <p>Primary size reduction of material and moisture content reduction.</p>
         </div>
         <div class="process-step">
-            <span>STAGE 04</span>
-            <h4>Pelletization</h4>
-            <p>Compression into high-efficiency green industrial pellets.</p>
+            <span>04. PELLETIZATION</span>
+            <h4>RDF Pelletization</h4>
+            <p>Forming standardized high-grade RDF fuel pellets for thermal industries.</p>
         </div>
     </div>
 </section>
 
-<footer>
-    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 8px;">
-        <i class="fa-solid fa-recycle" style="color: #10b981; font-size: 18px;"></i>
-        <span style="font-weight: 700; color: white;">Punarchakra</span>
+<!-- Who We Are Section -->
+<section class="about-section" id="about">
+    <div class="section-title">
+        <h2>Who We Are</h2>
+        <p>Our foundation is built on sustainability, innovation, and long-term circular impact.</p>
     </div>
-    <p>© 2026 Punarchakra Waste Solutions Private Limited. All Rights Reserved.</p>
+    <div class="about-grid">
+        <div class="about-card">
+            <h3>Vision</h3>
+            <p>To become a leading national circular-economy infrastructure company converting waste into energy resources (AFR) and sustainable materials.</p>
+        </div>
+        <div class="about-card">
+            <h3>Mission</h3>
+            <ul>
+                <li>Develop sustainable waste-to-fuel infrastructure;</li>
+                <li>Reduce landfill dependency in cities;</li>
+                <li>Enable industries to replace fossil fuels;</li>
+                <li>Support circular economy transition.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Leadership Team Section -->
+<section class="team-section" id="team">
+    <div class="section-title">
+        <h2>Leadership Team</h2>
+        <p>Expert leadership driving sustainable innovation and operational excellence.</p>
+    </div>
+    <div class="team-card">
+        <h3>Santosh C. Mane</h3>
+        <span class="role">Chartered Accountant & Entrepreneur (20+ Years Experience)</span>
+        <ul>
+            <li>✦ Founder – S. C. Mane & Co. (CA Firm)</li>
+            <li>✦ Owner – Tata Motors Dealership (Rudra Motors)</li>
+            <li>✦ Built and led a 600+ employee business group</li>
+            <li>✦ Executed large scale infrastructure projects (Indian Railways - ₹50 Cr order)</li>
+            <li>✦ Extensive multi-sector expansion spanning finance, hospitality, and tech</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Contact & Footer Section -->
+<footer id="contact">
+    <div class="footer-grid">
+        <div class="footer-info">
+            <h3>Punarchakra Waste Solutions</h3>
+            <p>Building cleaner circular infrastructure across India, one waste processing plant at a time.</p>
+            <p><i class="fa-solid fa-location-dot" style="color: var(--eco-primary);"></i> S. No. 47/PL-12, Flat No 2, Navmaharashtra Society, Taware Colony, Pune, Maharashtra 411009, India</p>
+        </div>
+        <div class="footer-info">
+            <h3>Contact Info</h3>
+            <p><i class="fa-solid fa-envelope" style="color: var(--eco-primary);"></i> info@punarchakra.com / connect@punarchakra.com</p>
+            <p><i class="fa-solid fa-phone" style="color: var(--eco-primary);"></i> +91 9822060510 / +91 9834575865</p>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© 2026 Punarchakra Waste Solutions Private Limited. All Rights Reserved.</p>
+    </div>
 </footer>
 
 </body>
