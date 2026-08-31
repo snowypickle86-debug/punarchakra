@@ -3,15 +3,16 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebas
 import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-// TODO: Replace the following credentials with your actual Firebase project configuration
+// Firebase configuration for Punarchakra
 const firebaseConfig = {
-  apiKey: "AIzaSyD1KOQsyVmW_g3UPo2R39XW7VmptgB-jlU",
-  authDomain: "punarchakra-b79ea.firebaseapp.com",
-  projectId: "punarchakra-b79ea",
-  storageBucket: "punarchakra-b79ea.firebasestorage.app",
-  messagingSenderId: "894740722467",
-  appId: "1:894740722467:web:1940419f84057e8b4dd296"
+    apiKey: "AIzaSyD1KOQsyVmW_g3UPo2R39XW7VmptgB-jlU",
+    authDomain: "punarchakra-b79ea.firebaseapp.com",
+    projectId: "punarchakra-b79ea",
+    storageBucket: "punarchakra-b79ea.firebasestorage.app",
+    messagingSenderId: "894740722467",
+    appId: "1:894740722467:web:1940419f84057e8b4dd296"
 };
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
