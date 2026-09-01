@@ -171,6 +171,18 @@ body::before {
     box-shadow: 0 0 35px #10b981;
 }
 
+.error-msg {
+    color: #ef4444;
+    font-size: 13px;
+    margin-bottom: 15px;
+    text-align: center;
+    display: none;
+    background: rgba(239, 68, 68, 0.1);
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
 .back-home {
     text-align: center;
     margin-top: 25px;
@@ -204,44 +216,46 @@ body::before {
         <button class="tab-btn" onclick="switchTab('register', event)">Register</button>
     </div>
 
-    <form id="login-form" class="form-box active" action="index.html">
+    <form id="login-form" class="form-box active">
+        <div id="login-error" class="error-msg"></div>
         <div class="input-group">
             <label>Corporate Email</label>
             <div class="input-field">
                 <i class="fa-solid fa-envelope"></i>
-                <input type="email" placeholder="company@industry.com" required>
+                <input type="email" id="login-email" placeholder="company@industry.com" required>
             </div>
         </div>
         <div class="input-group">
             <label>Password</label>
             <div class="input-field">
                 <i class="fa-solid fa-lock"></i>
-                <input type="password" placeholder="••••••••" required>
+                <input type="password" id="login-password" placeholder="••••••••" required>
             </div>
         </div>
         <button type="submit" class="submit-btn">Login to Platform</button>
     </form>
 
-    <form id="register-form" class="form-box" action="index.html">
+    <form id="register-form" class="form-box">
+        <div id="register-error" class="error-msg"></div>
         <div class="input-group">
             <label>Industry / Company Name</label>
             <div class="input-field">
                 <i class="fa-solid fa-building"></i>
-                <input type="text" placeholder="Apex Steel Ltd." required>
+                <input type="text" id="register-company" placeholder="Apex Steel Ltd." required>
             </div>
         </div>
         <div class="input-group">
             <label>Corporate Email</label>
             <div class="input-field">
                 <i class="fa-solid fa-envelope"></i>
-                <input type="email" placeholder="contact@company.com" required>
+                <input type="email" id="register-email" placeholder="contact@company.com" required>
             </div>
         </div>
         <div class="input-group">
             <label>Create Password</label>
             <div class="input-field">
                 <i class="fa-solid fa-lock"></i>
-                <input type="password" placeholder="••••••••" required>
+                <input type="password" id="register-password" placeholder="••••••••" required>
             </div>
         </div>
         <button type="submit" class="submit-btn">Register Industry</button>
@@ -252,24 +266,71 @@ body::before {
     </div>
 </div>
 
-<script>
-function switchTab(tab, event) {
-    const loginForm = document.getElementById('login-form');
-    const registerForm = document.getElementById('register-form');
-    const buttons = document.querySelectorAll('.tab-btn');
+<script type="module">
+    import { auth, db } from "./firebase-config.js";
+    import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+    import { doc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-    buttons.forEach(btn => btn.classList.remove('active'));
+    window.switchTab = function(tab, event) {
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const buttons = document.querySelectorAll('.tab-btn');
 
-    if(tab === 'login') {
-        loginForm.classList.add('active');
-        registerForm.classList.remove('active');
-        event.currentTarget.classList.add('active');
-    } else {
-        registerForm.classList.add('active');
-        loginForm.classList.remove('active');
-        event.currentTarget.classList.add('active');
-    }
-}
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        if(tab === 'login') {
+            loginForm.classList.add('active');
+            registerForm.classList.remove('active');
+            event.currentTarget.classList.add('active');
+        } else {
+            registerForm.classList.add('active');
+            loginForm.classList.remove('active');
+            event.currentTarget.classList.add('active');
+        }
+    };
+
+    // Handle Login Submissions via Firebase Auth
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        const errorBox = document.getElementById('login-error');
+        errorBox.style.display = "none";
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            window.location.href = "index.html";
+        } catch (error) {
+            errorBox.textContent = error.message;
+            errorBox.style.display = "block";
+        }
+    });
+
+    // Handle Registration Submissions via Firebase Auth & Firestore
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const company = document.getElementById('register-company').value;
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
+        const errorBox = document.getElementById('register-error');
+        errorBox.style.display = "none";
+
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            await setDoc(doc(db, "industries", user.uid), {
+                companyName: company,
+                email: email,
+                createdAt: new Date().toISOString()
+            });
+
+            window.location.href = "index.html";
+        } catch (error) {
+            errorBox.textContent = error.message;
+            errorBox.style.display = "block";
+        }
+    });
 </script>
 
 </body>
