@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Industry Dashboard | Punarchakra</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #050706;
+    color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    width: 100%;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5, 7, 6, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-container span {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+.logout-btn {
+    padding: 8px 20px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #ef4444;
+    color: white;
+}
+
+/* Dashboard Container */
+.dashboard-main {
+    flex: 1;
+    padding: 50px 8%;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.welcome-banner {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+}
+
+.welcome-banner h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.welcome-banner h1 span {
+    color: #10b981;
+}
+
+.welcome-banner p {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+/* Grid Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    color: #cbd5e1;
+    margin-bottom: 6px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: #10b981;
+    outline: none;
+}
+
+.submit-request-btn {
+    width: 100%;
+    padding: 12px;
+    background: #10b981;
+    color: #050706;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.submit-request-btn:hover {
+    background: #059669;
+    color: white;
+}
+
+@media(max-width: 900px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo-container">
+        <i class="fa-solid fa-recycle" style="font-size: 22px; color: #10b981;"></i>
+        <span>Punarchakra Portal</span>
+    </a>
+    <button id="logout-btn" class="logout-btn">Log Out</button>
+</header>
+
+<div class="dashboard-main">
+    <div class="welcome-banner">
+        <h1 id="company-welcome">Welcome back, <span id="company-name-display">Loading...</span></h1>
+        <p>Manage your Alternative Fuel Resource (AFR) requests and industrial symbiosis allocations.</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="card">
+            <h3><i class="fa-solid fa-truck-ramp-box" style="color: #10b981; margin-right: 8px;"></i> Request RDF / AFR Fuel Supply</h3>
+            <form id="rdf-request-form">
+                <div class="form-group">
+                    <label>Required Fuel Type</label>
+                    <select id="fuel-type">
+                        <option value="RDF Pellets">High-Grade RDF Pellets (~4000 kcal)</option>
+                        <option value="Biomass Refuse">Shredded Industrial Biomass</option>
+                        <option value="Custom Blend">Custom Co-Processing Mix</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Required Quantity (Metric Tons / Month)</label>
+                    <input type="number" id="fuel-qty" placeholder="e.g., 500" required>
+                </div>
+                <button type="submit" class="submit-request-btn">Submit Supply Request</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3><i class="fa-solid fa-circle-info" style="color: #10b981; margin-right: 8px;"></i> Account Status</h3>
+            <p style="font-size: 13px; color: #94a3b8; line-height: 1.6;">
+                Your industry node is currently active within the Punarchakra distribution network framework.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { auth, db } from "./firebase-config.js";
+    import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+    import { doc, getDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+    // Protect Route & Load User Data
+    onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+            window.location.href = "auth.html";
+        } else {
+            try {
+                const docRef = doc(db, "industries", user.uid);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    document.getElementById('company-name-display').textContent = docSnap.data().companyName;
+                } else {
+                    document.getElementById('company-name-display').textContent = user.email;
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        }
+    });
+
+    // Handle Logout
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+        await signOut(auth);
+        window.location.href = "index.html";
+    });
+
+    // Handle RDF Form Submission
+    document.getElementById('rdf-request-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const fuelType = document.getElementById('fuel-type').value;
+        const quantity = document.getElementById('fuel-qty').value;
+        const user = auth.currentUser;
+
+        if (user) {
+            try {
+                await addDoc(collection(db, "fuelRequests"), {
+                    uid: user.uid,
+                    fuelType: fuelType,
+                    quantity: quantity,
+                    timestamp: new Date().toISOString()
+                });
+                alert("Supply request submitted successfully!");
+                document.getElementById('rdf-request-form').reset();
+            } catch (error) {
+                alert("Error submitting request: " + error.message);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
