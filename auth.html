@@ -15,8 +15,8 @@
 }
 
 body {
-    background: #050706;
-    color: white;
+    background: #f8fafc;
+    color: #0f172a;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -34,20 +34,19 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 20%, rgba(16,185,129,0.12), transparent 25%),
-        radial-gradient(circle at 80% 30%, rgba(5,150,105,0.08), transparent 30%);
+        radial-gradient(circle at 20% 20%, rgba(5,150,105,0.06), transparent 25%),
+        radial-gradient(circle at 80% 30%, rgba(5,150,105,0.04), transparent 30%);
     z-index: -2;
 }
 
 .auth-container {
     width: 100%;
     max-width: 460px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(20px);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
     padding: 40px;
     border-radius: 24px;
-    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
     position: relative;
     z-index: 1;
 }
@@ -63,7 +62,7 @@ body::before {
 }
 
 .auth-logo h2 {
-    color: white;
+    color: #0f172a;
     font-size: 22px;
     font-weight: 700;
     margin-top: 8px;
@@ -71,24 +70,24 @@ body::before {
 
 .auth-logo p {
     font-size: 13px;
-    color: #94a3b8;
+    color: #64748b;
     margin-top: 4px;
 }
 
 .tabs {
     display: flex;
-    background: rgba(255,255,255,0.03);
+    background: #f1f5f9;
     border-radius: 50px;
     padding: 5px;
     margin-bottom: 30px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid #e2e8f0;
 }
 
 .tab-btn {
     flex: 1;
     background: transparent;
     border: none;
-    color: #94a3b8;
+    color: #64748b;
     padding: 12px;
     font-weight: 600;
     cursor: pointer;
@@ -97,9 +96,9 @@ body::before {
 }
 
 .tab-btn.active {
-    background: #10b981;
-    color: #050706;
-    box-shadow: 0 0 20px rgba(16,185,129,0.3);
+    background: #059669;
+    color: white;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
 }
 
 .form-box {
@@ -117,7 +116,7 @@ body::before {
 .input-group label {
     display: block;
     font-size: 13px;
-    color: #cbd5e1;
+    color: #334155;
     margin-bottom: 8px;
     font-weight: 500;
 }
@@ -131,31 +130,32 @@ body::before {
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
-    color: #64748b;
+    color: #94a3b8;
 }
 
 .input-field input {
     width: 100%;
     padding: 14px 16px 14px 48px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
     border-radius: 12px;
-    color: white;
+    color: #0f172a;
     font-size: 15px;
     transition: 0.3s;
 }
 
 .input-field input:focus {
-    border-color: #10b981;
+    border-color: #059669;
     outline: none;
-    box-shadow: 0 0 10px rgba(16,185,129,0.2);
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    background: #ffffff;
 }
 
 .submit-btn {
     width: 100%;
     padding: 15px;
-    background: #10b981;
-    color: #050706;
+    background: #059669;
+    color: white;
     border: none;
     border-radius: 12px;
     font-weight: 700;
@@ -163,24 +163,24 @@ body::before {
     cursor: pointer;
     transition: 0.3s;
     margin-top: 10px;
-    box-shadow: 0 0 20px rgba(16,185,129,0.2);
+    box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
 }
 
 .submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 35px #10b981;
+    background: #047857;
+    transform: translateY(-1px);
 }
 
 .error-msg {
-    color: #ef4444;
+    color: #dc2626;
     font-size: 13px;
     margin-bottom: 15px;
     text-align: center;
     display: none;
-    background: rgba(239, 68, 68, 0.1);
+    background: rgba(220, 38, 38, 0.08);
     padding: 8px;
     border-radius: 8px;
-    border: 1px solid rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(220, 38, 38, 0.2);
 }
 
 .back-home {
@@ -189,14 +189,14 @@ body::before {
 }
 
 .back-home a {
-    color: #94a3b8;
+    color: #64748b;
     text-decoration: none;
     font-size: 13px;
     transition: 0.3s;
 }
 
 .back-home a:hover {
-    color: #10b981;
+    color: #059669;
 }
 </style>
 </head>
@@ -205,7 +205,7 @@ body::before {
 <div class="auth-container">
     <div class="auth-logo">
         <a href="index.html">
-            <i class="fa-solid fa-recycle" style="font-size: 32px; color: #10b981;"></i>
+            <i class="fa-solid fa-recycle" style="font-size: 32px; color: #059669;"></i>
             <h2>Punarchakra</h2>
         </a>
         <p>Industrial Symbiosis Portal</p>
@@ -299,7 +299,7 @@ body::before {
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            window.location.href = "dashboard.html";
+            window.location.href = "index.html";
         } catch (error) {
             errorBox.textContent = error.message;
             errorBox.style.display = "block";
@@ -325,7 +325,7 @@ body::before {
                 createdAt: new Date().toISOString()
             });
 
-            window.location.href = "dashboard.html";
+            window.location.href = "index.html";
         } catch (error) {
             errorBox.textContent = error.message;
             errorBox.style.display = "block";
