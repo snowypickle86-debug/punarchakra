@@ -14,17 +14,22 @@
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
 }
+
 :root {
     --bg-cyber: #030504;
     --cyber-glow: rgba(16, 185, 129, 0.15);
     --cyber-border: rgba(16, 185, 129, 0.25);
-    --eco-neon: #10b981;
+    --eco-green: #10b981;
     --eco-hover: #059669;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --card-light: rgba(255, 255, 255, 0.02);
+    --border-light: rgba(16, 185, 129, 0.2);
 }
 
 body {
     background: var(--bg-cyber);
-    color: #f8fafc;
+    color: var(--text-main);
     position: relative;
     overflow-x: hidden;
 }
@@ -43,22 +48,20 @@ body::before {
     z-index: -3;
 }
 
-/* Cyber Card / Container Effect */
-.service-card, .stat-box, .process-step, .about-card, .team-card, .auth-container {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--cyber-border);
-    backdrop-filter: blur(16px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    transition: 0.3s ease;
+/* Header & Navbar */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(3, 5, 4, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    z-index: 1000;
 }
-
-/* Interactive Neon Hover Effect */
-.service-card:hover, .auth-container:hover {
-    border-color: var(--eco-neon);
-    box-shadow: 0 0 25px var(--cyber-glow);
-}
-
-
 
 .logo-container {
     display: flex;
@@ -183,7 +186,7 @@ nav a:hover {
     font-weight: 600;
     font-size: 15px;
     transition: 0.3s;
-    background: white;
+    background: var(--card-light);
 }
 
 .btn-outline:hover {
@@ -202,10 +205,11 @@ nav a:hover {
 .stat-box {
     background: var(--card-light);
     border: 1px solid var(--border-light);
+    backdrop-filter: blur(16px);
     padding: 30px;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .stat-box h3 {
@@ -223,7 +227,7 @@ nav a:hover {
 /* Services Section */
 .services {
     padding: 90px 8%;
-    background: #f1f5f9;
+    background: rgba(15, 23, 42, 0.4);
     border-top: 1px solid var(--border-light);
     border-bottom: 1px solid var(--border-light);
 }
@@ -255,16 +259,17 @@ nav a:hover {
 .service-card {
     background: var(--card-light);
     border: 1px solid var(--border-light);
+    backdrop-filter: blur(16px);
     padding: 40px 30px;
     border-radius: 24px;
     transition: 0.3s;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .service-card:hover {
     border-color: var(--eco-green);
     transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 25px var(--cyber-glow);
 }
 
 .service-card i {
@@ -305,9 +310,10 @@ nav a:hover {
 .process-step {
     background: var(--card-light);
     border: 1px solid var(--border-light);
+    backdrop-filter: blur(16px);
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .process-step span {
@@ -331,7 +337,7 @@ nav a:hover {
 /* Who We Are & Vision/Mission */
 .about-section {
     padding: 90px 8%;
-    background: #f1f5f9;
+    background: rgba(15, 23, 42, 0.4);
     border-top: 1px solid var(--border-light);
 }
 
@@ -344,9 +350,10 @@ nav a:hover {
 .about-card {
     background: var(--card-light);
     border: 1px solid var(--border-light);
+    backdrop-filter: blur(16px);
     padding: 40px;
     border-radius: 24px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .about-card h3 {
@@ -391,10 +398,11 @@ nav a:hover {
     margin: 0 auto;
     background: var(--card-light);
     border: 1px solid var(--border-light);
+    backdrop-filter: blur(16px);
     padding: 40px;
     border-radius: 24px;
     text-align: left;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .team-card h3 {
@@ -424,7 +432,7 @@ nav a:hover {
 /* Contact & Footer Section */
 footer {
     padding: 70px 8% 40px;
-    background: #0f172a;
+    background: #020403;
     color: white;
     border-top: 1px solid var(--border-light);
 }
@@ -443,7 +451,7 @@ footer {
 }
 
 .footer-info p {
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 14px;
     line-height: 1.7;
     margin-bottom: 10px;
@@ -609,11 +617,11 @@ footer {
         <div class="footer-info">
             <h3>Punarchakra Waste Solutions</h3>
             <p>Building cleaner circular infrastructure across India, one waste processing plant at a time.</p>
-            <p><i class="fa-solid fa-location-dot" style="color: var(--eco-green);"></i> S. No. 47/PL-12, HOUSE.NO.432,  ADARSH Colony, New Delhi, Delhi 1100039, India</p>
+            <p><i class="fa-solid fa-location-dot" style="color: var(--eco-green);"></i> S. No. 47/PL-12, HOUSE.NO.432, ADARSH Colony, New Delhi, Delhi 1100039, India</p>
         </div>
         <div class="footer-info">
             <h3>Contact Info</h3>
-            <p><i class="fa-solid fa-envelope" style="color: var(--eco-green);"></i> @infopunarchakra.com / connect@punarchakra.com</p>
+            <p><i class="fa-solid fa-envelope" style="color: var(--eco-green);"></i> connect@punarchakra.com</p>
             <p><i class="fa-solid fa-phone" style="color: var(--eco-green);"></i> +91 9918685329 / +91 9834575865</p>
         </div>
     </div>
