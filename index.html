@@ -16,16 +16,18 @@
 }
 
 :root {
-    --bg-deep: #050706;
-    --eco-primary: #10b981;
-    --eco-glow: rgba(16, 185, 129, 0.25);
-    --border-color: rgba(255, 255, 255, 0.08);
-    --card-bg: rgba(255, 255, 255, 0.02);
+    --bg-earth: #0c100e;
+    --card-earth: rgba(255, 255, 255, 0.03);
+    --eco-green: #10b981;
+    --eco-hover: #059669;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-earth: rgba(16, 185, 129, 0.15);
 }
 
 body {
-    background: var(--bg-deep);
-    color: #f8fafc;
+    background: var(--bg-earth);
+    color: var(--text-main);
     overflow-x: hidden;
     position: relative;
 }
@@ -38,8 +40,8 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 10% 20%, rgba(16,185,129,0.1), transparent 30%),
-        radial-gradient(circle at 90% 60%, rgba(5,150,105,0.07), transparent 30%);
+        radial-gradient(circle at 15% 15%, rgba(16,185,129,0.08), transparent 35%),
+        radial-gradient(circle at 85% 75%, rgba(5,150,105,0.05), transparent 35%);
     z-index: -3;
 }
 
@@ -53,9 +55,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    backdrop-filter: blur(12px);
-    background: rgba(5, 7, 6, 0.9);
-    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(14px);
+    background: rgba(12, 16, 14, 0.85);
+    border-bottom: 1px solid var(--border-earth);
     z-index: 100;
 }
 
@@ -80,7 +82,7 @@ nav {
 }
 
 nav a {
-    color: #cbd5e1;
+    color: var(--text-muted);
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -88,13 +90,13 @@ nav a {
 }
 
 nav a:hover {
-    color: var(--eco-primary);
+    color: var(--eco-green);
 }
 
 .portal-btn {
     padding: 10px 24px;
-    background: var(--eco-primary);
-    color: #050706;
+    background: var(--eco-green);
+    color: #0c100e;
     font-weight: 600;
     font-size: 14px;
     border-radius: 30px;
@@ -104,7 +106,7 @@ nav a:hover {
 }
 
 .portal-btn:hover {
-    background: #059669;
+    background: var(--eco-hover);
     color: white;
 }
 
@@ -115,23 +117,22 @@ nav a:hover {
     align-items: center;
     justify-content: space-between;
     padding: 140px 8% 60px;
-    gap: 50px;
 }
 
 .hero-left {
-    flex: 1.2;
+    max-width: 750px;
 }
 
 .badge {
-    color: var(--eco-primary);
+    color: var(--eco-green);
     letter-spacing: 2px;
     font-size: 12px;
     font-weight: 700;
     margin-bottom: 20px;
     display: inline-block;
-    padding: 6px 14px;
+    padding: 6px 16px;
     background: rgba(16,185,129,0.08);
-    border: 1px solid rgba(16,185,129,0.2);
+    border: 1px solid var(--border-earth);
     border-radius: 20px;
 }
 
@@ -143,15 +144,14 @@ nav a:hover {
 }
 
 .hero-left h1 span {
-    color: var(--eco-primary);
+    color: var(--eco-green);
 }
 
 .hero-left p {
     font-size: 16px;
-    color: #94a3b8;
+    color: var(--text-muted);
     line-height: 1.8;
     margin-bottom: 35px;
-    max-width: 650px;
 }
 
 .hero-buttons {
@@ -161,8 +161,8 @@ nav a:hover {
 
 .btn-primary {
     padding: 15px 35px;
-    background: var(--eco-primary);
-    color: #050706;
+    background: var(--eco-green);
+    color: #0c100e;
     text-decoration: none;
     border-radius: 30px;
     font-weight: 700;
@@ -171,13 +171,13 @@ nav a:hover {
 }
 
 .btn-primary:hover {
-    background: #059669;
+    background: var(--eco-hover);
     color: white;
 }
 
 .btn-outline {
     padding: 15px 35px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid var(--border-earth);
     color: white;
     text-decoration: none;
     border-radius: 30px;
@@ -187,7 +187,7 @@ nav a:hover {
 }
 
 .btn-outline:hover {
-    border-color: var(--eco-primary);
+    border-color: var(--eco-green);
     background: rgba(16,185,129,0.05);
 }
 
@@ -200,31 +200,31 @@ nav a:hover {
 }
 
 .stat-box {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    padding: 25px;
-    border-radius: 16px;
+    background: var(--card-earth);
+    border: 1px solid var(--border-earth);
+    padding: 30px;
+    border-radius: 20px;
     text-align: center;
 }
 
 .stat-box h3 {
-    font-size: 28px;
-    color: var(--eco-primary);
+    font-size: 32px;
+    color: var(--eco-green);
     font-weight: 800;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .stat-box p {
     font-size: 13px;
-    color: #94a3b8;
+    color: var(--text-muted);
 }
 
 /* Services Section */
 .services {
     padding: 90px 8%;
-    background: rgba(0,0,0,0.3);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
+    background: rgba(255,255,255,0.01);
+    border-top: 1px solid var(--border-earth);
+    border-bottom: 1px solid var(--border-earth);
 }
 
 .section-title {
@@ -240,7 +240,7 @@ nav a:hover {
 }
 
 .section-title p {
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 15px;
 }
 
@@ -251,25 +251,25 @@ nav a:hover {
 }
 
 .service-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
+    background: var(--card-earth);
+    border: 1px solid var(--border-earth);
     padding: 40px 30px;
-    border-radius: 20px;
+    border-radius: 24px;
     transition: 0.3s;
 }
 
 .service-card:hover {
-    border-color: var(--eco-primary);
+    border-color: var(--eco-green);
     transform: translateY(-5px);
 }
 
 .service-card i {
-    font-size: 30px;
-    color: var(--eco-primary);
+    font-size: 28px;
+    color: var(--eco-green);
     margin-bottom: 20px;
     background: rgba(16,185,129,0.1);
-    padding: 15px;
-    border-radius: 12px;
+    padding: 16px;
+    border-radius: 16px;
     display: inline-block;
 }
 
@@ -281,7 +281,7 @@ nav a:hover {
 
 .service-card p {
     font-size: 14px;
-    color: #94a3b8;
+    color: var(--text-muted);
     line-height: 1.7;
 }
 
@@ -298,16 +298,16 @@ nav a:hover {
 }
 
 .process-step {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
+    background: var(--card-earth);
+    border: 1px solid var(--border-earth);
     padding: 30px;
-    border-radius: 16px;
+    border-radius: 20px;
 }
 
 .process-step span {
     font-size: 12px;
     font-weight: 700;
-    color: var(--eco-primary);
+    color: var(--eco-green);
 }
 
 .process-step h4 {
@@ -317,15 +317,15 @@ nav a:hover {
 
 .process-step p {
     font-size: 13px;
-    color: #94a3b8;
-    line-height: 1.5;
+    color: var(--text-muted);
+    line-height: 1.6;
 }
 
 /* Who We Are & Vision/Mission */
 .about-section {
     padding: 90px 8%;
-    background: rgba(0,0,0,0.4);
-    border-top: 1px solid var(--border-color);
+    background: rgba(255,255,255,0.015);
+    border-top: 1px solid var(--border-earth);
 }
 
 .about-grid {
@@ -335,21 +335,21 @@ nav a:hover {
 }
 
 .about-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
+    background: var(--card-earth);
+    border: 1px solid var(--border-earth);
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 24px;
 }
 
 .about-card h3 {
     font-size: 24px;
     margin-bottom: 15px;
-    color: var(--eco-primary);
+    color: var(--eco-green);
 }
 
 .about-card p, .about-card li {
     font-size: 14px;
-    color: #94a3b8;
+    color: var(--text-muted);
     line-height: 1.7;
 }
 
@@ -366,7 +366,7 @@ nav a:hover {
 
 .about-card ul li::before {
     content: "•";
-    color: var(--eco-primary);
+    color: var(--eco-green);
     position: absolute;
     left: 0;
     font-size: 18px;
@@ -379,12 +379,12 @@ nav a:hover {
 }
 
 .team-card {
-    max-width: 500px;
+    max-width: 550px;
     margin: 0 auto;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
+    background: var(--card-earth);
+    border: 1px solid var(--border-earth);
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 24px;
     text-align: left;
 }
 
@@ -394,7 +394,7 @@ nav a:hover {
 }
 
 .team-card .role {
-    color: var(--eco-primary);
+    color: var(--eco-green);
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 20px;
@@ -407,15 +407,15 @@ nav a:hover {
 
 .team-card ul li {
     font-size: 13px;
-    color: #94a3b8;
+    color: var(--text-muted);
     margin-bottom: 8px;
 }
 
 /* Contact & Footer Section */
 footer {
     padding: 70px 8% 40px;
-    background: #030404;
-    border-top: 1px solid var(--border-color);
+    background: #080b09;
+    border-top: 1px solid var(--border-earth);
 }
 
 .footer-grid {
@@ -432,7 +432,7 @@ footer {
 }
 
 .footer-info p {
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 14px;
     line-height: 1.7;
     margin-bottom: 10px;
@@ -442,7 +442,7 @@ footer {
     text-align: center;
     color: #64748b;
     font-size: 13px;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-earth);
     padding-top: 25px;
 }
 
@@ -459,7 +459,7 @@ footer {
 
 <header>
     <a href="index.html" class="logo-container">
-        <i class="fa-solid fa-recycle" style="font-size: 24px; color: #10b981;"></i>
+        <i class="fa-solid fa-recycle" style="font-size: 24px; color: var(--eco-green);"></i>
         <span>Punarchakra</span>
     </a>
     <nav>
@@ -598,12 +598,12 @@ footer {
         <div class="footer-info">
             <h3>Punarchakra Waste Solutions</h3>
             <p>Building cleaner circular infrastructure across India, one waste processing plant at a time.</p>
-            <p><i class="fa-solid fa-location-dot" style="color: var(--eco-primary);"></i> S. No. 47/PL-12, Flat No 2, Navmaharashtra Society, Taware Colony, Pune, Maharashtra 411009, India</p>
+            <p><i class="fa-solid fa-location-dot" style="color: var(--eco-green);"></i> S. No. 47/PL-12, Flat No 2, Navmaharashtra Society, Taware Colony, Pune, Maharashtra 411009, India</p>
         </div>
         <div class="footer-info">
             <h3>Contact Info</h3>
-            <p><i class="fa-solid fa-envelope" style="color: var(--eco-primary);"></i> info@punarchakra.com / connect@punarchakra.com</p>
-            <p><i class="fa-solid fa-phone" style="color: var(--eco-primary);"></i> +91 9822060510 / +91 9834575865</p>
+            <p><i class="fa-solid fa-envelope" style="color: var(--eco-green);"></i> info@punarchakra.com / connect@punarchakra.com</p>
+            <p><i class="fa-solid fa-phone" style="color: var(--eco-green);"></i> +91 9822060510 / +91 9834575865</p>
         </div>
     </div>
     <div class="copyright">
