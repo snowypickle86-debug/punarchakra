@@ -16,33 +16,20 @@
 }
 
 :root {
-    --bg-earth: #0c100e;
-    --card-earth: rgba(255, 255, 255, 0.03);
-    --eco-green: #10b981;
-    --eco-hover: #059669;
-    --text-main: #f1f5f9;
-    --text-muted: #94a3b8;
-    --border-earth: rgba(16, 185, 129, 0.15);
+    --bg-light: #f8fafc;
+    --card-light: #ffffff;
+    --eco-green: #059669;
+    --eco-hover: #047857;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --border-light: #e2e8f0;
 }
 
 body {
-    background: var(--bg-earth);
+    background: var(--bg-light);
     color: var(--text-main);
     overflow-x: hidden;
     position: relative;
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 15% 15%, rgba(16,185,129,0.08), transparent 35%),
-        radial-gradient(circle at 85% 75%, rgba(5,150,105,0.05), transparent 35%);
-    z-index: -3;
 }
 
 /* Header */
@@ -55,9 +42,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    backdrop-filter: blur(14px);
-    background: rgba(12, 16, 14, 0.85);
-    border-bottom: 1px solid var(--border-earth);
+    backdrop-filter: blur(12px);
+    background: rgba(248, 250, 252, 0.9);
+    border-bottom: 1px solid var(--border-light);
     z-index: 100;
 }
 
@@ -71,7 +58,7 @@ header {
 .logo-container span {
     font-size: 20px;
     font-weight: 700;
-    color: white;
+    color: var(--text-main);
     letter-spacing: 0.5px;
 }
 
@@ -96,18 +83,17 @@ nav a:hover {
 .portal-btn {
     padding: 10px 24px;
     background: var(--eco-green);
-    color: #0c100e;
+    color: white;
     font-weight: 600;
     font-size: 14px;
     border-radius: 30px;
     text-decoration: none;
     transition: 0.3s;
-    box-shadow: 0 0 20px rgba(16,185,129,0.2);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
 }
 
 .portal-btn:hover {
     background: var(--eco-hover);
-    color: white;
 }
 
 /* Hero Section */
@@ -131,8 +117,8 @@ nav a:hover {
     margin-bottom: 20px;
     display: inline-block;
     padding: 6px 16px;
-    background: rgba(16,185,129,0.08);
-    border: 1px solid var(--border-earth);
+    background: rgba(5, 150, 105, 0.08);
+    border: 1px solid rgba(5, 150, 105, 0.2);
     border-radius: 20px;
 }
 
@@ -141,6 +127,7 @@ nav a:hover {
     line-height: 1.15;
     font-weight: 800;
     margin-bottom: 20px;
+    color: var(--text-main);
 }
 
 .hero-left h1 span {
@@ -162,33 +149,34 @@ nav a:hover {
 .btn-primary {
     padding: 15px 35px;
     background: var(--eco-green);
-    color: #0c100e;
+    color: white;
     text-decoration: none;
     border-radius: 30px;
     font-weight: 700;
     font-size: 15px;
     transition: 0.3s;
+    box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
 }
 
 .btn-primary:hover {
     background: var(--eco-hover);
-    color: white;
 }
 
 .btn-outline {
     padding: 15px 35px;
-    border: 1px solid var(--border-earth);
-    color: white;
+    border: 1px solid var(--border-light);
+    color: var(--text-main);
     text-decoration: none;
     border-radius: 30px;
     font-weight: 600;
     font-size: 15px;
     transition: 0.3s;
+    background: white;
 }
 
 .btn-outline:hover {
     border-color: var(--eco-green);
-    background: rgba(16,185,129,0.05);
+    color: var(--eco-green);
 }
 
 /* Stats Counter Row */
@@ -200,11 +188,12 @@ nav a:hover {
 }
 
 .stat-box {
-    background: var(--card-earth);
-    border: 1px solid var(--border-earth);
+    background: var(--card-light);
+    border: 1px solid var(--border-light);
     padding: 30px;
     border-radius: 20px;
     text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .stat-box h3 {
@@ -222,9 +211,9 @@ nav a:hover {
 /* Services Section */
 .services {
     padding: 90px 8%;
-    background: rgba(255,255,255,0.01);
-    border-top: 1px solid var(--border-earth);
-    border-bottom: 1px solid var(--border-earth);
+    background: #f1f5f9;
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
 }
 
 .section-title {
@@ -237,6 +226,7 @@ nav a:hover {
     font-size: 36px;
     font-weight: 800;
     margin-bottom: 15px;
+    color: var(--text-main);
 }
 
 .section-title p {
@@ -251,23 +241,25 @@ nav a:hover {
 }
 
 .service-card {
-    background: var(--card-earth);
-    border: 1px solid var(--border-earth);
+    background: var(--card-light);
+    border: 1px solid var(--border-light);
     padding: 40px 30px;
     border-radius: 24px;
     transition: 0.3s;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .service-card:hover {
     border-color: var(--eco-green);
     transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
 }
 
 .service-card i {
     font-size: 28px;
     color: var(--eco-green);
     margin-bottom: 20px;
-    background: rgba(16,185,129,0.1);
+    background: rgba(5, 150, 105, 0.08);
     padding: 16px;
     border-radius: 16px;
     display: inline-block;
@@ -277,6 +269,7 @@ nav a:hover {
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 12px;
+    color: var(--text-main);
 }
 
 .service-card p {
@@ -298,10 +291,11 @@ nav a:hover {
 }
 
 .process-step {
-    background: var(--card-earth);
-    border: 1px solid var(--border-earth);
+    background: var(--card-light);
+    border: 1px solid var(--border-light);
     padding: 30px;
     border-radius: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .process-step span {
@@ -313,6 +307,7 @@ nav a:hover {
 .process-step h4 {
     font-size: 18px;
     margin: 10px 0 8px;
+    color: var(--text-main);
 }
 
 .process-step p {
@@ -324,8 +319,8 @@ nav a:hover {
 /* Who We Are & Vision/Mission */
 .about-section {
     padding: 90px 8%;
-    background: rgba(255,255,255,0.015);
-    border-top: 1px solid var(--border-earth);
+    background: #f1f5f9;
+    border-top: 1px solid var(--border-light);
 }
 
 .about-grid {
@@ -335,10 +330,11 @@ nav a:hover {
 }
 
 .about-card {
-    background: var(--card-earth);
-    border: 1px solid var(--border-earth);
+    background: var(--card-light);
+    border: 1px solid var(--border-light);
     padding: 40px;
     border-radius: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .about-card h3 {
@@ -381,16 +377,18 @@ nav a:hover {
 .team-card {
     max-width: 550px;
     margin: 0 auto;
-    background: var(--card-earth);
-    border: 1px solid var(--border-earth);
+    background: var(--card-light);
+    border: 1px solid var(--border-light);
     padding: 40px;
     border-radius: 24px;
     text-align: left;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .team-card h3 {
     font-size: 22px;
     margin-bottom: 5px;
+    color: var(--text-main);
 }
 
 .team-card .role {
@@ -414,8 +412,9 @@ nav a:hover {
 /* Contact & Footer Section */
 footer {
     padding: 70px 8% 40px;
-    background: #080b09;
-    border-top: 1px solid var(--border-earth);
+    background: #0f172a;
+    color: white;
+    border-top: 1px solid var(--border-light);
 }
 
 .footer-grid {
@@ -432,7 +431,7 @@ footer {
 }
 
 .footer-info p {
-    color: var(--text-muted);
+    color: #94a3b8;
     font-size: 14px;
     line-height: 1.7;
     margin-bottom: 10px;
@@ -442,7 +441,7 @@ footer {
     text-align: center;
     color: #64748b;
     font-size: 13px;
-    border-top: 1px solid var(--border-earth);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 25px;
 }
 
@@ -598,12 +597,12 @@ footer {
         <div class="footer-info">
             <h3>Punarchakra Waste Solutions</h3>
             <p>Building cleaner circular infrastructure across India, one waste processing plant at a time.</p>
-            <p><i class="fa-solid fa-location-dot" style="color: var(--eco-green);"></i> S. No. 47/PL-12, Flat No 2, Navmaharashtra Society, Taware Colony, Pune, Maharashtra 411009, India</p>
+            <p><i class="fa-solid fa-location-dot" style="color: var(--eco-green);"></i> S. No. 47/PL-12, HOUSE.NO.432,  ADARSH Colony, New Delhi, Delhi 1100039, India</p>
         </div>
         <div class="footer-info">
             <h3>Contact Info</h3>
-            <p><i class="fa-solid fa-envelope" style="color: var(--eco-green);"></i> info@punarchakra.com / connect@punarchakra.com</p>
-            <p><i class="fa-solid fa-phone" style="color: var(--eco-green);"></i> +91 9822060510 / +91 9834575865</p>
+            <p><i class="fa-solid fa-envelope" style="color: var(--eco-green);"></i> @infopunarchakra.com / connect@punarchakra.com</p>
+            <p><i class="fa-solid fa-phone" style="color: var(--eco-green);"></i> +91 9918685329 / +91 9834575865</p>
         </div>
     </div>
     <div class="copyright">
